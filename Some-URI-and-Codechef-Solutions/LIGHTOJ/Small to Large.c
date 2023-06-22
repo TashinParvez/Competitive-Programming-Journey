@@ -1,0 +1,43 @@
+#include<stdio.h>
+int main()
+{
+    int t;
+    scanf("%d",&t);
+
+    int a,b,c;
+
+    for(int i =1; i<=t; i++)
+    {
+        scanf("%d%d%d",&a,&b,&c);
+        printf("Case %d: ",i);
+
+        if(a>=b && a>=c)
+        {
+            if(b>=c)
+                printf("%d %d %d",c,b,a);
+            else
+                printf("%d %d %d",b,c,a);
+        }
+
+        else if(b>=a && b>=c)
+        {
+            if(a>=c)
+                printf("%d %d %d",c,a,b);
+            else
+                printf("%d %d %d",a,c,b);
+        }
+        else
+        {
+            if(a>=b)
+                printf("%d %d %d",b,a,c);
+            else
+                printf("%d %d %d",a,b,c);
+
+        }
+
+        printf("\n");
+    }
+    return 0;
+}
+
+
