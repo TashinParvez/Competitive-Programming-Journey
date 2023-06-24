@@ -6,7 +6,7 @@
 
 // data_type_compressions :
 
-#define int long long
+// #define int long long
 #define ull unsigned long long
 #define ld long double
 
@@ -49,36 +49,30 @@ using namespace std;
 
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, index;
+    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
     string s;
     bool flag = false;
 
-    cin >> n;
-    int arr[n];
-    int sum = 0;
-    int count = 0;
+    cin >> n >> k; // money // desserts
+    // int ways = 1;
 
-    for (int i = 0; i<n; i++)
+    // if (k > 30)
+    //     printf("%d\n", n + 1);
+    // else
+    // {
+    //     p = pow(2, k);
+    //     min = n + 1;
+    //     if ( p < min )
+    //         min = p;
+    //     printf("%d\n", min);
+    // }
+
+    if (k <= 30)
+        cout << (int)min((n + 1), (int)pow(2, k)) << nl;
+    else
     {
-        cin >> arr[i];
-
-        if (arr[i] < 0)
-        {
-            sum += (arr[i] * -1);
-            if (flag == false)
-            {
-                flag = true;
-                count++;
-            }
-        }
-        else
-        {
-            sum += arr[i];
-            flag = false;
-        }
+        cout << ((n + 1)) << nl;
     }
-
-    cout << sum << " " << count << nl;
 }
 
 int32_t main()
