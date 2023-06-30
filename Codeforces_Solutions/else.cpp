@@ -23,19 +23,11 @@ using namespace std;
 int32_t main()
 {
 
-    int n, k, t, d;
-    cin >> n >> t >> k >> d;
 
-    double totalUse = (n * 1.0 / k);
-    if (totalUse - (int)totalUse != 0)
-        totalUse++;
 
-        
-    cout << "totalUse " << totalUse << nl;
-    int forOne = (t * (int)totalUse);
-    int pp = (n + k - 1) / k * t;
 
-    cout << "Their  " << pp << nl;
-    cout << "Myone  " << forOne << nl;
+
+
+
     CRACKED;
 }
