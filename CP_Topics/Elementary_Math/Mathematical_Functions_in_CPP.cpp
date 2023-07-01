@@ -34,7 +34,7 @@ int main()
     ◼ base 10 can be used to know digits of a number
     digits = (int) log10(x) + 1 ;
 
-    ◼ base 2 can be used to know how many bits need to reporesent a number
+    ◼ base 2 can be used to know how many bits need to represent a number
     bits =  (int)(log2(x) + 1) ;
 
 
