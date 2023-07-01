@@ -54,39 +54,41 @@ using namespace std;
 
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
+    int i, j, k, l, m, n, b, c, d, w, x, y, z, t, count = 0, index;
     string s;
-    bool flag = true;
+    bool flag = false;
 
     cin >> n >> k;
-    int arr[n];
-    for (int i = 0; i < n; i++)
+    if (n == k)
     {
-        cin >> arr[i];
+        char a = 'a';
+        for (int i = 0; i < n; i++)
+        {
+            cout << a;
+            a++;
+        }
+        cout << nl;
+        return;
     }
-
-    vector<int> moved, unmoved;
-    for (int i = 0; i < n; i++)
+    else
     {
-        if (i + k <= n - 1 || i >= k)
-            moved.push_back(arr[i]);
-        else
-            unmoved.push_back(arr[i]);
-    }
+        char a = 'a';
+        int cnt = 0;
+        for (int i = 0; i < n; i++)
+        {
+            cout << a;
+            a++;
+            cnt++;
+            if (cnt == k)
+            {
 
-    sort(moved.begin(), moved.end());
-    j = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (i + k <= n - 1 || i >= k)
-            arr[i] = moved[j++];
-        else
-            continue;
+                a = 'a';
+                cnt = 0;
+            }
+        }
+        cout << nl;
+        return;
     }
-
-    for (auto i : arr)
-        cout << i << " ";
-    cout << nl;
 }
 
 int32_t main()
@@ -98,11 +100,10 @@ int32_t main()
     //   //  Write("output.txt");
     // #endif // TashinParvez
 
-    int t = 1;
-    cin >> t;
-    int c = 1;
+    // int t = 1; cin >> t;
+    // int c = 1;
 
-    while (t--)
+    // while (t--)
     {
         // cout << "Case " << c++ << ": ";
         solution();

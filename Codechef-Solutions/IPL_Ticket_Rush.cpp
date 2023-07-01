@@ -56,37 +56,13 @@ void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
     string s;
-    bool flag = true;
+    bool flag = false;
 
-    cin >> n >> k;
-    int arr[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
-
-    vector<int> moved, unmoved;
-    for (int i = 0; i < n; i++)
-    {
-        if (i + k <= n - 1 || i >= k)
-            moved.push_back(arr[i]);
-        else
-            unmoved.push_back(arr[i]);
-    }
-
-    sort(moved.begin(), moved.end());
-    j = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (i + k <= n - 1 || i >= k)
-            arr[i] = moved[j++];
-        else
-            continue;
-    }
-
-    for (auto i : arr)
-        cout << i << " ";
-    cout << nl;
+    cin >> n >> m;
+    if (m > n)
+        cout << 0 << nl;
+    else
+        cout << abs(m - n) << nl;
 }
 
 int32_t main()

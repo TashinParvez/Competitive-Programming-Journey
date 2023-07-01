@@ -13,7 +13,7 @@
 #define nl "\n"
 
 // data_type_compressions :
-#define int long long
+// #define int long long
 #define ull unsigned long long
 #define ld long double
 
@@ -54,39 +54,55 @@ using namespace std;
 
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
-    string s;
-    bool flag = true;
+    int i, j, k, l, m, n, d, w, x, y, z, t, count = 0, index;
+    bool flag = false;
+    cin >> n;
 
-    cin >> n >> k;
     int arr[n];
+    int s = 8;
+    s = n / 3;
+    int a[s] = {0};
+    int b[s];
+    int c[s];
+    int aa = 0, bb = 0, cc = 0;
+    int o1 = 0, o2 = 0, o3 = 0;
+
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
+        if (arr[i] == 1)
+        {
+            o1++;
+            if (aa >= s)
+                continue;
+            a[aa] = i + 1;
+            aa++;
+        }
+        else if (arr[i] == 2)
+        {
+            o2++;
+            if (bb >= s)
+                continue;
+            b[bb] = i + 1;
+            bb++;
+        }
+        else if (arr[i] == 3)
+        {
+            o3++;
+            if (cc >= s)
+                continue;
+            c[cc] = i + 1;
+            cc++;
+        }
     }
-
-    vector<int> moved, unmoved;
-    for (int i = 0; i < n; i++)
+    int ans = min(o1, min(o2, o3));
+    cout << ans << nl;
+    o1 = 0, o2 = 0, o3 = 0;
+    for (int i = 0; i < ans; i++)
     {
-        if (i + k <= n - 1 || i >= k)
-            moved.push_back(arr[i]);
-        else
-            unmoved.push_back(arr[i]);
+        cout << a[i] << " " << b[i] << " " << c[i];
+        cout << nl;
     }
-
-    sort(moved.begin(), moved.end());
-    j = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (i + k <= n - 1 || i >= k)
-            arr[i] = moved[j++];
-        else
-            continue;
-    }
-
-    for (auto i : arr)
-        cout << i << " ";
-    cout << nl;
 }
 
 int32_t main()
@@ -98,11 +114,10 @@ int32_t main()
     //   //  Write("output.txt");
     // #endif // TashinParvez
 
-    int t = 1;
-    cin >> t;
-    int c = 1;
+    // int t = 1; cin >> t;
+    // int c = 1;
 
-    while (t--)
+    // while (t--)
     {
         // cout << "Case " << c++ << ": ";
         solution();

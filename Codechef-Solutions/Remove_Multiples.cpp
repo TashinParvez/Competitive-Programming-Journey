@@ -63,39 +63,16 @@ void solution()
     int arrIN[n - m];
     int temp = 1;
     int sum = 0;
+
+    int snmOutr = 0;
+    sum = (n * (n + 1)) / 2;
+
     for (int i = 0; i < m; i++)
     {
         cin >> arr[i];
-        // for (int j = temp; j < arr[i]; j++)
-        // {
-        //     sum += j;
-        // }
-        // // cout <<"SUM "<< sum << nl;
-        // temp = arr[i] + 1;
+        sum -= arr[i];
     }
-
-    sort(arr, arr + m);
-
-    // printarray(arr,m);
-
-    for (int i = 0; i < m; i++)
-    {
-        for (int j = temp; j < arr[i]; j++)
-        {
-            sum += j;
-        }
-        // cout << "SUM " << sum << nl;
-        temp = arr[i] + 1;
-    }
-
-    if (temp <= n)
-    {
-        for (int j = temp; j <= n; j++)
-        {
-            sum += j;
-        }
-    }
-    cout << sum << nl;
+    cout << sum  << nl;
 }
 
 int32_t main()

@@ -25,9 +25,8 @@
 #define printarray(arr, len)      \
     for (int i = 0; i < len; i++) \
     {                             \
-        cout << arr[i] << " ";    \
-        if (i + 1 == len)         \
-            cout << endl;         \
+        cout << arr[i];           \
+        cout << endl;             \
     } // array print
 
 #define sq(x) ((x) * (x)) // x^2  square
@@ -60,17 +59,39 @@ void solution()
 
     cin >> n;
     int arr[n];
-    for (int i = 0; i, n; i++)
-    {
+    for (int i = 0; i < n; i++)
         cin >> arr[i];
-    }
-    cin >> m;
-    while (m--)
+    cin >> t;
+
+    // printarray(arr, n);
+    // cout << nl;
+
+    while (t--)
     {
         int xi, yi;
         cin >> xi >> yi;
-        
+
+        if ((xi - 1) - 1 >= 0)
+        {
+            if ((yi - 1) > 0)
+            {
+                arr[(xi - 1) - 1] += (yi - 1);
+                // cout << xi - 1 - 1 << "  upore " << arr[xi - 2] << nl;
+            }
+        }
+
+        if (xi < n)
+        {
+            if (arr[xi - 1] - yi > 0)
+            {
+                arr[xi] += (arr[xi - 1] - yi);
+                // cout << xi + 1 << "  niche " << arr[xi] << nl;
+            }
+        }
+        arr[xi - 1] = 0;
     }
+
+    printarray(arr, n);
 }
 
 int32_t main()
