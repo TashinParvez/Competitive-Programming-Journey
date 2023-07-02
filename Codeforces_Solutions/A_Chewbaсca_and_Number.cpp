@@ -52,27 +52,57 @@ using namespace std;
 
 */
 
+void solution()
+{
+    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
+    string s;
+    bool flag = false;
+    cin >> s;
+
+    // cout << s << nl;
+    for (int i = 0; i < len(s); i++)
+    {
+        // cout << i << " tashin " << nl;
+
+        int num = s[i] - '0';
+        int num2 = 9 - num;
+        int ans = min(num, num2);
+
+        if (i == 0)
+        {
+            if (ans == 0)
+            {
+                cout << num;
+            }
+            else
+                cout << ans;
+            continue;
+        }
+        else
+            cout << ans;
+        // cout << ans;
+    }
+    // cout << "tsahin";
+    cout << nl;
+}
+
 int32_t main()
 {
     faster;
 
-    // cout << 21 << nl;
+    // #ifdef TashinParvez
+    //     Read("input.txt");
+    //   //  Write("output.txt");
+    // #endif // TashinParvez
 
-    int t;
-    cin >> t;
+    // int t = 1; cin >> t;
+    // int c = 1;
 
-    int last = t % 10;
-    int out = 9 - last;
-    while (t)
+    // while (t--)
     {
-        int l = t % 10;
-        if (l == last)
-            cout << out;
-        else
-            cout << l;
-        t /= 10;
+        // cout << "Case " << c++ << ": ";
+        solution();
     }
-    cout << nl;
 
-    return 0;
+    CRACKED;
 }
