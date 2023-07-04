@@ -59,22 +59,23 @@ void solution()
     bool flag = false;
 
     cin >> n;
-    map<int, int> mp;
-    int ans = 0;
-    index = 1000 + 10;
-
+    int arr[n];
+    int sumA = 0, sumB = 0;
     for (int i = 0; i < n; i++)
     {
-        cin >> a;
-        mp[a]++;
-        if (mp[a] > ans)
+        cin >> arr[i];
+        if(arr[i]>0)
         {
-
-            index = a;
-            ans = mp[a];
-        }
+            sumA+=arr[i];
+        }else 
+            sumB+=arr[i];
     }
-    cout << index << nl;
+    int ans = abs(sumA)-abs(sumB);
+    if(ans<0)
+    {
+        cout<<ans*-1<<nl;
+    }else 
+        cout<<ans*1<<nl;
 }
 
 int32_t main()
@@ -86,25 +87,11 @@ int32_t main()
     //   //  Write("output.txt");
     // #endif // TashinParvez
 
-    // if (a >= b)
-    // {
-    //     if (c >= a)
-    //         cout << c;
-    //     else
-    //         cout << a;
-    // }
-    // else
-    // {
-    //     if (c >= b)
-    //         cout << c;
-    //     else
-    //         cout << b;
-    // }
+    int t = 1;
+    cin >> t;
+    int c = 1;
 
-    // int t = 1; cin >> t;
-    // int c = 1;
-
-    // while (t--)
+    while (t--)
     {
         // cout << "Case " << c++ << ": ";
         solution();
