@@ -1,5 +1,6 @@
+
 //        ****************  Author :  Tashin.Parvez  *************************\
-//        ****************  Updated:    02-07-23     *************************\
+//        ****************  Updated:    21-06-23     *************************\
 
 #include <bits/stdc++.h>
 #define faster    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
@@ -9,13 +10,11 @@
 #define nl        "\n"
 
 // data_type_compressions :
-#define int       long long
-#define ull       unsigned long long
-#define ld        long double
+#define int   long long
+#define ull   unsigned long long
+#define ld    long double
 
-#define PI        3.14159265358979323846
-#define iMax      INT_MAX;
-#define iMin      INT_MIN;
+#define PI    3.14159265358979323846
 
 // I/O :
 #define loop(n)                 for (int i = 0; i < n; i++) // 0 to n Input or Output
@@ -23,13 +22,15 @@
 #define printarray(arr, len)    for (int i = 0; i < len; i++) { cout << arr[i] << " "; if (i + 1 == len) cout << endl; } // array print
 
 #define sq(x)        ((x) * (x)) // x^2  square
-#define len(s)       s.length()              // string length 
+#define max3(a,b,c)    max(max(a, b),c)   
+#define min3(a,b,c)    min(min(a, b),c)  
+#define len(s)       s.length() 
 #define setDec(x)    fixed << setprecision(x)  
 
-#define YES          output("YES");
-#define Yes          output("Yes");
-#define NO           output("NO") ;
-#define No           output("No") ;
+#define YES    printf("YES\n")
+#define Yes    printf("Yes\n")
+#define NO     printf("NO\n") 
+#define No     printf("No\n")
 
 using namespace std;
 
@@ -45,21 +46,12 @@ using namespace std;
 */
 
 void solution()
-{   bool flag = false;
-
-    int i = 0, j = 0, k, l, m, n, a, b, c, d, w, x, y, z, t;
-    int cnt = 0, index=-1, sum=0;
-    string str;
+{
+    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
+    string s;
+    bool flag = false;
 
     cin >> n;
-
-
-
-
-
-
-
-
 }
 
 int32_t main()
@@ -71,9 +63,8 @@ int32_t main()
     //   //  Write("output.txt");
     // #endif // TashinParvez
 
-    int t = 1, c = 1;
-    
-    cin >> t;
+    int t = 1; cin >> t;
+    int c = 1;
 
     while (t--)
     {
