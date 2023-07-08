@@ -3,6 +3,7 @@
         "iostream": "cpp",
         "cmath": "cpp",
         "random": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "istream": "cpp"
     }
 }
