@@ -4,6 +4,7 @@
         "cmath": "cpp",
         "random": "cpp",
         "regex": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "ostream": "cpp"
     }
 }
