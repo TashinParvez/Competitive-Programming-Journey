@@ -5,6 +5,7 @@
         "random": "cpp",
         "regex": "cpp",
         "istream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "sstream": "cpp"
     }
 }
