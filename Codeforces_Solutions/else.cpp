@@ -1,55 +1,73 @@
 #include <bits/stdc++.h>
+
 using namespace std;
+#define endl "\n"
+#define fast                 \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);
+#define ll long long
+#define fr(i, n) for (ll i = 0; i < n; i++)
+#define fr1(i, n) for (ll i = 1; i <= n; i++)
+#define tc    \
+    int t;    \
+    cin >> t; \
+    while (t--)
+#define pb push_back
+#define fs(n) fixed << setprecision(n)
+#define asort(a) sort(a, a + n)
+#define vi vector<int>
+#define qi queue<int>
+#define di deque<int>
+#define pqi priority_queue<int>
+#define pql priority_queue<long long>
+#define dl deque<long long>
+#define ql queue<long long>
+#define s second
+#define f first
+#define vl vector<long long int>
+#define vc vector<char>
+#define po pop_back
+#define allr(x) ((x).rbegin(), (x).rend())
+#define all(x) (x).begin(), (x).end()
+#define in(v)         \
+    for (auto &b : v) \
+        cin >> b;
+#define dsort(a) sort(a, a + n, greater<int>())
+#define tolower(s) transform(s.begin(), s.end(), s.begin(), ::tolower)
+#define c(v) cout << v << endl;
+#define cy cout << "YES" << end;
+#define in(v)         \
+    for (auto &b : v) \
+        cin >> b;
+#define cn cout << "NO" << endl;
+#define mod 1000000007
+#define mx 10000005
+#define inf (int)1e9 + 7
+
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
+
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+
+    tc
     {
-        char a[3][3];
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                cin >> a[i][j];
-
-        int flag = 1;
-        
-        char c;
-        c = a[0][0];
-        if ((c == a[0][1] && c == a[0][2] && c != '.') || (c == a[1][0] && c == a[2][0] && c != '.') ||
-            (c == a[1][1] && c == a[2][2] && c != '.'))
+        int n;
+        cin >> n;
+        string s = "";
+        for (int i = 9; i > 0; i--)
         {
-            cout << c << endl;
-            flag = 0;
+            if (n >= i)
+            {
+                s += i + '0';
+                n -= i;
+            }
         }
 
-        c = a[0][1];
-        if (c == a[1][1] && c == a[2][1] && c != '.')
-        {
-            cout << c << endl;
-            flag = 0;
-        }
-        c = a[1][0];
-        if (c == a[1][1] && c == a[1][2] && c != '.')
-        {
-            cout << c << endl;
-            flag = 0;
-        }
-        c = a[2][0];
-        if (c == a[2][1] && c == a[2][2] && c != '.')
-        {
-            cout << c << endl;
-            flag = 0;
-        }
+        sort(s.begin(), s.end());
 
-        c = a[0][2];
-        if ((c == a[1][2] && c == a[2][2] && c != '.') || (c == a[1][1] && c == a[2][0] && c != '.'))
-        {
-            cout << c << endl;
-            flag = 0;
-        }
-
-        if (flag == 1)
-            cout << "DRAW" << endl;
+        cout << s << endl;
     }
-    return 0;
 }
