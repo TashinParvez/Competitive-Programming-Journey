@@ -13,7 +13,7 @@
 #define nl "\n"
 
 // data_type_compressions :
-#define int   long long
+#define int long long
 #define ld long double
 
 #define PI 3.14159265358979323846
@@ -66,8 +66,19 @@ void solution()
         cnt++;
         if (use >= k)
         {
-            n -= k;
-            continue;
+            // cout << endl;
+            // cout << "cnt=" << cnt << "   n=" << n << nl;
+
+            // n -= k;
+            // continue;
+
+            cnt += n / k;
+            if (n % k != 0)
+                cnt++;
+            cnt--;
+            break;
+
+            // cout << "cnt=" << cnt << "   n=" << n << nl;
         }
         n -= use;
         use *= 2;
@@ -78,11 +89,6 @@ void solution()
 int32_t main()
 {
     faster;
-
-    // #ifdef TashinParvez
-    //     Read("input.txt");
-    //   //  Write("output.txt");
-    // #endif // TashinParvez
 
     int t = 1;
     cin >> t;
@@ -96,4 +102,3 @@ int32_t main()
 
     CRACKED;
 }
-
