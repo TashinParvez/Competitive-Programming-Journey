@@ -3,9 +3,9 @@ using namespace std;
 //------------------------------------------   --------------------------------
 
 
-//  1 . arraysort
-//  2. reverse sort
-// 3. three number equal check
+//  1.  arraysort
+//  2.  reverse sort
+//  3.  three number equal check
 
 #define printarray(arr, len)    for (int i = 0; i < len; i++)  cout << a[i] << " "; cout << endl; // array print
 #define end     return;
