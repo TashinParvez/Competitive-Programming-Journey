@@ -10,7 +10,6 @@
 #define nl "\n"
 
 // data_type_compressions :
-#define int long long
 #define ull unsigned long long
 #define ld long double
 
@@ -37,53 +36,34 @@
 #define No printf("No\n")
 
 using namespace std;
+void cmp(map<int, string> a, map<int, string> b)
+{
+}
 
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
     bool flag = false;
-    string s = "";
     cin >> n >> k;
     int arr[n];
-    int out[n];
-    string ans[k];
-    map<int, int> mp;
-
-    string tashin="";
+    map<int, string, greater<int>> mp;
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
-        out[i] = arr[i] % k;
-        if (out[i] == 0)
+        if (arr[i] % k == 0)
         {
-            s += to_string(i + 1);
-            s += " ";
+            cout << i + 1 << " ";
         }
         else
         {
-
-            if (ans[out[i]] == "")
-            {
-                ans[out[i]] += to_string(i + 1);
-            }
-            else
-            {
-                ans[out[i]] += " ";
-                ans[out[i]] += to_string(i + 1);
-            }
+            mp[arr[i] % k] += to_string(i + 1) + " ";
         }
     }
-    cout << s;
-
-    for (int i = k - 1; i > 0; i--)
+    // sort(mp.begin(), mp.end(), greater<int>());
+    for (auto x : mp)
     {
-        cout << ans[i];
-        if (ans[i] != "")
-        {
-            cout << " ";
-        }
+        cout << x.second;
     }
-
     cout << nl;
 }
 
