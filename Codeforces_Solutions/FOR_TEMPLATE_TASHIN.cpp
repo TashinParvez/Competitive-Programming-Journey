@@ -5,6 +5,7 @@ using namespace std;
 //  1.  arraysort
 //  2.  reverse sort
 //  3.  three number equal check
+//  4.  add big mod 
 
 #define printarray(arr, len)      \
     for (int i = 0; i < len; i++) \
