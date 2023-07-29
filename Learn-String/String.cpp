@@ -163,7 +163,7 @@ void solution()
      */
 
 
-//====================== String to Number =======================
+//====================== String to Number ======================= string to int 
 
 //    string num = "786";
 //    int n = stoi(num);
@@ -171,7 +171,7 @@ void solution()
 
 
 
-//====================== Number to String =======================
+//====================== Number to String ======================= int to string 
 
 //    int n= 786;
 //    string  num = to_string(n);
