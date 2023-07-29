@@ -46,53 +46,23 @@ using namespace std;
     int arr[n];
     for(auto &v : arr) cin>>v;
 
-    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
 
+    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
         cout<<i<<nl;
 
 */
 
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
-    string s;
-    char ch;
+    // int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
+    string a, b;
     bool flag = false;
-    while (cin >> s >> ch >> n)
+    cin >> a >> b;
+    if (a == b)
+        cout << -1 << nl;
+    else
     {
-
-        // cout << s << nl;
-        // cout << n << nl;
-        bool divide = false;
-        if (ch == '/')
-            divide = true;
-
-        bool nonzero = false;
-        int val = 0;
-        for (int i = 0; i < s.length(); i++)
-        {
-            val *= 10;
-            val += s[i] - '0';
-            if (val / n != 0 || nonzero)
-            {
-                if (divide)
-                    cout << val / n;
-                nonzero = true;
-            }
-            val %= n;
-        }
-        if (!divide)
-            cout << val;
-        else
-        {
-            if (nonzero == false)
-            {
-
-                cout << 0;
-            }
-        }
-
-        cout << nl;
+        cout << max(a.length(), b.length()) << nl;
     }
 }
 
@@ -108,7 +78,7 @@ int32_t main()
     // int t = 1; cin >> t;
     // int c = 1;
 
-    //  while (true)
+    // while (t--)
     {
         // cout << "Case " << c++ << ": ";
         solution();

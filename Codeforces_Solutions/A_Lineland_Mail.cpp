@@ -46,8 +46,8 @@ using namespace std;
     int arr[n];
     for(auto &v : arr) cin>>v;
 
-    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
 
+    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
         cout<<i<<nl;
 
 */
@@ -56,40 +56,32 @@ void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
     string s;
-    char ch;
     bool flag = false;
-    while (cin >> s >> ch >> n)
+
+    cin >> n;
+    int arr[n];
+
+    for (int i = 0; i< n; i++)
     {
+        cin >> arr[i];
+    }
 
-        // cout << s << nl;
-        // cout << n << nl;
-        bool divide = false;
-        if (ch == '/')
-            divide = true;
-
-        bool nonzero = false;
-        int val = 0;
-        for (int i = 0; i < s.length(); i++)
+    for (int i = 0; i < n; i++)
+    {
+        if (i == 0)
         {
-            val *= 10;
-            val += s[i] - '0';
-            if (val / n != 0 || nonzero)
-            {
-                if (divide)
-                    cout << val / n;
-                nonzero = true;
-            }
-            val %= n;
+            cout << abs(arr[i + 1] - arr[i]) << " ";
+            cout << abs(arr[n - 1] - arr[i]);
         }
-        if (!divide)
-            cout << val;
+        else if (i == n - 1)
+        {
+            cout << abs(arr[i] - arr[i - 1]) << " ";
+            cout << abs(arr[i] - arr[0]);
+        }
         else
         {
-            if (nonzero == false)
-            {
-
-                cout << 0;
-            }
+            cout << min(abs(arr[i] - arr[i - 1]), abs(arr[i + 1] - arr[i])) << ' ';
+            cout << max(abs(arr[i] - arr[0]), abs(arr[n - 1] - arr[i]));
         }
 
         cout << nl;
@@ -108,7 +100,7 @@ int32_t main()
     // int t = 1; cin >> t;
     // int c = 1;
 
-    //  while (true)
+    // while (t--)
     {
         // cout << "Case " << c++ << ": ";
         solution();
