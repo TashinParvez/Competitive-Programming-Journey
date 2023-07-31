@@ -34,6 +34,7 @@ void solution()
 {
     int n, i;
     cin >> n;
+
     int sum = 0;
     int arr[n];
     for (int i = 0; i < n; i++)
@@ -44,15 +45,17 @@ void solution()
     int reach;
     cin >> reach;
 
-    int cnt = (reach / sum);
+    int cnt = (reach / sum); // 4
 
     // cout << "CNT " << cnt << nl;
     // cout << "sum " << sum << nl;
 
     reach -= (cnt * sum);
-    i = 0;
-    cnt *= n;
 
+    cnt *= n;
+    i = 0;
+
+    int mahabub = 0;
     while (reach >= 0)
     {
         cnt++;

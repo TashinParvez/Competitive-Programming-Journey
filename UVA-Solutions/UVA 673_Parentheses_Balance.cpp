@@ -58,12 +58,12 @@ void solution()
     cin >> n;
     while (n--)
     {
+        string s;
+        cin >> s;
 
-        char s[200];
-        gets(s);
         stack<char> ck;
 
-        for (int i = 0; i < strlen(s); i++)
+        for (int i = 0; i < len(s); i++)
         {
             if (s[i] == '(' || s[i] == '[')
                 ck.push(s[i]);
