@@ -14,6 +14,7 @@
 
 // data_type_compressions :
 #define int long long
+#define ull unsigned long long
 #define ld long double
 
 #define PI 3.14159265358979323846
@@ -38,58 +39,53 @@
 #define NO printf("NO\n")
 #define No printf("No\n")
 
-using namespace std;
-
-/*
-    int n; cin>>n;
-    int arr[n];
-    for(auto &v : arr) cin>>v;
-
-
-    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
-        cout<<i<<nl;
-
-*/
+using namespace std; 
 
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
-    string s;
-    bool flag = false;
 
-    cin >> n >> k;
-    int cnt = 0;
-    n--;
-    int use = 1;
-    while (n > 0)
+    int x1, y1, x2, y2, x3, y3;
+    cin >> x1 >> y1;
+
+    cin >> x2 >> y2;
+    cin >> x3 >> y3;
+
+    int height = 0, width = 0;
+
+    if ((y2 > y1 && y3 > y1))
     {
-        cnt++;
-        if (use >= k)
-        {
-            n -= k;
-            continue;
-        }
-        n -= use;
-        use *= 2;
+        height += abs(y1 - min(y2, y3));
     }
-    cout << cnt << nl;
-}
-bool checkStudentOfCSE()
-{
+    else if (y2 < y1 && y3 < y1)
+    {
+        height += abs(y1 - max(y2, y3));
+    }
+    height++;
+
+    if ((x2 > x1 && x3 > x1))
+    {
+        width += abs(x1 - min(x2, x3));
+    }
+    else if (x2 < x1 && x3 < x1)
+    {
+        width += abs(x1 - max(x2, x3));
+    }
+
+    cout << height + width << nl;
 }
 
 int32_t main()
 {
     faster;
-    int usingcalculator, usingMobile;
 
-    if (usingcalculator > usingMobile)
+    int t = 1;
+    cin >> t;
+    int c = 1;
+
+    while (t--)
     {
-        if (checkStudentOfCSE())
-        {
-            cout << " Student is crying inside "; 
-            cout << " bcz student has taken EEE course "; 
-        }
+        solution();
     }
 
     CRACKED;

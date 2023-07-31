@@ -14,6 +14,7 @@
 
 // data_type_compressions :
 #define int long long
+#define ull unsigned long long
 #define ld long double
 
 #define PI 3.14159265358979323846
@@ -56,41 +57,46 @@ void solution()
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
     string s;
     bool flag = false;
-
-    cin >> n >> k;
-    int cnt = 0;
-    n--;
-    int use = 1;
-    while (n > 0)
+    cin >> s;
+    string number[10];
+    for (int i = 0; i < 10; i++)
     {
-        cnt++;
-        if (use >= k)
-        {
-            n -= k;
-            continue;
-        }
-        n -= use;
-        use *= 2;
+        cin >> number[i];
     }
-    cout << cnt << nl;
-}
-bool checkStudentOfCSE()
-{
+    string one;
+    for (int i = 0; i < s.length(); i++)
+    {
+        if (i % 10 == 9)
+        {
+            one.push_back(s[i]);
+            for (int j = 0; j < 10; j++)
+            {
+                if (number[j] == one)
+                {
+                    cout << j;
+                }
+            }
+            one = "";
+        }
+        else
+        {
+            one.push_back(s[i]);
+        }
+    }
+    cout << nl;
 }
 
 int32_t main()
 {
     faster;
-    int usingcalculator, usingMobile;
 
-    if (usingcalculator > usingMobile)
-    {
-        if (checkStudentOfCSE())
-        {
-            cout << " Student is crying inside "; 
-            cout << " bcz student has taken EEE course "; 
-        }
-    }
+    // #ifdef TashinParvez
+    //     Read("input.txt");
+    //   //  Write("output.txt");
+    // #endif // TashinParvez
+
+    // cout << "Case " << c++ << ": ";
+    solution();
 
     CRACKED;
 }

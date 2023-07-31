@@ -14,6 +14,7 @@
 
 // data_type_compressions :
 #define int long long
+#define ull unsigned long long
 #define ld long double
 
 #define PI 3.14159265358979323846
@@ -57,39 +58,46 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> n >> k;
-    int cnt = 0;
-    n--;
-    int use = 1;
-    while (n > 0)
+    cin >> n;
+    x = y = 0;
+    cin >> s;
+    for (int i = 0; i < len(s); i++)
     {
-        cnt++;
-        if (use >= k)
+        if (s[i] == 'L')
+            x--;
+        if (s[i] == 'R')
+            x++;
+        if (s[i] == 'U')
+            y++;
+        if (s[i] == 'D')
+            y--;
+        if (x == 1 && y == 1)
         {
-            n -= k;
-            continue;
+            cout << "YES" << nl;
+            return;
         }
-        n -= use;
-        use *= 2;
     }
-    cout << cnt << nl;
-}
-bool checkStudentOfCSE()
-{
+    cout << "NO" << nl;
+    return;
 }
 
 int32_t main()
 {
     faster;
-    int usingcalculator, usingMobile;
 
-    if (usingcalculator > usingMobile)
+    // #ifdef TashinParvez
+    //     Read("input.txt");
+    //   //  Write("output.txt");
+    // #endif // TashinParvez
+
+    int t = 1;
+    cin >> t;
+    int c = 1;
+
+    while (t--)
     {
-        if (checkStudentOfCSE())
-        {
-            cout << " Student is crying inside "; 
-            cout << " bcz student has taken EEE course "; 
-        }
+        // cout << "Case " << c++ << ": ";
+        solution();
     }
 
     CRACKED;

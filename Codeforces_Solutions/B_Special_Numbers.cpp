@@ -14,6 +14,7 @@
 
 // data_type_compressions :
 #define int long long
+#define ull unsigned long long
 #define ld long double
 
 #define PI 3.14159265358979323846
@@ -40,16 +41,21 @@
 
 using namespace std;
 
-/*
-    int n; cin>>n;
-    int arr[n];
-    for(auto &v : arr) cin>>v;
+#define mod 1000000007
 
+int BigMod(int n, int power)
+{
+    if (power == 0)
+        return 1;
 
-    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
-        cout<<i<<nl;
+    int ans = BigMod(n, power / 2);
+    ans = (ans % mod * ans % mod) % mod;
 
-*/
+    if (power % 2 == 1) // power odd
+        return (ans * n % mod) % mod;
+    else
+        return ans;
+}
 
 void solution()
 {
@@ -57,39 +63,43 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> n >> k;
-    int cnt = 0;
-    n--;
-    int use = 1;
-    while (n > 0)
+    cin >> c >> n;
+    int number = 1;
+    count++;
+    int pre;
+    for (i = 1; count != n; i++)
     {
-        cnt++;
-        if (use >= k)
-        {
-            n -= k;
-            continue;
-        }
-        n -= use;
-        use *= 2;
+        pre = number % mod;
+        number = BigMod(c, i) % mod;
+        count++;
+        cout << i << "   INT " << number << nl;
+        if (count == n)
+            break;
+        int elsee = number;
+        number += pre;
+        pre = elsee;
+        count++;
     }
-    cout << cnt << nl;
-}
-bool checkStudentOfCSE()
-{
+    cout << number << nl;
 }
 
 int32_t main()
 {
     faster;
-    int usingcalculator, usingMobile;
 
-    if (usingcalculator > usingMobile)
+    // #ifdef TashinParvez
+    //     Read("input.txt");
+    //   //  Write("output.txt");
+    // #endif // TashinParvez
+
+    int t = 1;
+    cin >> t;
+    int c = 1;
+
+    while (t--)
     {
-        if (checkStudentOfCSE())
-        {
-            cout << " Student is crying inside "; 
-            cout << " bcz student has taken EEE course "; 
-        }
+        // cout << "Case " << c++ << ": ";
+        solution();
     }
 
     CRACKED;
