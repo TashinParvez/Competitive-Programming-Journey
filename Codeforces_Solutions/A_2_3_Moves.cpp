@@ -22,7 +22,13 @@
 // I/O :
 #define loop(n) for (int i = 0; i < n; i++) // 0 to n Input or Output
 #define output(x) cout << x << nl           // out
-
+#define printarray(arr, len)      \
+    for (int i = 0; i < len; i++) \
+    {                             \
+        cout << arr[i] << " ";    \
+        if (i + 1 == len)         \
+            cout << endl;         \
+    } // array print
 
 #define sq(x) ((x) * (x)) // x^2  square
 #define len(s) s.length()
@@ -35,7 +41,16 @@
 
 using namespace std;
 
- 
+/*
+    int n; cin>>n;
+    int arr[n];
+    for(auto &v : arr) cin>>v;
+
+
+    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
+        cout<<i<<nl;
+
+*/
 
 void solution()
 {
@@ -44,50 +59,22 @@ void solution()
     bool flag = false;
 
     cin >> n;
-    int arr[n];
-    int check[n + 1] = {0};
-    map<int, int> mp;
-    for (int i = 0; i < n; i++)
+    n = abs(n);
+    if (n == 1)
     {
-        cin >> arr[i];
-        if (arr[i] <= n)
-            if (mp[arr[i]] == 0)
-            {
-                check[arr[i]] = arr[i];
-                mp[arr[i]]++;
-                arr[i] = 0;
-            }
+        cout << 2 << nl;
+        return;
     }
-    sort(arr, arr + n);
-    int cnt = 0;
-    j = 0;
-    for (int i = 1; i < n + 1; i++)
-    {
-        if (check[i] == i)
-            continue;
-        else
-        {
-            for (j; j < n; j++)
-            {
-                if (arr[j] == 0)
-                    continue;
-                else
-                    break;
-            }
-            // arr[j] ke i banao
-            if (i <= ((arr[j] - 1) / 2))
-            {
-                cnt++;
-                arr[j] = 0; // there was wrong
-            }
-            else
-            {
-                cnt = -1;
-                break;
-            }
-        }
-    }
-    cout << cnt << nl;
+    int two = n / 2;
+    if (n % 2 != 0)
+        two += 2;
+    int three = n / 3;
+    if (n % 3 == 1)
+        three += 1;
+    else if (n % 3 == 2)
+        three++;
+
+    cout << min(two, three) << nl;
 }
 
 int32_t main()
