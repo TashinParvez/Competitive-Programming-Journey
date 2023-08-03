@@ -1,26 +1,23 @@
-
 //        ****************  Author :  Tashin.Parvez  *************************\
-//        ****************  Updated:    21-06-23     *************************\
+//        ****************  Updated:    22-06-23     *************************\
 
 #include <bits/stdc++.h>
 #define faster                        \
     ios_base::sync_with_stdio(false); \
     cin.tie(0);                       \
     cout.tie(0);
-#define Read(x) freopen(x, "r", stdin)
-#define Write(x) freopen(x, "w", stdout)
 #define CRACKED return 0;
-#define nl "\n"
-
-// data_type_compressions :
+#define nl endl; // NewLine
+#ifndef ONLINE_JUDGE
+#define deb(x)           \
+    cerr << #x << " = "; \
+    print(x);            \
+    cerr << endl;
+#else
+#define deb(x)
+#endif
 #define int long long
-#define ld long double
-
-#define PI 3.14159265358979323846
-
-// I/O :
-#define loop(n) for (int i = 0; i < n; i++) // 0 to n Input or Output
-#define output(x) cout << x << nl           // out
+#define output(x) cout << x << nl // out
 #define printarray(arr, len)      \
     for (int i = 0; i < len; i++) \
     {                             \
@@ -28,69 +25,66 @@
         if (i + 1 == len)         \
             cout << endl;         \
     } // array print
-
-#define sq(x) ((x) * (x)) // x^2  square
-#define len(s) s.length()
-#define setDec(x) fixed << setprecision(x)
-
-#define YES printf("YES\n")
-#define Yes printf("Yes\n")
-#define NO printf("NO\n")
-#define No printf("No\n")
-
 using namespace std;
+#define sz length()
 
-/*
-    int n; cin>>n;
-    int arr[n];
-    for(auto &v : arr) cin>>v;
-
-
-    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
-        cout<<i<<nl;
-
-*/
-
-void solution()
+bool bal(string s)
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
-    string s;
-    bool flag = false;
-
-    cin >> n >> k;
-    int cnt = 0;
-    n--;
-    int use = 1;
-    while (n > 0)
+    if (s.length() % 2 == 1)
+        return false;
+    int n = 0;
+    for (int i = 0; i < s.sz; i++)
+        if (s[i] == '?')
+            n++;
+    stack<int> st;
+    int ct = 0;
+    for (int i = 0; i < s.sz; i++)
     {
-        cnt++;
-        if (use >= k)
+        if (s[i] == '(')
         {
-            n -= k;
-            continue;
+            st.push('(');
         }
-        n -= use;
-        use *= 2;
+        else if (s[i] == '?' and ct < n / 2)
+        {
+            st.push('?');
+            ct++;
+        }
+        else if (s[i] == ')' or (s[i] == '?' and ct >= n / 2))
+        {
+            if (st.empty() == 1)
+            {
+                return false;
+            }
+            else
+                st.pop();
+        }
     }
-    cout << cnt << nl;
+    if (st.empty() == 1)
+        return true;
+    else
+        return false;
 }
-bool checkStudentOfCSE()
+
+void solve()
 {
+
+    string s;
+    cin >> s;
+    bool ans = bal(s);
+    if (ans)
+        cout << "YES";
+    else
+        cout << "NO";
 }
 
 int32_t main()
 {
-    faster;
-    int usingcalculator, usingMobile;
+    int t = 1;
+    cin >> t;
 
-    if (usingcalculator > usingMobile)
+    for (int i = 1; i <= t; i++)
     {
-        if (checkStudentOfCSE())
-        {
-            cout << " Student is crying inside "; 
-            cout << " bcz student has taken EEE course "; 
-        }
+        solve();
     }
-
-    CRACKED;
+    return 0;
 }
