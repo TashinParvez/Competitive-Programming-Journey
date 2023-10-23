@@ -5,6 +5,7 @@
         "ostream": "cpp",
         "array": "cpp",
         "regex": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "*.tcc": "cpp"
     }
 }
