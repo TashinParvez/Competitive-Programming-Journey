@@ -5,7 +5,7 @@ using namespace std;
 //  1.  arraysort
 //  2.  reverse sort
 //  3.  three number equal check
-//  4.  add big mod 
+//  4.  add big mod
 
 #define printarray(arr, len)      \
     for (int i = 0; i < len; i++) \
@@ -22,7 +22,6 @@ using namespace std;
 
 #define FOR2(N, X) for (int j = N; j < X; j++)
 
-
 #define FOR(n, x) for (int i = n; i < x; i++)
 // FOR(0, a.length())
 // {
@@ -32,6 +31,8 @@ using namespace std;
 //         break;
 //     }
 // }
+
+// #define sort(v) sort(v.begin(), v.end())
 
 #define fora(I, n) for (int I = 0; I < n; i++)
 /*

@@ -55,48 +55,42 @@ using namespace std;
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
-    string s;
     bool flag = false;
 
     cin >> n;
-    cin >> s;
-    int mi = 0, ma = 0;
-    for (i = 0; i < n; i++)
+    string s[n];
+    map<string, int> mp;
+
+    for (int i = 0; i < n; i++)
     {
-        int cnt = 1;
-        for (j = i + 1; j < n; j++)
-        {
-            if (s[i] != s[j])
-                break;
-            cnt++;
-        }
-        if (s[i] == '<')
-        {
-            mi = max(cnt, mi);
-        }
-        else
-        {
-            ma = max(cnt, ma);
-        }
-        
-
-        i = j - 1;
+        cin >> s[i];
+        mp[s[i]]++;
     }
-    cout << max(mi+1, ma+1) << nl;
-}
 
-int reCall(string str, int s, int e)
-{
+    string str(n, '0'); // imp
+
+    for (int i = 0; i < n; i++)
+    {
+        string a = "", b = "";
+        for (int j = 0; j < s[i].length() - 1; j++)
+        {
+            a = s[i].substr(0, j + 1);
+            b = s[i].substr(j + 1, s[i].length() - (j + 1));
+            if (mp[a] > 0 && mp[b] > 0)
+            {
+                str[i] = '1';
+                flag = true;
+                break;
+            }
+        }
+    }
+
+    cout << str << nl;
 }
 
 int32_t main()
 {
     faster;
-
-    // #ifdef TashinParvez
-    //     Read("input.txt");
-    //   //  Write("output.txt");
-    // #endif // TashinParvez
 
     int t = 1;
     cin >> t;
@@ -107,6 +101,11 @@ int32_t main()
         // cout << "Case " << c++ << ": ";
         solution();
     }
+
+    //    string s = "I am Tashin Parvez";
+
+    //    output(s.substr(-1,1));
+    //    output(s.substr(12,6));
 
     CRACKED;
 }

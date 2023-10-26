@@ -24,6 +24,8 @@
 #define output(x) cout << x << nl           // out
 
 
+
+
 #define sq(x) ((x) * (x)) // x^2  square
 #define len(s) s.length()
 #define setDec(x) fixed << setprecision(x)
