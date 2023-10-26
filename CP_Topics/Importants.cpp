@@ -6,6 +6,7 @@
 #define nl endl // NewLine
 #define null NULL
 using namespace std;
+int n;
 
 int32_t main()
 {
@@ -18,6 +19,9 @@ int32_t main()
     // Binary Search O(logN)
     bool present = binary_search(a.begin(), a.end(), 13); // true
     bool _absent = binary_search(a.begin(), a.end(), 33); // false
+
+    string str(n, '0'); // string len n all value 0
+    // if n=3 "000"
 
     CRACKED;
 }
