@@ -24,10 +24,15 @@ int32_t main()
     string str(n, '0'); // string len n all value 0
                         // if n=3 "000"
 
+
     int n;
     string str(n, '0'); // if n==4   "0000"
 
-    
+
+    // ceil function  [sometimes 1.10 -> 2 needed but ceil dont give that]
+    int p, q;
+    cout << ceil(p / q) << nl;
+    cout << (p + q - 1) / q << nl; // ceil func
 
     CRACKED;
 }

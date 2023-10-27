@@ -22,6 +22,13 @@
 // I/O :
 #define loop(n) for (int i = 0; i < n; i++) // 0 to n Input or Output
 #define output(x) cout << x << nl           // out
+#define printarray(arr, len)      \
+    for (int i = 0; i < len; i++) \
+    {                             \
+        cout << arr[i] << " ";    \
+        if (i + 1 == len)         \
+            cout << endl;         \
+    } // array print
 
 #define sq(x) ((x) * (x)) // x^2  square
 #define len(s) s.length()
@@ -34,67 +41,72 @@
 
 using namespace std;
 
+/*
+    int n; cin>>n;
+    int arr[n];
+    for(auto &v : arr) cin>>v;
+
+
+    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
+        cout<<i<<nl;
+
+*/
+
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
     string s;
     bool flag = false;
 
-    cin >> n;
-    int arr[n];
-    int check[n + 1] = {0};
-    map<int, int> mp;
-    for (int i = 0; i < n; i++)
+    cin >> a >> b;
+    cin >> c >> d;
+
+    while (a)
     {
-        cin >> arr[i];
-        if (arr[i] <= n)
-            if (mp[arr[i]] == 0)
-            {
-                check[arr[i]] = arr[i];
-                mp[arr[i]]++;
-                arr[i] = 0;
-            }
+        if (a < 10)
+            break;
+        b++;
+        a /= 10;
     }
-    sort(arr, arr + n);
-    int cnt = 0;
-    j = 0;
-    for (int i = 1; i < n + 1; i++)
+    while (c)
     {
-        if (check[i] == i)
-            continue;
+        if (c < 10)
+            break;
+        d++;
+        c /= 10;
+    }
+
+    if (a == c)
+    {
+        if (b == d)
+            cout << "=" << nl;
+        else if (b > d)
+            cout << ">" << nl;
+        else
+            cout << "<" << nl;
+    }
+    else
+    {
+        int len1 = 1 + b;
+        int len2 = 1 + d;
+
+        if (len1 > len2)
+            cout << ">" << nl;
+        else if (len1 < len2)
+            cout << "<" << nl;
         else
         {
-            for (j; j < n; j++)
-            {
-                if (arr[j] == 0)
-                    continue;
-                else
-                    break;
-            }
-            // arr[j] ke i banao
-            if (i <= ((arr[j] - 1) / 2))
-            {
-                cnt++;
-                arr[j] = 0; // there was wrong
-            }
+            if (a > b)
+                cout << ">" << nl;
             else
-            {
-                cnt = -1;
-                break;
-            }
+                cout << "<" << nl;
         }
     }
-    cout << cnt << nl;
 }
 
 int32_t main()
 {
     faster;
-
-    // #ifdef TashinParvez
-    //     Read("input.txt");
-    //   //  Write("output.txt");
-    // #endif // TashinParvez
 
     int t = 1;
     cin >> t;

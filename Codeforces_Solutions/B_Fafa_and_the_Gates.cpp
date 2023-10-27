@@ -22,6 +22,13 @@
 // I/O :
 #define loop(n) for (int i = 0; i < n; i++) // 0 to n Input or Output
 #define output(x) cout << x << nl           // out
+#define printarray(arr, len)      \
+    for (int i = 0; i < len; i++) \
+    {                             \
+        cout << arr[i] << " ";    \
+        if (i + 1 == len)         \
+            cout << endl;         \
+    } // array print
 
 #define sq(x) ((x) * (x)) // x^2  square
 #define len(s) s.length()
@@ -34,6 +41,17 @@
 
 using namespace std;
 
+/*
+    int n; cin>>n;
+    int arr[n];
+    for(auto &v : arr) cin>>v;
+
+
+    if(!(i&1))   //-------------- EVEN  (for even --->> i&1 == 0)
+        cout<<i<<nl;
+
+*/
+
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, count = 0, index;
@@ -41,50 +59,32 @@ void solution()
     bool flag = false;
 
     cin >> n;
-    int arr[n];
-    int check[n + 1] = {0};
-    map<int, int> mp;
+    cin >> s;
+    x = y = 0;
     for (int i = 0; i < n; i++)
     {
-        cin >> arr[i];
-        if (arr[i] <= n)
-            if (mp[arr[i]] == 0)
+        if (s[i] == 'U')
+        {
+            y += 1;
+            if (x == y && i + 1 < n && s[i + 1] == 'U')
             {
-                check[arr[i]] = arr[i];
-                mp[arr[i]]++;
-                arr[i] = 0;
+                i++;
+                y += 1;
+                count++;
             }
-    }
-    sort(arr, arr + n);
-    int cnt = 0;
-    j = 0;
-    for (int i = 1; i < n + 1; i++)
-    {
-        if (check[i] == i)
-            continue;
+        }
         else
         {
-            for (j; j < n; j++)
+            x += 1;
+            if (x == y && s[i + 1] == 'R')
             {
-                if (arr[j] == 0)
-                    continue;
-                else
-                    break;
-            }
-            // arr[j] ke i banao
-            if (i <= ((arr[j] - 1) / 2))
-            {
-                cnt++;
-                arr[j] = 0; // there was wrong
-            }
-            else
-            {
-                cnt = -1;
-                break;
+                x += 1;
+                i++;
+                count++;
             }
         }
     }
-    cout << cnt << nl;
+    cout << count << nl;
 }
 
 int32_t main()
@@ -97,7 +97,7 @@ int32_t main()
     // #endif // TashinParvez
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)
@@ -108,3 +108,17 @@ int32_t main()
 
     CRACKED;
 }
+
+// RUURUURR = 2
+// UURUUUUU  = 0  (5,9)
+// RRUUURRR
+// RUURRURR
+// URRRRUUU
+// UUURRUUR
+// RRRURUUU
+// RUURURRR
+// RRURUURR
+// UURUURRU
+// UURUUUUU = 0
+// URRUUUUR
+// UUUR
