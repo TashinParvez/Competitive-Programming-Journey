@@ -3,41 +3,32 @@
 //        ****************  Updated:    21-06-23     *************************\
 
 #include <bits/stdc++.h>
-#define faster                        \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(0);                       \
-    cout.tie(0);
-#define Read(x) freopen(x, "r", stdin)
-#define Write(x) freopen(x, "w", stdout)
-#define CRACKED return 0;
-#define nl "\n"
+#define faster    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define Read(x)   freopen(x, "r", stdin)
+#define Write(x)  freopen(x, "w", stdout)
+#define CRACKED   return 0;
+#define nl        "\n"
 
 // data_type_compressions :
-#define int long long
-#define ull unsigned long long
-#define ld long double
+#define int   long long
+#define ull   unsigned long long
+#define ld    long double
 
-#define PI 3.14159265358979323846
+#define PI    3.14159265358979323846
 
 // I/O :
-#define loop(n) for (int i = 0; i < n; i++) // 0 to n Input or Output
-#define output(x) cout << x << nl           // out
-#define printarray(arr, len)      \
-    for (int i = 0; i < len; i++) \
-    {                             \
-        cout << arr[i] << " ";    \
-        if (i + 1 == len)         \
-            cout << endl;         \
-    } // array print
+#define loop(n)                 for (int i = 0; i < n; i++) // 0 to n Input or Output
+#define output(x)               cout << x << nl // out
+#define printarray(arr, len)    for (int i = 0; i < len; i++) { cout << arr[i] << " "; if (i + 1 == len) cout << endl; } // array print
 
-#define sq(x) ((x) * (x)) // x^2  square
-#define len(s) s.length()
-#define setDec(x) fixed << setprecision(x)
+#define sq(x)        ((x) * (x)) // x^2  square
+#define len(s)       s.length() 
+#define setDec(x)    fixed << setprecision(x)  
 
-#define YES printf("YES\n")
-#define Yes printf("Yes\n")
-#define NO printf("NO\n")
-#define No printf("No\n")
+#define YES    printf("YES\n")
+#define Yes    printf("Yes\n")
+#define NO     printf("NO\n") 
+#define No     printf("No\n")
 
 using namespace std;
 
@@ -58,58 +49,19 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> a >> b;
-    cin >> c >> d;
-
-    while (a)
-    {
-        if (a < 10)
-            break;
-        b++;
-        a /= 10;
-    }
-    while (c)
-    {
-        if (c < 10)
-            break;
-        d++;
-        c /= 10;
-    }
-
-    if (a == c)
-    {
-        if (b == d)
-            cout << "=" << nl;
-        else if (b > d)
-            cout << ">" << nl;
-        else
-            cout << "<" << nl;
-    }
-    else
-    {
-        int len1 = 1 + b;
-        int len2 = 1 + d;
-
-        if (len1 > len2)
-            cout << ">" << nl;
-        else if (len1 < len2)
-            cout << "<" << nl;
-        else
-        {
-            if (a > b)
-                cout << ">" << nl;
-            else
-                cout << "<" << nl;
-        }
-    }
+    cin >> n;
 }
 
 int32_t main()
 {
     faster;
 
-    int t = 1;
-    cin >> t;
+    // #ifdef TashinParvez
+    //     Read("input.txt");
+    //   //  Write("output.txt");
+    // #endif // TashinParvez
+
+    int t = 1; cin >> t;
     int c = 1;
 
     while (t--)
