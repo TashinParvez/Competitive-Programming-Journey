@@ -2,6 +2,8 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/TashinParvez/Competitive-Programming-Journey)
 ![GitHub contributors](https://img.shields.io/github/contributors/TashinParvez/Competitive-Programming-Journey)
+![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://github.com/TashinParvez/Competitive-Programming-Journey)
+
 
 Welcome to my Competitive Programming Journey Repository! In this repository, I document my progress and solutions to problems from various online judges. Competitive coding is an exciting and challenging way to enhance your problem-solving skills and algorithmic thinking, and I'm sharing my journey with you.
 
