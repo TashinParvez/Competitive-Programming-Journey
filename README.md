@@ -16,3 +16,17 @@ Competitive coding is a sport of writing code under tight constraints, racing ag
 Happy coding, and let's learn and grow together through this competitive coding journey! 🚀
 
 
+## Connect with Me
+
+You can connect with me on various platforms:
+
+- [Codeforces](https://codeforces.com/profile/Tashin.Parvez)
+- [LinkedIn](https://www.linkedin.com/in/YourLinkedInUsername)
+- [LeetCode](https://leetcode.com/tashinParvez)
+- [CodeChef](https://www.codechef.com/users/tashin_parvez)
+- [HackerRank](https://www.hackerrank.com/tashinparvez?hr_r=1)
+- [V-Judge](https://vjudge.net/user/Tashin_Parvez)
+
+Feel free to reach out, connect, or follow me on these platforms!
+
+
