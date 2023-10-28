@@ -26,6 +26,10 @@ You can connect with me on various platforms:
 - [CodeChef](https://www.codechef.com/users/tashin_parvez)
 - [HackerRank](https://www.hackerrank.com/tashinparvez?hr_r=1)
 - [V-Judge](https://vjudge.net/user/Tashin_Parvez)
+- [AtCoder](https://atcoder.jp/users/Tashin_Parvez)
+- [URI/beecrowd](https://www.beecrowd.com.br/judge/en/profile/648820)
+- [LightOJ](https://lightoj.com/user/tashinparvez)
+- [StopTalk](https://www.stopstalk.com/user/profile/Tashin_Parvez)
 
 Feel free to reach out, connect, or follow me on these platforms!
 
