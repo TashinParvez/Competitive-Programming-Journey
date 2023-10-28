@@ -17,6 +17,12 @@ Competitive coding is a sport of writing code under tight constraints, racing ag
 
 Happy coding, and let's learn and grow together through this competitive coding journey! 🚀
 
+## My Blog
+
+I occasionally write about coding, technology, and other topics on [Hashnode](https://tashinparvez.hashnode.dev/). You can check out my blog posts and stay updated with my latest articles.
+
+Feel free to explore and engage with my writings!
+
 
 ## Connect with Me
 
@@ -34,5 +40,7 @@ You can connect with me on various platforms:
 - [StopTalk](https://www.stopstalk.com/user/profile/Tashin_Parvez)
 
 Feel free to reach out, connect, or follow me on these platforms!
+
+
 
 
