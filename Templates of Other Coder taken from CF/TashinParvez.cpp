@@ -1,3 +1,4 @@
+  
 
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
@@ -13,6 +14,7 @@
 #define Write(x) freopen(x, "w", stdout)
 #define CRACKED return 0;
 #define nl "\n"
+#define newLine cout << nl;
 
 // data_type_compressions :
 #define int long long
@@ -64,7 +66,7 @@ using namespace std;
 #define vs vector<string>
 #define vb vector<bool>
 
-#define pb push_back
+#define pb  push_back
 #define pop pop_back
 
 #define vsort(v) sort(v.begin(), v.end())                    // Vector asc
@@ -75,11 +77,16 @@ using namespace std;
 
 //-------------------------------- pair -------------------------------
 
-typedef pair<int, int> pii;
+typedef pair<int, int>    pii;
 typedef pair<int, string> pis;
 typedef pair<string, int> psi;
 
 #define mp     make_pair
+
+//-------------------------------- Map -------------------------------
+#define mapii  map<int, int>
+#define mapsi  map<string, int>
+#define mapci  map<string, int>
 
 /******************************* Some Func ********************************************/
 
