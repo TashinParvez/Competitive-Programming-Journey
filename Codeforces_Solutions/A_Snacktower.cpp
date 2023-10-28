@@ -13,6 +13,7 @@
 #define Write(x) freopen(x, "w", stdout)
 #define CRACKED return 0;
 #define nl "\n"
+#define newLine cout << nl;
 
 // data_type_compressions :
 #define int long long
@@ -79,6 +80,11 @@ typedef pair<string, int> psi;
 
 #define mp make_pair
 
+//-------------------------------- MAP -------------------------------
+#define mapii  map<int, int>
+#define mapsi  map<string, int>
+#define mapci  map<string, int>
+
 /******************************* Some Func ********************************************/
 
 bool evenOdd(int n) //  Odd = 0   &&   Even = 1
@@ -100,54 +106,28 @@ void printarray(int arr[], int len)
 Use      matrix   =    while 2D array
 */
 
+ 
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
     bool flag = false;
 
-    cin >> a >> b >> c >> d;
+    cin >> n;
+    mapii input;
+    int need = n;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a;
+        input[a]++;
 
-    while (log10(a) + 1 < 7)
-    {
-        // deb(a);
-        a *= 10;
-        b--;
+        while (input[need] > 0)
+        {
+            cout << need << sp;
+            need--;
+        }
+        newLine;
     }
-    while (log10(a) + 1 > 7)
-    {
-        // deb(a);
-        a /= 10;
-        b++;
-    }
-
-    while (log10(c) + 1 < 7)
-    {
-        // deb(c);
-        c *= 10;
-        d--;
-    } while (log10(c) + 1 > 7)
-    {
-        // deb(c);
-        c /= 10;
-        d++;
-    }
-    // deb(b);
-    // deb(d);
-
-    if (b == d)
-    {
-        if (a == c)
-            output('=');
-        else if (a > c)
-            output('>');
-        else
-            output('<');
-    }
-    else if (b > d)
-        output('>');
-    else
-        output('<');
 }
 
 int32_t main()
@@ -155,7 +135,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

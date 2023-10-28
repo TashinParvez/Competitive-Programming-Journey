@@ -107,47 +107,44 @@ void solution()
     bool flag = false;
 
     cin >> a >> b >> c >> d;
+    string s1 = to_string(a), s2 = to_string(c);
 
-    while (log10(a) + 1 < 7)
+    if (len(s1) + b > len(s2) + d)
     {
-        // deb(a);
-        a *= 10;
-        b--;
+        cout << ">" << nl;
     }
-    while (log10(a) + 1 > 7)
+    else if (len(s1) + b < len(s2) + d)
     {
-        // deb(a);
-        a /= 10;
-        b++;
+        cout << "<" << nl;
     }
-
-    while (log10(c) + 1 < 7)
-    {
-        // deb(c);
-        c *= 10;
-        d--;
-    } while (log10(c) + 1 > 7)
-    {
-        // deb(c);
-        c /= 10;
-        d++;
-    }
-    // deb(b);
-    // deb(d);
-
-    if (b == d)
-    {
-        if (a == c)
-            output('=');
-        else if (a > c)
-            output('>');
-        else
-            output('<');
-    }
-    else if (b > d)
-        output('>');
     else
-        output('<');
+    {
+        while (len(s1) > len(s2))
+        {
+            c *= 10;
+            s2 = to_string(c);
+        }
+
+        while (len(s1) < len(s2))
+        {
+            a *= 10;
+            s1 = to_string(a);
+        }
+
+        if (a > c)
+        {
+            cout << ">" << nl;
+        }
+        else if (a < c)
+        {
+            cout << "<" << nl;
+        }
+        else
+        {
+
+            cout << "=" << nl;
+        }
+    }
 }
 
 int32_t main()

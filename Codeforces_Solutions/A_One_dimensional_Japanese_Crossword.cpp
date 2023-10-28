@@ -13,6 +13,7 @@
 #define Write(x) freopen(x, "w", stdout)
 #define CRACKED return 0;
 #define nl "\n"
+#define newLine cout << nl;
 
 // data_type_compressions :
 #define int long long
@@ -61,6 +62,8 @@ using namespace std;
 #define vc vector<char>
 #define vs vector<string>
 #define vb vector<bool>
+#define vii vector<pair<int, int>>
+#define vsi vector<pair<string, int>>
 
 #define pb push_back
 #define pop pop_back
@@ -78,6 +81,11 @@ typedef pair<int, string> pis;
 typedef pair<string, int> psi;
 
 #define mp make_pair
+
+//-------------------------------- Map -------------------------------
+#define mapii map<int, int>
+#define mapsi map<string, int>
+#define mapci map<string, int>
 
 /******************************* Some Func ********************************************/
 
@@ -106,48 +114,44 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> a >> b >> c >> d;
 
-    while (log10(a) + 1 < 7)
+    cin >> n;
+    cin >> s;
+    // group of black
+    vi blacks;
+    int continious = 0;
+    for (int i = 0; i < n; i++)
     {
-        // deb(a);
-        a *= 10;
-        b--;
-    }
-    while (log10(a) + 1 > 7)
-    {
-        // deb(a);
-        a /= 10;
-        b++;
-    }
-
-    while (log10(c) + 1 < 7)
-    {
-        // deb(c);
-        c *= 10;
-        d--;
-    } while (log10(c) + 1 > 7)
-    {
-        // deb(c);
-        c /= 10;
-        d++;
-    }
-    // deb(b);
-    // deb(d);
-
-    if (b == d)
-    {
-        if (a == c)
-            output('=');
-        else if (a > c)
-            output('>');
+        if (s[i] == 'W')
+        {
+            blacks.pb(continious);
+            if (continious > 0)
+                cnt++;
+            continious = 0;
+        }
         else
-            output('<');
+        {
+            continious++;
+        }
     }
-    else if (b > d)
-        output('>');
-    else
-        output('<');
+    if (continious > 0)
+    {
+        blacks.pb(continious);
+        continious = 0;
+        cnt++;
+    }
+
+    output(cnt);
+    for (auto i : blacks)
+    {
+        if (i == 0)
+            continue;
+        else
+        {
+            cout << i << sp;
+        }
+    }
+    newLine;
 }
 
 int32_t main()
@@ -155,7 +159,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

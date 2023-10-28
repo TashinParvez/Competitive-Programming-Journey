@@ -13,6 +13,7 @@
 #define Write(x) freopen(x, "w", stdout)
 #define CRACKED return 0;
 #define nl "\n"
+#define newLine cout << nl;
 
 // data_type_compressions :
 #define int long long
@@ -61,6 +62,8 @@ using namespace std;
 #define vc vector<char>
 #define vs vector<string>
 #define vb vector<bool>
+#define vii vector<pair<int, int>>
+#define vsi vector<pair<string, int>>
 
 #define pb push_back
 #define pop pop_back
@@ -78,6 +81,11 @@ typedef pair<int, string> pis;
 typedef pair<string, int> psi;
 
 #define mp make_pair
+
+//-------------------------------- Map -------------------------------
+#define mapii map<int, int>
+#define mapsi map<string, int>
+#define mapci map<string, int>
 
 /******************************* Some Func ********************************************/
 
@@ -106,48 +114,37 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> a >> b >> c >> d;
+    cin >> n;
+    cin >> s;
 
-    while (log10(a) + 1 < 7)
-    {
-        // deb(a);
-        a *= 10;
-        b--;
-    }
-    while (log10(a) + 1 > 7)
-    {
-        // deb(a);
-        a /= 10;
-        b++;
-    }
+    // while (len(s) && (s.find("01") != string::npos || s.find("10") != string::npos))
+    // {
+    //     string s1 = "", s2 = "";
+    //     while(s.find("01") != string::npos)
+    //     {
+    //         s1 = s.substr(0, s.find("01"));
+    //         s2 = s.substr(s.find("01") + 2, len(s) - s.find("01"));
+    //         s = s1 + s2;
+    //     }
 
-    while (log10(c) + 1 < 7)
+    //     while (s.find("10") != string::npos)
+    //     {
+    //         s1 = s.substr(0, s.find("10"));
+    //         s2 = s.substr(s.find("10") + 2, len(s) - s.find("10"));
+    //         s = s1 + s2;
+    //     }
+    // }
+    
+    int zero = 0, one = 0;
+    for (int i = 0; i < n; i++)
     {
-        // deb(c);
-        c *= 10;
-        d--;
-    } while (log10(c) + 1 > 7)
-    {
-        // deb(c);
-        c /= 10;
-        d++;
-    }
-    // deb(b);
-    // deb(d);
-
-    if (b == d)
-    {
-        if (a == c)
-            output('=');
-        else if (a > c)
-            output('>');
+        if (s[i] == '0')
+            zero++;
         else
-            output('<');
+            one++;
     }
-    else if (b > d)
-        output('>');
-    else
-        output('<');
+
+    cout << s.length() - 2 * min(zero, one) << nl;
 }
 
 int32_t main()
@@ -155,7 +152,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

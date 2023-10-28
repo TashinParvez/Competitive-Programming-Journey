@@ -13,6 +13,7 @@
 #define Write(x) freopen(x, "w", stdout)
 #define CRACKED return 0;
 #define nl "\n"
+#define newLine cout << nl;
 
 // data_type_compressions :
 #define int long long
@@ -79,6 +80,11 @@ typedef pair<string, int> psi;
 
 #define mp make_pair
 
+//-------------------------------- Map -------------------------------
+#define mapii map<int, int>
+#define mapsi map<string, int>
+#define mapci map<string, int>
+
 /******************************* Some Func ********************************************/
 
 bool evenOdd(int n) //  Odd = 0   &&   Even = 1
@@ -106,48 +112,21 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> a >> b >> c >> d;
-
-    while (log10(a) + 1 < 7)
+    cin >> n;
+    l = 0;
+    int h = 0;
+    int arr[n];
+    for (int i = 0; i < n; i++)
     {
-        // deb(a);
-        a *= 10;
-        b--;
+        cin >> arr[i];
     }
-    while (log10(a) + 1 > 7)
+    arrSort(arr);
+    for (int i = 0; i < n; i++)
     {
-        // deb(a);
-        a /= 10;
-        b++;
+        if (arr[i] != arr[0] && arr[i] != arr[n - 1])
+            cnt++;
     }
-
-    while (log10(c) + 1 < 7)
-    {
-        // deb(c);
-        c *= 10;
-        d--;
-    } while (log10(c) + 1 > 7)
-    {
-        // deb(c);
-        c /= 10;
-        d++;
-    }
-    // deb(b);
-    // deb(d);
-
-    if (b == d)
-    {
-        if (a == c)
-            output('=');
-        else if (a > c)
-            output('>');
-        else
-            output('<');
-    }
-    else if (b > d)
-        output('>');
-    else
-        output('<');
+    cout << cnt << sp;
 }
 
 int32_t main()
@@ -155,7 +134,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)
