@@ -25,7 +25,7 @@ int32_t main()
                         // if n=3 "000"
 
     int n;
-    string str(n, '0'); // if n==4   "0000"
+    string str(n, '0'); // if n==4   "0000"   //O(N)
 
 
     // ceil function  [sometimes 1.10 -> 2 needed but ceil dont give that]
