@@ -121,6 +121,7 @@ void solution()
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
     bool flag = false;
+    
 
     cin >> n;
 }
@@ -130,7 +131,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)
