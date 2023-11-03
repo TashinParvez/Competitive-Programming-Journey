@@ -118,16 +118,29 @@ Use      matrix   =    while 2D array
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-    string s = "YesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYesYes";
+    string s;
     bool flag = false;
-    string str;
-    cin >> str;
-    if (s.find(str) != string::npos)
+
+    cin >> n >> m;
+    mapii N, M;
+    int i = 1;
+
+    while (i <= n || i <= m)
     {
-        YES;
+        if (i <= n)
+        {
+            N[i]++;
+        }
+        if (i <= m)
+        {
+            M[i]++;
+        }
+        i++;
     }
-    else
-        NO;
+
+    // if( )
+
+
 }
 
 int32_t main()
@@ -135,7 +148,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

@@ -34,11 +34,12 @@ int32_t main()
     cout << (p + q - 1) / q << nl; // ceil func
 
 
-    // lamda function [custom comperator]  ->  Ascending Order
+    /// lamda function [custom comperator]  ->  Ascending Order
     vector<pair<int, int>> vii;
     sort(vii.begin(), vii.end(), [&](vector<int> a, vector<int> b)
-         { return a[1] < b[1]; });
-    //** < ** ascending oreder
+         { return a[1] < b[1]; }); //** < ** ascending oreder
+
+    // Bangladesh
 
 
 
