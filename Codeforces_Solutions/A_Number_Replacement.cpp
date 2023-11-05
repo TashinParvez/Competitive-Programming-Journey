@@ -121,21 +121,52 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> n >> k;
+    cin >> n;
+    int arr[n];
+    string ans(n, '0');
 
-    cnt = 0;
-    index = k / n; // index
+    vector<vector<int>> vipp[n];
 
-    while (1)
+    deb("TAS");
+    for (int i = 0; i < n; i++)
     {
-        if ((index * n) - index >= k)
-            break;
-        else
-        {
-            index++;
-        }
+        cin >> arr[i];
+        // vipp[arr[i]].push_back(i);
+        // vipp[arr[i]] = 12;
     }
-    cout << index << nl;
+    cin >> s;
+
+    // debt;
+
+    // for (int i = 0; i < n; i++)
+    // {
+    //     if (vpiv[arr[i]][0] == -1)
+    //     {
+    //         continue;
+    //     }
+    //     else
+    //     {
+    //         char ch = s[i];
+    //         for (auto i : vpiv[arr[i]])
+    //         {
+
+    // deb("TAS");
+    //             ans[i] = ch;
+    //         }
+    //         vpiv[arr[i]][0] = -1;
+    //     }
+    // }
+
+    // if (s == ans)
+    // {
+    //     YES;
+    // }
+    // else
+    // {
+    //     cout << ans << nl;
+
+    //     NO;
+    // }
 }
 
 int32_t main()

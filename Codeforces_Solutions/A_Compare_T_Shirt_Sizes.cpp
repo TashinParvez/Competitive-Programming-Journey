@@ -118,24 +118,45 @@ Use      matrix   =    while 2D array
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-    string s;
+    string s1, s2;
     bool flag = false;
 
-    cin >> n >> k;
-
-    cnt = 0;
-    index = k / n; // index
-
-    while (1)
+    cin >> s1 >> s2;
+    if (s1[len(s1) - 1] == s2[len(s2) - 1])
     {
-        if ((index * n) - index >= k)
-            break;
+        if (len(s1) == len(s2))
+        {
+            cout << "=" << nl;
+        }
         else
         {
-            index++;
+            if (len(s1) < len(s2))
+            {
+                if (s1[len(s1) - 1] == 'S')
+                    cout << ">" << nl;
+                else
+                    cout << "<" << nl;
+            }
+            else
+            {
+                if (s1[len(s1) - 1] == 'S')
+                    cout << "<" << nl;
+                else
+                    cout << ">" << nl;
+            }
         }
     }
-    cout << index << nl;
+    else
+    {
+        if ((s1[len(s1) - 1] == 'S' && s2[len(s2) - 1] == 'M') || (s1[len(s1) - 1] == 'S' && s2[len(s2) - 1] == 'L') || (s1[len(s1) - 1] == 'M' && s2[len(s2) - 1] == 'L'))
+        {
+            cout << "<" << nl;
+        }
+        else
+        {
+            cout << ">" << nl;
+        }
+    }
 }
 
 int32_t main()
