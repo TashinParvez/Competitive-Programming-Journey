@@ -117,52 +117,64 @@ Use      matrix   =    while 2D array
 
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-    string s;
+    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index, s10, s11, s20, s21;
+    string s1, s2;
     bool flag = false;
 
-    cin >> n >> m;
-    mapii N, M;
+    cin >> n;
+    // cin >> s1 >> s2;
 
-    int modd = n / 5;
-
-    N[1] = N[2] = N[3] = N[4] = N[5] = modd;
-    modd = n - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    for (int i = 0; i < n; i++)
     {
-        N[i]++;
+        cin >> a;
+        s1 += (to_string(a));
+    }
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a;
+        s2 += (to_string(a));
     }
 
-    modd = m / 5;
+    s10 = s11 = s20 = s21 = 0;
 
-    M[1] = M[2] = M[3] = M[4] = M[5] = modd;
-    modd = m - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    for (int i = 0; i < n; i++)
     {
-        M[i]++;
-    }
-
-    for (auto i : N)
-    {
-        if (i.first < 5)
-            cnt += i.second * M[5 - i.first];
-        else
+        if (s1[i] != s2[i])
         {
-            cnt += i.second * M[5];
+            (s1[i] == '0') ? s10++ : s11++;
+            (s2[i] == '0') ? s20++ : s21++;
         }
-        /* code */
     }
-    cout << cnt << nl;
+
+    if ((s10 == s11) && s10 == s20 && (s20 == s21) && s20 != 0)
+    {
+        cnt++;
+    }
+    else
+    {
+        cnt = 0;
+        if (s10 > s20)
+        {
+            cnt += s10 - s20;
+        }
+        if (s11 > s21)
+        {
+            cnt += s11 - s21;
+        }
+
+        if (s10 != 0 && s11 != 0)
+            cnt++;
+    }
+
+    cout << cnt * 1 << nl;
 }
 
 int32_t main()
 {
     faster;
 
-    int t = 1;
-    // cin >> t;
+    int t;
+    cin >> t;
     int c = 1;
 
     while (t--)

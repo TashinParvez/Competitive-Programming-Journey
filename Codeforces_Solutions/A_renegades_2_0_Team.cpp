@@ -1,4 +1,3 @@
-
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
 //        ****************  Updated:    29/10/23     ****************
@@ -16,8 +15,7 @@
 #define newLine cout << nl;
 
 // data_type_compressions :
-#define int long long
-#define ull unsigned long long
+#define int unsigned long long
 #define ld long double
 
 #define minusone -1
@@ -115,46 +113,31 @@ void printarray(int arr[], int len)
 Use      matrix   =    while 2D array
 */
 
+int upperPart(int a, int b, int c) // a to b
+{
+    float sum = 1;
+    int index = 1;               // 1 to c
+    for (int i = b; i >= a; i--) // a to b
+    {
+        sum *= (i * 1.0) / index;
+        index++;
+    }
+    return sum;
+}
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
     bool flag = false;
 
-    cin >> n >> m;
-    mapii N, M;
-
-    int modd = n / 5;
-
-    N[1] = N[2] = N[3] = N[4] = N[5] = modd;
-    modd = n - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    cin >> n;
+    int sum = 0;
+    for (int i = 2; i <= n; i++)
     {
-        N[i]++;
+        a = upperPart(i + 1, n, (n - i));
+        sum += a;
     }
-
-    modd = m / 5;
-
-    M[1] = M[2] = M[3] = M[4] = M[5] = modd;
-    modd = m - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
-    {
-        M[i]++;
-    }
-
-    for (auto i : N)
-    {
-        if (i.first < 5)
-            cnt += i.second * M[5 - i.first];
-        else
-        {
-            cnt += i.second * M[5];
-        }
-        /* code */
-    }
-    cout << cnt << nl;
+    cout << sum << nl;
 }
 
 int32_t main()

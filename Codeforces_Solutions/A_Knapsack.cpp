@@ -114,47 +114,68 @@ void printarray(int arr[], int len)
 /*
 Use      matrix   =    while 2D array
 */
-
+bool compare(pii a, pii b)
+{
+    if (a.first > b.first)
+        return true;
+    else
+        return false;
+}
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
     bool flag = false;
 
-    cin >> n >> m;
-    mapii N, M;
+    cin >> n >> w;
+    int arr[n];
+    vii products;
 
-    int modd = n / 5;
-
-    N[1] = N[2] = N[3] = N[4] = N[5] = modd;
-    modd = n - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    for (int i = 0; i < n; i++)
     {
-        N[i]++;
+        cin >> arr[i];
+        products.push_back({arr[i], i});
     }
 
-    modd = m / 5;
+    sort(products.begin(), products.end(), compare);
 
-    M[1] = M[2] = M[3] = M[4] = M[5] = modd;
-    modd = m - modd * 5;
+    int myBag = 0;
 
-    for (int i = 1; i <= modd; i++)
+    s = "";
+    cnt = 0;
+
+    for (auto i : products)
     {
-        M[i]++;
-    }
-
-    for (auto i : N)
-    {
-        if (i.first < 5)
-            cnt += i.second * M[5 - i.first];
-        else
+        if (i.first <= w - myBag)
         {
-            cnt += i.second * M[5];
+            flag = true;
+            myBag += i.first;
+            s += (to_string(i.second + 1));
+            s += " ";
+            // cout << i.second + 1 << " ";
+
+            cnt++;
+
+            // if (myBag >= ceil(w / 2))
+            if (myBag >= ((w + 1) / 2))
+            {
+                break;
+            }
         }
         /* code */
     }
-    cout << cnt << nl;
+
+    if (myBag >= ((w + 1) / 2))
+    {
+        // cout<<myBag<<nl;
+        // cout<<ceil(w / 2)<<nl;
+        cout << cnt << nl;
+        cout << s << nl;
+    }
+    else
+    {
+        cout << -1 << nl;
+    }
 }
 
 int32_t main()
@@ -162,7 +183,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

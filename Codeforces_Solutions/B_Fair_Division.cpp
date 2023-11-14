@@ -121,40 +121,27 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> n >> m;
-    mapii N, M;
-
-    int modd = n / 5;
-
-    N[1] = N[2] = N[3] = N[4] = N[5] = modd;
-    modd = n - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    cin >> n;
+    int arr[n];
+    int player1 = 0, player2 = 0;
+    int one = 0, two = 0;
+    for (int i = 0; i < n; i++)
     {
-        N[i]++;
-    }
-
-    modd = m / 5;
-
-    M[1] = M[2] = M[3] = M[4] = M[5] = modd;
-    modd = m - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
-    {
-        M[i]++;
-    }
-
-    for (auto i : N)
-    {
-        if (i.first < 5)
-            cnt += i.second * M[5 - i.first];
+        cin >> arr[i];
+        if (arr[i] == 2)
+            two++;
         else
-        {
-            cnt += i.second * M[5];
-        }
-        /* code */
+            one++;
     }
-    cout << cnt << nl;
+
+    if (two % 2 == 0 && one % 2 == 0)
+        cout << "YES" << nl;
+    else if (one % 2 != 0)
+        cout << "NO" << nl;
+    else if (one >= 2)
+        cout << "YES" << nl; 
+    else
+        cout << "NO" << nl;
 }
 
 int32_t main()
@@ -162,7 +149,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

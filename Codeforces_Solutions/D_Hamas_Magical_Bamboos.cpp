@@ -119,42 +119,31 @@ void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
-    bool flag = false;
+    bool ans = true;
 
-    cin >> n >> m;
-    mapii N, M;
-
-    int modd = n / 5;
-
-    N[1] = N[2] = N[3] = N[4] = N[5] = modd;
-    modd = n - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    cin >> n;
+    mapii bomb;
+    int arr[n];
+    int even = 0, odd = 0;
+    for (int i = 0; i < n; i++)
     {
-        N[i]++;
+        cin >> arr[i];
+        if (bomb[arr[i] - 1] > 0 || bomb[arr[i] + 1] > 0)
+            ans = false;
+        bomb[arr[i]]++;
+        (arr[i] % 2 == 0) ? even++ : odd++;
     }
-
-    modd = m / 5;
-
-    M[1] = M[2] = M[3] = M[4] = M[5] = modd;
-    modd = m - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    if (!ans)
     {
-        M[i]++;
+        cout << "no" << nl;
     }
-
-    for (auto i : N)
+    else
     {
-        if (i.first < 5)
-            cnt += i.second * M[5 - i.first];
+        if (even == 0 || odd == 0 || (even > odd && odd >= 2))
+            cout << "yes" << nl;
         else
-        {
-            cnt += i.second * M[5];
-        }
-        /* code */
+            cout << "no" << nl;
     }
-    cout << cnt << nl;
 }
 
 int32_t main()
@@ -162,7 +151,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

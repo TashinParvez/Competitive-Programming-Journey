@@ -121,65 +121,40 @@ void solution()
     string s1, s2;
     bool flag = false;
 
-    cin >> s1 >> s2;
+    cin >> n >> m;
     // cout << s1 << s2;
     // newLine;
     // newLine;
-    if (s1 == s2)
-        output(-1);
+
+    if (m - n == 1)
+    {
+        cout << -1 << nl;
+    }
     else
     {
-        string s3 = s1;
-
-        if (s3[len(s3) - 1] <= '8')
+        if (n % 2 == 0)
         {
-            // deb(s3);
-            s3[len(s3) - 1]++;
-
-            if (s3 == s2)
-            {
-                output(-1);
+            if (n + 2 > m)
+            { 
+                // debt;
+                cout << -1 << nl;
+                return;
             }
-            else
-            {
-                cout << s1 << " " << s3 << " ";
-
-                if (s3[len(s3) - 1] == '9')
-                {
-
-                    s3[len(s3) - 2]++;
-                    // cout << s3 << nl;
-                    s3[len(s3) - 1] = '0';
-                    // cout << s3 << nl;
-                }
-                else
-                {
-                    s3[len(s3) - 1]++;
-                }
-                cout << s3 << nl;
-            }
+            cout << n << " "
+                 << n + 1 << " "
+                 << n + 2 << nl;
         }
-        else // 9
+        else
         {
-
-            s3[len(s3) - 2]++;
-            // cout << s3 << nl;
-            s3[len(s3) - 1] = '0';
-            // cout << s3 << nl;
-
-            if (s3 == s2)
+            if (n + 3 > m)
             {
-                output(-1);
+                // debt;
+                cout << -1 << nl;
+                return;
             }
-            else
-            {
-                cout << s1 << " " << s3 << " ";
-
-                s3[len(s3) - 1]++;
-                s3[len(s3) - 1]++;
-
-                cout << s3 << nl;
-            }
+            cout << n + 1 << " "
+                 << n + 2 << " "
+                 << n + 3 << nl;
         }
     }
 }

@@ -118,43 +118,34 @@ Use      matrix   =    while 2D array
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-    string s;
+    string s, s2;
     bool flag = false;
 
-    cin >> n >> m;
-    mapii N, M;
-
-    int modd = n / 5;
-
-    N[1] = N[2] = N[3] = N[4] = N[5] = modd;
-    modd = n - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    cin >> n;
+    cin >> s >> s2;
+    int ans = 0;
+    cnt = 0;
+    for (int i = 0; i < n; i++)
     {
-        N[i]++;
-    }
-
-    modd = m / 5;
-
-    M[1] = M[2] = M[3] = M[4] = M[5] = modd;
-    modd = m - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
-    {
-        M[i]++;
-    }
-
-    for (auto i : N)
-    {
-        if (i.first < 5)
-            cnt += i.second * M[5 - i.first];
+        if (s[i] == s2[i])
+        {
+            if (cnt > 0)
+            {
+                ans++;
+                cnt = 0;
+            }
+        }
         else
         {
-            cnt += i.second * M[5];
+            cnt++;
         }
         /* code */
     }
-    cout << cnt << nl;
+    if (cnt > 0)
+    {
+        ans++;
+    }
+    cout << ans << nl;
 }
 
 int32_t main()

@@ -164,6 +164,10 @@ void solution()
     //    output(abc);
     //    sort(abc.begin(),abc.end());
     //    output(abc);
+
+
+    // strng reverse 
+    // reverse(str.begin(), str.end());
 }
 
 int32_t main()

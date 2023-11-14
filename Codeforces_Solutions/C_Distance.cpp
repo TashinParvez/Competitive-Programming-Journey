@@ -117,57 +117,43 @@ Use      matrix   =    while 2D array
 
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-    string s;
-    bool flag = false;
+    int i, j, k, l, m, n, a, b, c, d, w, x, sum, y, z, t, cnt = 0, index;
 
-    cin >> n >> m;
-    mapii N, M;
-
-    int modd = n / 5;
-
-    N[1] = N[2] = N[3] = N[4] = N[5] = modd;
-    modd = n - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    cin >> n;
+    vector<int> points;
+    for (int i = 0; i < n * 2; i++)
     {
-        N[i]++;
+        cin >> a;
+        points.pb(a);
     }
-
-    modd = m / 5;
-
-    M[1] = M[2] = M[3] = M[4] = M[5] = modd;
-    modd = m - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    sort(points.begin(), points.end());
+    sum = 0;
+    for (int i = 1; i < n * 2; i++)
     {
-        M[i]++;
-    }
-
-    for (auto i : N)
-    {
-        if (i.first < 5)
-            cnt += i.second * M[5 - i.first];
+        if (i == n)
+            continue;
         else
         {
-            cnt += i.second * M[5];
+            sum += abs(points[i] - points[i - 1]);
         }
-        /* code */
     }
-    cout << cnt << nl;
+    cout << sum << nl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << points[i] << " " << points[2 * n - i - 1];
+        cout << nl;
+    }
 }
 
 int32_t main()
 {
     faster;
 
-    int t = 1;
-    // cin >> t;
-    int c = 1;
+    int t;
+    cin >> t;
 
     while (t--)
     {
-        // cout << "Case " << c++ << ": ";
         solution();
     }
 

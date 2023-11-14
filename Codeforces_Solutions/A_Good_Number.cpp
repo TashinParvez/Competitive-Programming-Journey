@@ -121,38 +121,32 @@ void solution()
     string s;
     bool flag = false;
 
-    cin >> n >> m;
-    mapii N, M;
-
-    int modd = n / 5;
-
-    N[1] = N[2] = N[3] = N[4] = N[5] = modd;
-    modd = n - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
+    cin >> n >> k;
+    int arr[n];
+    FOR0(i, n)
     {
-        N[i]++;
-    }
-
-    modd = m / 5;
-
-    M[1] = M[2] = M[3] = M[4] = M[5] = modd;
-    modd = m - modd * 5;
-
-    for (int i = 1; i <= modd; i++)
-    {
-        M[i]++;
-    }
-
-    for (auto i : N)
-    {
-        if (i.first < 5)
-            cnt += i.second * M[5 - i.first];
-        else
+        flag = true;
+        cin >> arr[i];
+        mapii digits;
+        int count = 0;
+        while (arr[i])
         {
-            cnt += i.second * M[5];
+            int lastD = arr[i] % 10;
+            if (lastD <= k)
+            {
+                digits[lastD]++;
+                if (digits[lastD] == 1)
+                {
+                    count++;
+                } 
+            } 
+
+            arr[i] /= 10;
         }
-        /* code */
+        if (flag && count == k + 1)
+        {
+            cnt++;
+        }
     }
     cout << cnt << nl;
 }
