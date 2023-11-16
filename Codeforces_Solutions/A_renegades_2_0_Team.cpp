@@ -1,3 +1,4 @@
+
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
 //        ****************  Updated:    29/10/23     ****************
@@ -15,8 +16,9 @@
 #define newLine cout << nl;
 
 // data_type_compressions :
-#define int unsigned long long
+#define ull unsigned long long
 #define ld long double
+#define ll long long
 
 #define minusone -1
 #define PI 3.14159265358979323846
@@ -46,113 +48,64 @@
 
 using namespace std;
 
-//--------------------------------- Debug --------------------------------
-#define deb(n) cout << "Tashin   " << #n << " = " << n << endl; // debug code
-#define debt cout << "   Tashin   " << endl;
-
-//--------------------------------- FOR --------------------------------
-#define FOR0(i, n) for (int i = 0; i < (int)(n); i++)  //___ 0 to < N
-#define FOR1(i, n) for (int i = 1; i <= (int)(n); i++) //___ 1 to <= N
-
-#define FOR2(a, n) for (int i = a; i < n; i++) //___ A to < N
-
-//-------------------------------- Vector -------------------------------
-#define vi vector<int>
-#define vc vector<char>
-#define vs vector<string>
-#define vb vector<bool>
-#define vii vector<pair<int, int>>
-#define vsi vector<pair<string, int>>
-
-#define pb push_back
-#define pop pop_back
-
-#define vsort(v) sort(v.begin(), v.end())                    // Vector asc
-#define vSortRev(v) sort(v.begin(), v.end(), greater<int>()) // Vector dec
-
-#define arrSort(a) sort(a, a + n)                    // array asc
-#define arrSortRev(a) sort(a, a + n, greater<int>()) // array dec
-
-//-------------------------------- pair -------------------------------
-
-typedef pair<int, int> pii;
-typedef pair<int, string> pis;
-typedef pair<string, int> psi;
-
-#define mp make_pair
-#define ff first
-#define ss second
-
-//-------------------------------- Map -------------------------------
-#define mapii map<int, int>
-#define mapsi map<string, int>
-#define mapci map<char, int>
-
-/******************************* Some Func ********************************************/
-int getASCII(char c)
+std::ostream &operator<<(std::ostream &dest, __int128_t value)
 {
-    return c;
+    std::ostream::sentry s(dest);
+    if (s)
+    {
+        __uint128_t tmp = value < 0 ? -value : value;
+        char buffer[128];
+        char *d = std::end(buffer);
+        do
+        {
+            --d;
+            *d = "0123456789"[tmp % 10];
+            tmp /= 10;
+        } while (tmp != 0);
+        if (value < 0)
+        {
+            --d;
+            *d = '-';
+        }
+        int len = std::end(buffer) - d;
+        if (dest.rdbuf()->sputn(d, len) != len)
+        {
+            dest.setstate(std::ios_base::badbit);
+        }
+    }
+    return dest;
 }
-
-bool evenOdd(int n) //  Odd = 0   &&   Even = 1
+ll upperPart(int a, int b, int c) // a to b
 {
-    if (!(n & 1)) // Formula:  EVEN  (for even --->> i&1 == 0)
-        return 1;
-    else
-        return 0;
-}
-
-void printarray(int arr[], int len)
-{
-    for (int i = 0; i < len; i++)
-        (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
-}
-
-/********************************* Get used to *************************************************/
-/*
-Use      matrix   =    while 2D array
-*/
-
-int upperPart(int a, int b, int c) // a to b
-{
-    float sum = 1;
+    double sum = 1;
     int index = 1;               // 1 to c
     for (int i = b; i >= a; i--) // a to b
     {
-        sum *= (i * 1.0) / index;
+        sum *= (i * 1.0) / (index);
         index++;
     }
-    return sum;
+    return (ll)sum;
 }
+
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
+    ll i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
-    bool flag = false;
 
     cin >> n;
-    int sum = 0;
+    __int128_t sum = 0;
     for (int i = 2; i <= n; i++)
     {
         a = upperPart(i + 1, n, (n - i));
         sum += a;
     }
+
     cout << sum << nl;
 }
 
-int32_t main()
+int main()
 {
-    faster;
 
-    int t = 1;
-    // cin >> t;
-    int c = 1;
-
-    while (t--)
-    {
-        // cout << "Case " << c++ << ": ";
-        solution();
-    }
-
-    CRACKED;
+    solution();
+    return 0;
 }

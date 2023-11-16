@@ -396,7 +396,7 @@ int main()
     string num1, num2;
     big a, b, c;  //typedef int big[MAX];
 
-    while (cin >> num1 >> num2)
+    while (cin >> num1 >> num2) // input 2 string
     {
         big_from_str(a, num1);
         big_from_str(b, num2);
