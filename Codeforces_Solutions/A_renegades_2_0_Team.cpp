@@ -1,4 +1,3 @@
-
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
 //        ****************  Updated:    29/10/23     ****************
@@ -16,7 +15,7 @@
 #define newLine cout << nl;
 
 // data_type_compressions :
-#define ull unsigned long long
+#define int long long
 #define ld long double
 #define ll long long
 
@@ -48,62 +47,108 @@
 
 using namespace std;
 
-std::ostream &operator<<(std::ostream &dest, __int128_t value)
+int upperPart(int a, int b, int c) // (a to b) / c
 {
-    std::ostream::sentry s(dest);
-    if (s)
-    {
-        __uint128_t tmp = value < 0 ? -value : value;
-        char buffer[128];
-        char *d = std::end(buffer);
-        do
-        {
-            --d;
-            *d = "0123456789"[tmp % 10];
-            tmp /= 10;
-        } while (tmp != 0);
-        if (value < 0)
-        {
-            --d;
-            *d = '-';
-        }
-        int len = std::end(buffer) - d;
-        if (dest.rdbuf()->sputn(d, len) != len)
-        {
-            dest.setstate(std::ios_base::badbit);
-        }
-    }
-    return dest;
-}
-ll upperPart(int a, int b, int c) // a to b
-{
-    double sum = 1;
+    float sum = 1;
     int index = 1;               // 1 to c
     for (int i = b; i >= a; i--) // a to b
     {
-        sum *= (i * 1.0) / (index);
+        sum *= ((i * 1.0) / (index));
         index++;
     }
-    return (ll)sum;
+    return (int)sum;
+}
+
+int upperPart2(int a, int b, int c) // (a to b) / c
+{
+    float sum = 1;
+    int index = 1;
+    int ff = 1;                  // 1 to c
+    for (int i = b; i >= a; i--) // a to b
+    {
+        sum *= i;
+        ff *= index;
+        index++;
+    }
+
+    return (int)sum / ff;
+}
+
+string addTwoBigInteger(string str1, string str2) // a + b
+{
+
+    reverse(str1.begin(), str1.end());
+    reverse(str2.begin(), str2.end());
+    string ans;
+    int looplen = min(str1.length(), str2.length());
+    int carry = 0;
+
+    for (int i = 0; i < looplen; i++)
+    {
+        int numa = str1[i] - '0';
+        int numb = str2[i] - '0';
+
+        numa += numb + carry;
+        ans += to_string(numa % 10);
+        carry = numa / 10;
+    }
+    if (str1.length() > str2.length())
+    {
+        for (int i = looplen; i < str1.length(); i++)
+        {
+            int numa = str1[i] - '0';
+            numa += carry;
+            ans += to_string(numa % 10);
+            carry = numa / 10;
+        }
+    }
+    else
+    {
+        for (int i = looplen; i < str2.length(); i++)
+        {
+            int numa = str2[i] - '0';
+            numa += carry;
+            ans += to_string(numa % 10);
+            carry = numa / 10;
+        }
+    }
+
+    while (carry)
+    {
+        ans += to_string(carry % 10);
+        carry /= 10;
+    }
+
+    reverse(ans.begin(), ans.end());
+
+    return ans;
 }
 
 void solution()
 {
-    ll i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
+    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
 
     cin >> n;
-    __int128_t sum = 0;
+    string sum = "0";
+
     for (int i = 2; i <= n; i++)
     {
         a = upperPart(i + 1, n, (n - i));
-        sum += a;
+        string str2 = to_string(a);
+        sum = addTwoBigInteger(sum, str2);
     }
 
-    cout << sum << nl;
+    if (sum[0] == '0' && n != 1)
+    {
+        sum = sum.substr(1, sum.length() - 1);
+        cout << sum << nl;
+    }
+    else
+        cout << sum << nl;
 }
 
-int main()
+int32_t main()
 {
 
     solution();
