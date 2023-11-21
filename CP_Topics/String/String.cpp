@@ -42,7 +42,7 @@ void solution()
     //    getline(cin,s2);     // take line
     //    cout<<s2<<nl;
 
-    //====================== Input multiple lines =======================
+    //====================== Input multiple lines / many line =======================
 
     //    string s1,s2;
     //    getline(cin,s1);     // take line
