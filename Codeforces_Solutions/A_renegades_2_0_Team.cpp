@@ -59,21 +59,6 @@ int upperPart(int a, int b, int c) // (a to b) / c
     return (int)sum;
 }
 
-int upperPart2(int a, int b, int c) // (a to b) / c
-{
-    float sum = 1;
-    int index = 1;
-    int ff = 1;                  // 1 to c
-    for (int i = b; i >= a; i--) // a to b
-    {
-        sum *= i;
-        ff *= index;
-        index++;
-    }
-
-    return (int)sum / ff;
-}
-
 string addTwoBigInteger(string str1, string str2) // a + b
 {
 
