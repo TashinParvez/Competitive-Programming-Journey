@@ -61,7 +61,7 @@ void makeSet(int n, vector<int> &parent, vector<int> &rank)
     }
 }
 
-bool cmp(vector<int> a, vector<int> b)
+bool cmp(vector<int> &a, vector<int> &b)
 {
     return a[2] < b[2];
 }
@@ -77,7 +77,7 @@ int minimumSpanningTree(vector<vector<int>> &edges, int n)
     makeSet(n, parent, rank);
 
     int mstCost = 0;
-
+    
     for (int i = 0; i < edges.size(); i++)
     {
         bool connected = unionSet(edges[i][0], edges[i][1], parent, rank);
