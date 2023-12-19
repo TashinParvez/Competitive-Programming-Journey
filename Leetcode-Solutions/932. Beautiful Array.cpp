@@ -14,7 +14,7 @@
 #define debt cout << "Tashin   " << endl;                       // debug code
 
 using namespace std;
- 
+
 /*******************/
 
 class Solution
@@ -48,6 +48,7 @@ public:
     }
 
     static void DNC(vector<int> &arr, int s, int e)
+
     {
         if (s == e || e - s == 1)
         {

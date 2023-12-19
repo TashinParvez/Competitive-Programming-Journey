@@ -43,7 +43,7 @@ public:
             else
             {
                 endTime = intervals[i][1];
-            }
+            } 
         }
 
         return cnt;

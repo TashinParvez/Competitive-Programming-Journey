@@ -7,7 +7,7 @@
 using namespace std;
 
 // void printVector(vector<int> arr) // by value
-void printVector(vector<int> &arr)   // by reference
+void printVector(vector<int> &arr) // by reference
 {
   for (int i = 0; i < arr.size(); i++)
   {
@@ -142,6 +142,13 @@ int main()
   cout << nl << nl;
 
   cout << " 100 Occurance  " << it2 - it << nl; // printing occurance using upper and lower bound
+
+  /*************************************************************************************************************************/
+
+  /******************    vector 2D           **************************/
+  int n, m;
+  
+  vector<vector<int>> dptable(n + 1, vector<int>(m + 1, -1)); /// Learn New
 
   return 0;
 }
