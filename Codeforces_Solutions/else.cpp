@@ -1,4 +1,57 @@
-#include<bits/stdc++.h>
-const int N=2e5+10;int w[N];
-int main(){int t;scanf("%d",&t);for(int i=1;i<N;i++){w[i]=w[i-1];for(int o=i;o;o/=10)w[i]+=o%10;}
-while(t--){int n;scanf("%d",&n);printf("%d\n",w[n]);}return 0;}
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isConsonant(char c)
+{
+    if (c == 'b' || c == 'c' || c == 'd')
+        return true;
+    else
+        return false;
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+
+        string ans;
+        ans += s[0];
+        ans += s[1];
+
+        int i = 2;
+        while (i < n)
+        {
+            if (i + 1 < n)
+            {
+                if (isConsonant(s[i + 1]))
+                {
+                    ans += s[i]; 
+                    ans += '.';
+                    ans += s[i + 1];
+                    ans += s[i + 2];
+                    i += 3;
+                }
+                else
+                { 
+                    ans += '.';
+                    ans += s[i];
+                    ans += s[i + 1];
+                    i += 2;
+                }
+            }
+            else
+            {
+                ans += s[i];
+                break;
+            }
+        }
+
+        cout << ans << '\n';
+    }
+}

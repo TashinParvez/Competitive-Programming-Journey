@@ -115,19 +115,6 @@ void printarray(int arr[], int len)
 Use      matrix   =    while 2D array
 */
 
-int arr[200001];
-
-int sod(int n)
-{
-    int sum = 0;
-    while (n)
-    {
-        sum += n % 10;
-        n /= 10;
-    }
-    return sum;
-}
-
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
@@ -135,18 +122,32 @@ void solution()
     bool flag = false;
 
     cin >> n;
-    cout << arr[n] << nl;
+    int arr[n];
+    int sum = 0;
+    int temp = 0;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+
+        if (arr[i])
+            flag = true;
+
+        if (flag && arr[i] == 0)
+        {
+            temp++;
+        }
+        else if (arr[i] == 1)
+        {
+            sum += temp;
+            temp = 0;
+        }
+    }
+    cout << sum << nl;
 }
 
 int32_t main()
 {
     faster;
-    arr[0] = 0;
-
-    for (int i = 1; i < 200001; i++)
-    {
-        arr[i] = arr[i - 1] + sod(i);
-    }
 
     int t = 1;
     cin >> t;

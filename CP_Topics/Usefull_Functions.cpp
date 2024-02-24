@@ -90,7 +90,10 @@ typedef pair<string, int> psi;
 #define mapsi map<string, int>
 #define mapci map<char, int>
 
-/******************************* Some Func ********************************************/
+/*********************************************************************************************************************/
+/***************************************************** Some Func *****************************************************/
+/*********************************************************************************************************************/
+
 int getASCII(char c)
 {
     return c;
@@ -104,20 +107,7 @@ bool evenOdd(int n) //  Odd = 0   &&   Even = 1
         return 0;
 }
 
-void printarray(int arr[], int len)
-{
-    for (int i = 0; i < len; i++)
-        (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
-}
-
-/********************************* Get used to *************************************************/
-/*
-Use      matrix   =    while 2D array
-*/
-
-int arr[200001];
-
-int sod(int n)
+int sod(int n) ///------------------------------(Sum of digits)---------------->> Return number's char sum  [12 -> 3]
 {
     int sum = 0;
     while (n)
@@ -128,35 +118,20 @@ int sod(int n)
     return sum;
 }
 
-void solution()
+string numtobit()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-    string s;
-    bool flag = false;
+    string str = "";
 
-    cin >> n;
-    cout << arr[n] << nl;
+    return str;
+}
+
+string flipBit(string str)
+{
 }
 
 int32_t main()
 {
     faster;
-    arr[0] = 0;
-
-    for (int i = 1; i < 200001; i++)
-    {
-        arr[i] = arr[i - 1] + sod(i);
-    }
-
-    int t = 1;
-    cin >> t;
-    int c = 1;
-
-    while (t--)
-    {
-        // cout << "Case " << c++ << ": ";
-        solution();
-    }
 
     CRACKED;
 }
