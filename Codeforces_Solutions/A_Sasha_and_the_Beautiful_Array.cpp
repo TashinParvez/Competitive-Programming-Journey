@@ -115,110 +115,26 @@ void printarray(int arr[], int len)
 Use      matrix   =    while 2D array
 */
 
-pair<string, string> numtobit(int n) ///-----------------------(Num to Bit)-------------->> Return pair (bit_String + flip_String)
-{
-    string str = "";
-    string flipstr = "";
-
-    while (n)
-    {
-        int m = n % 2;
-        n = n >> 1;
-
-        string temp = to_string(m);
-
-        if (temp == "1")
-            flipstr = '0' + flipstr;
-        else
-            flipstr = '1' + flipstr;
-
-        str = temp + str;
-        if (str.length() == 30)
-            break;
-    }
-
-    if (str.empty())
-    {
-        str = "0";
-        flipstr = '1';
-    }
-
-    while (str.length() < 30)
-    {
-        str = '0' + str;
-        flipstr = '1' + flipstr;
-    }
-
-    return {str, flipstr};
-}
-
-map<string, int> msi;
-
-int checkSpace(pair<string, string> s)
-{
-    int cnt = 0;
-
-    if (msi[s.first] == 1) // ------->  available sp
-    {
-        msi[s.first] = 2;
-    }
-    else if (msi[s.first] == 0) // ------->  need sp
-    {
-        msi[s.first] = 2;
-
-        if (msi[s.second] == 0)
-            msi[s.second] = 1;
-        cnt++;
-    }
-    else // ------->  need sp
-    {
-        if (msi[s.second] > msi[s.first])
-        {
-            msi[s.first]++; 
-        }
-        else
-        {
-            msi[s.first]++; 
-            cnt++;
-        }
-    }
-
-    return cnt;
-}
-
-// void createSpace(string s)
-// {
-//     if (msi[s] == 0)
-//     {
-//         msi[s] = 1;
-//     }
-// }
-
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-
     string s;
     bool flag = false;
 
     cin >> n;
-    int arr[n];
-
+    vector<int> arr(n);
+    int sum = 0;
+    int mn = INT_MAX;
+    int mx = INT_MIN;
     for (int i = 0; i < n; i++)
     {
-        cin >> arr[i];
-        pair<string, string> ssp = numtobit(arr[i]);
-        cnt += checkSpace(ssp);
-
-        // createSpace(ssp.second);
-
-        // cout << cnt << nl;
-
-        // cout << ssp.first << nl;
-        // cout << ssp.second << nl;
+        cin >> a;
+        arr[i] = a;
+        
+        mx = max(mx, arr[i]);
+        mn = min(mn, arr[i]);
     }
-
-    cout << cnt << nl;
+    cout << mx - mn << nl;
 }
 
 int32_t main()
