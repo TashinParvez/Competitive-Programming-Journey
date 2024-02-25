@@ -48,58 +48,31 @@
 
 using namespace std;
 
-//--------------------------------- Debug --------------------------------
-#define deb(n) cout << "Tashin   " << #n << " = " << n << endl; // debug code
-#define debt cout << "   Tashin   " << endl;
+//
+//
+//
+//
+/***************************************************************************************************/
+//                      _    _           __       _ _      ______                                  //
+//                     | |  | |         / _|     | | |    |  ____|                                 //
+//                     | |  | |___  ___| |_ _   _| | |    | |__ _   _ _ __   ___                   //
+//                     | |  | / __|/ _ \  _| | | | | |    |  __| | | | '_ \ / __|                  //
+//                     | |__| \__ \  __/ | | |_| | | |    | |  | |_| | | | | (__                   //
+//                      \____/|___/\___|_|  \__,_|_|_|    |_|   \__,_|_| |_|\___|                  //
+//                                                                                                 //
+/***************************************************************************************************/
+//
+//
+//
+//
 
-//--------------------------------- FOR --------------------------------
-#define FOR0(i, n) for (int i = 0; i < (int)(n); i++)  //___ 0 to < N
-#define FOR1(i, n) for (int i = 1; i <= (int)(n); i++) //___ 1 to <= N
-
-#define FOR2(a, n) for (int i = a; i < n; i++) //___ A to < N
-
-//-------------------------------- Vector -------------------------------
-#define vi vector<int>
-#define vc vector<char>
-#define vs vector<string>
-#define vb vector<bool>
-#define vii vector<pair<int, int>>
-#define vsi vector<pair<string, int>>
-
-#define pb push_back
-#define pop pop_back
-
-#define vsort(v) sort(v.begin(), v.end())                    // Vector asc
-#define vSortRev(v) sort(v.begin(), v.end(), greater<int>()) // Vector dec
-
-#define arrSort(a) sort(a, a + n)                    // array asc
-#define arrSortRev(a) sort(a, a + n, greater<int>()) // array dec
-
-//-------------------------------- pair -------------------------------
-
-typedef pair<int, int> pii;
-typedef pair<int, string> pis;
-typedef pair<string, int> psi;
-
-#define mp make_pair
-#define ff first
-#define ss second
-
-//-------------------------------- Map -------------------------------
-#define mapii map<int, int>
-#define mapsi map<string, int>
-#define mapci map<char, int>
-
-/*********************************************************************************************************************/
-/***************************************************** Some Func *****************************************************/
-/*********************************************************************************************************************/
-
-int getASCII(char c)
+int getASCII(char c) //---------------------(get ASCII of a Char)---------------->> 
 {
-    return c;
+    int a = c;
+    return a;
 }
 
-bool evenOdd(int n) //  Odd = 0   &&   Even = 1
+bool isEven(int n) //---------------------(Even Check)---------------->>   Odd = 0   &&   Even = 1
 {
     if (!(n & 1)) // Formula:  EVEN  (for even --->> i&1 == 0)
         return 1;
@@ -118,20 +91,125 @@ int sod(int n) ///------------------------------(Sum of digits)---------------->
     return sum;
 }
 
-string numtobit()
+pair<string, string> numtobit(int n) ///-----------------------(Num to Bit)-------------->> Return pair (bit_String + flip_String)
 {
     string str = "";
+    string flipstr = "";
 
-    return str;
+    while (n)
+    {
+        int m = n % 2;
+        n = n >> 1;
+
+        string temp = to_string(m);
+
+        if (temp == "1")
+            flipstr = '0' + flipstr;
+        else
+            flipstr = '1' + flipstr;
+
+        str = temp + str;
+    }
+
+    if (str.empty())
+        str = "0";
+
+    while (str.length() < 30)
+    {
+        str = '0' + str;
+        flipstr = '1' + flipstr;
+    }
+
+    return {str, flipstr};
 }
 
-string flipBit(string str)
+string flipBit(string binaryString) ///----------------------------------(Flip a Binary string Bits)------------>>  Returnflip String
 {
+    int length = binaryString.length();
+    string flipString = "";
+
+    for (int i = 0; i < length; i++)
+        binaryString[i] == '0' ? flipString = flipString + '1' : flipString = flipString + '0';
+
+    return flipString;
 }
 
-int32_t main()
-{
-    faster;
 
-    CRACKED;
+
+
+
+
+
+
+
+
+
+/// ---------------------------------------------------------------------------------------
+/// -------------------------------------OTHERS--------------------------------------------------
+/// ---------------------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------------------
+
+
+#define MAX_SIZE 10000007
+vector<int> isprime(MAX_SIZE, true);
+vector<int> prime;
+vector<int> SPF(MAX_SIZE);
+
+void sieve(int N)
+{
+    // complexity  O(N)
+    isprime[0] = isprime[1] = false;
+ 
+    for (int i = 2; i < N; i++)
+    {
+        if (isprime[i])
+        {
+            prime.push_back(i);
+            SPF[i] = i;
+        }
+        for (int j = 0; j < (int)prime.size() && i * prime[j] < N && prime[j] <= SPF[i]; j++)
+        {
+            isprime[i * prime[j]] = false;
+            SPF[i * prime[j]] = prime[j];
+        }
+    }
+}
+//-----------------------Prime Factors of a Number------------------//
+// vector<int> getFactorization(int x){
+//     vector<int> ret;
+//     while (x !=  1 && x < SPF.size()) {
+//         ret.push_back(SPF[x]);
+//         x = x / SPF[x];
+//     }
+//     return ret;
+// }
+//------------------------Coprime-------------------------//
+bool is_coprime(int a, int b)
+{
+    return (__gcd(a, b) == 1);
+}
+// -----------------------Number of Divisors--------------------- //
+int Number_of_Divisors(int n)
+{
+    int cnt = 0;
+    for (int i = 1; i * i <= n; i++)
+    {
+        if (i * i == n)
+        {
+            cnt++;
+            continue;
+        }
+        cnt += 2;
+    }
+    return cnt;
+}
+//------------------------Sum of All numbers----------------------//
+int sum_of_all(int n)
+{
+    return (n * (n + 1)) / 2;
+}
+//------------------------Number of Digits-----------------------//
+int number_of_digits(int n)
+{
+    return floor(log10(n))+1;
 }

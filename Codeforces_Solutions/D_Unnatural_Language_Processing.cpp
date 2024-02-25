@@ -25,47 +25,78 @@ bool isVowel(char a)
 void solution()
 {
     int n;
-    string s;
-
     cin >> n;
+    string s, ans = "";
     cin >> s;
-
-    string ans = "";
     ans += s[0];
     ans += s[1];
 
     for (int i = 2; i < n;)
     {
-        if (!isVowel(s[i]))
+        if (i + 2 < n)
         {
-            if (i + 2 < n)
-                if (!isVowel(s[i + 1]))
+            if (isVowel(s[i])) /// vowel
+            {
+                if (isVowel(s[i + 2]))
                 {
                     ans += s[i];
-                    ans += '.';
+                    ans += ".";
                     ans += s[i + 1];
                     ans += s[i + 2];
+                    i += 3;
                 }
                 else
                 {
-                    ans += '.';
                     ans += s[i];
                     ans += s[i + 1];
-                }
-            else
-            {
-                while (i < n)
-                {
-                    ans += s[i];
-                    i++;
-                    cout << "TASHIN" << endl;
+                    ans += ".";
+                    ans += s[i + 2];
+                    i += 3;
                 }
             }
-            i += 2;
+            else /// consonant
+            {
+                if (!isVowel(s[i + 1]))
+                {
+                    ans += s[i];
+                    ans += ".";
+                    ans += s[i + 1];
+                    ans += s[i + 2];
+                    i += 3;
+                }
+                else
+                {
+                    ans += ".";
+                    ans += s[i];
+                    ans += s[i + 1];
+                    i += 2;
+                }
+            }
         }
         else
         {
-            cout << "TASHIN" << endl;
+            if (i + 1 < n)
+            {
+                if (!isVowel(s[i + 1]))
+                {
+                    ans += s[i];
+                    ans += ".";
+                    ans += s[i + 1];
+                    i += 2;
+                }
+                else
+                {
+                    ans += ".";
+                    ans += s[i];
+                    ans += s[i + 1]; 
+                    i += 2;
+                }
+            }
+            else
+            {
+                ans += s[i];
+                i++;
+            }
         }
     }
 
