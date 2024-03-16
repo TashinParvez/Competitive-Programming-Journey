@@ -129,48 +129,56 @@ void printarray(int arr[], int len)
 Use      matrix   =    while 2D array
 */
 
-
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index = -1;
+    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
-    bool ans = false;
-    int low = INT_MAX;
+    bool flag = false;
 
-    cin >> n;
-    int arr[n];
+    cin >> n >> k;
+    cin >> s;
+    int odd = 0, even = 0;
+
+    map<char, int> mci;
 
     FOR0(n)
     {
-        cin >> arr[i];
-
-        if (i > 0)
+        if (mci[s[i]] > 0)
         {
-            if (arr[i] - arr[i - 1] < low)
+            if (mci[s[i]] % 2 == 0)
             {
-                low = arr[i] - arr[i - 1];
-                index = i - 1;
+                mci[s[i]]++;
+                odd++;
             }
-            if (arr[i] < arr[i - 1])
-                ans = true;
+            else
+            {
+                mci[s[i]]++;
+                even += 2;
+                odd--;
+            }
         }
-    }
-
-    if (ans)
-    {
-        cout << 0 << nl;
-    }
-    else
-    {
-        if (low == 0)
-            cout << 1 << nl;
         else
         {
-            cnt = low / 2;
-            if (arr[index + 1] != arr[index])
-                cnt++;
-            cout << cnt << nl;
+            mci[s[i]]++;
+            odd++;
         }
+    }
+
+    // dbg(odd);
+    // dbg(even);
+
+    if (k < odd)
+    {
+        if (odd - k > 1)
+            cout << "NO" << nl;
+        else
+        {
+            cout << "YES" << nl;
+        }
+    }
+    else // k >= odd
+    {
+        cout << "YES" << nl;
     }
 }
 
@@ -184,6 +192,7 @@ int32_t main()
 
     while (t--)
     {
+        // cout << "Case " << c++ << ": ";
         solution();
     }
 

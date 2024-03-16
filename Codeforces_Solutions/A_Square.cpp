@@ -1,7 +1,7 @@
 
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
-//        ****************  Updated:    16/03/24     ****************
+//        ****************  Updated:    29/10/23     ****************
 
 #include <bits/stdc++.h>
 #define faster                        \
@@ -50,24 +50,10 @@ using namespace std;
 
 //--------------------------------- Debug --------------------------------
 #define deb(n) cout << "Tashin   " << #n << " = " << n << endl; // debug code
-#define tashin cout << "____Tashin____" << endl;
-
-#define dbg(...) __f(#__VA_ARGS__, __VA_ARGS__)
-template <typename Arg1>
-void __f(const char *name, Arg1 &&arg1)
-{
-    cout << name << " = " << arg1 << std::endl;
-}
-template <typename Arg1, typename... Args>
-void __f(const char *names, Arg1 &&arg1, Args &&...args)
-{
-    const char *comma = strchr(names + 1, ',');
-    cout.write(names, comma - names) << " = " << arg1 << " | ";
-    __f(comma + 1, args...);
-}
+#define debt cout << "   Tashin   " << endl;
 
 //--------------------------------- FOR --------------------------------
-#define FOR0(n) for (int i = 0; i < (int)(n); i++)     //___ 0 to < N
+#define FOR0(i, n) for (int i = 0; i < (int)(n); i++)  //___ 0 to < N
 #define FOR1(i, n) for (int i = 1; i <= (int)(n); i++) //___ 1 to <= N
 
 #define FOR2(a, n) for (int i = a; i < n; i++) //___ A to < N
@@ -124,54 +110,60 @@ void printarray(int arr[], int len)
         (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
 }
 
-/********************************* Get used to *************************************************/
-/*
-Use      matrix   =    while 2D array
-*/
+float func(pair<int, int> a, pair<int, int> b)
+{
+    // cout << "a " << a.first << " " << a.second << nl;
+    // cout << "b " << b.first << " " << b.second << nl;
 
-
+    float wi = sqrt(pow(a.first - b.first, 2) * 1.0 + pow(a.second - b.second, 2) * 1.0);
+    return wi;
+}
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index = -1;
+    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
-    bool ans = false;
-    int low = INT_MAX;
+    bool flag = false;
 
-    cin >> n;
-    int arr[n];
+    vector<pair<int, int>> vpii;
 
-    FOR0(n)
+    for (int i = 0; i < 4; i++)
     {
-        cin >> arr[i];
+        cin >> a >> b;
+        // cout<<a<<" " << b;
 
-        if (i > 0)
-        {
-            if (arr[i] - arr[i - 1] < low)
-            {
-                low = arr[i] - arr[i - 1];
-                index = i - 1;
-            }
-            if (arr[i] < arr[i - 1])
-                ans = true;
-        }
+        vpii.pb({a, b});
+    }
+    float wi = 0;
+    float h = 0;
+
+    if (vpii[0].first == vpii[1].first)
+    {
+        wi = func(vpii[0], vpii[1]);
+    }
+    else if (vpii[0].first == vpii[2].first)
+    {
+        wi = func(vpii[0], vpii[2]);
+    }
+    else if (vpii[0].first == vpii[3].first)
+    {
+        wi = func(vpii[0], vpii[3]);
     }
 
-    if (ans)
+    if (vpii[0].second == vpii[1].second)
     {
-        cout << 0 << nl;
+        h = func(vpii[0], vpii[1]);
     }
-    else
+    else if (vpii[0].second == vpii[2].second)
     {
-        if (low == 0)
-            cout << 1 << nl;
-        else
-        {
-            cnt = low / 2;
-            if (arr[index + 1] != arr[index])
-                cnt++;
-            cout << cnt << nl;
-        }
+        h = func(vpii[0], vpii[2]);
     }
+    else if (vpii[0].second == vpii[3].second)
+    {
+        h = func(vpii[0], vpii[3]);
+    }
+    // cout << wi << " " << h << nl;
+    a = (wi * h);
+    cout << a << nl;
 }
 
 int32_t main()
@@ -184,6 +176,7 @@ int32_t main()
 
     while (t--)
     {
+        // cout << "Case " << c++ << ": ";
         solution();
     }
 

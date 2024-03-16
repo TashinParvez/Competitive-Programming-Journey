@@ -129,49 +129,63 @@ void printarray(int arr[], int len)
 Use      matrix   =    while 2D array
 */
 
-
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index = -1;
-    string s;
-    bool ans = false;
-    int low = INT_MAX;
+    int i, j, l, a, b, c, d, w, x, y, z, t, cnt = 0, index;
+    pair<int, int> k;
+    pair<int, int> q;
 
-    cin >> n;
-    int arr[n];
+    cin >> a >> b;
 
-    FOR0(n)
+    cin >> k.first >> k.second;
+    cin >> q.first >> q.second;
+
+    if (a == b)
     {
-        cin >> arr[i];
+        int dir_arr_x[4] = {a, a, -a, -a};  // direction array
+        int dir_arr_y[4] = {b, -b, b, -b};
 
-        if (i > 0)
+        for (int i = 0; i < 4; i++)
         {
-            if (arr[i] - arr[i - 1] < low)
-            {
-                low = arr[i] - arr[i - 1];
-                index = i - 1;
-            }
-            if (arr[i] < arr[i - 1])
-                ans = true;
-        }
-    }
+            int kx = k.ff + dir_arr_x[i];
+            int ky = k.ss + dir_arr_y[i];
 
-    if (ans)
-    {
-        cout << 0 << nl;
+            for (int j = 0; j < 4; j++)
+            {
+                int qx = q.ff + dir_arr_x[j];
+                int qy = q.ss + dir_arr_y[j];
+
+                if (kx == qx && ky == qy)
+                {
+                    cnt++;
+                }
+            }
+        }
     }
     else
     {
-        if (low == 0)
-            cout << 1 << nl;
-        else
+        int dir_arr_x[8] = {a, a, -a, -a, b, b, -b, -b};
+        int dir_arr_y[8] = {b, -b, b, -b, a, -a, a, -a};
+
+        for (int i = 0; i < 8; i++)
         {
-            cnt = low / 2;
-            if (arr[index + 1] != arr[index])
-                cnt++;
-            cout << cnt << nl;
+            int kx = k.ff + dir_arr_x[i];
+            int ky = k.ss + dir_arr_y[i];
+
+            for (int j = 0; j < 8; j++)
+            {
+                int qx = q.ff + dir_arr_x[j];
+                int qy = q.ss + dir_arr_y[j];
+
+                if (kx == qx && ky == qy)
+                {
+                    cnt++;
+                }
+            }
         }
     }
+
+    cout << cnt << nl;
 }
 
 int32_t main()
@@ -184,6 +198,7 @@ int32_t main()
 
     while (t--)
     {
+        // cout << "Case " << c++ << ": ";
         solution();
     }
 

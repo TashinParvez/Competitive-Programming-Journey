@@ -118,59 +118,33 @@ bool evenOdd(int n) //  Odd = 0   &&   Even = 1
         return 0;
 }
 
-void printarray(int arr[], int len)
-{
-    for (int i = 0; i < len; i++)
-        (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
-}
-
-/********************************* Get used to *************************************************/
-/*
-Use      matrix   =    while 2D array
-*/
-
-
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index = -1;
+    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
-    bool ans = false;
-    int low = INT_MAX;
+    bool flag = false;
 
-    cin >> n;
-    int arr[n];
+    cin >> a >> b >> c;
 
-    FOR0(n)
+    if (b - a == c - b)
     {
-        cin >> arr[i];
-
-        if (i > 0)
-        {
-            if (arr[i] - arr[i - 1] < low)
-            {
-                low = arr[i] - arr[i - 1];
-                index = i - 1;
-            }
-            if (arr[i] < arr[i - 1])
-                ans = true;
-        }
+        YES;
     }
-
-    if (ans)
+    else if ((2 * b - c) % a == 0 && (2 * b - c) > 0)
     {
-        cout << 0 << nl;
+        YES;
+    }
+    else if ((2 * b - a) % c == 0 && (2 * b - a) > 0)
+    {
+        YES;
+    }
+    else if ((a + c) % (2 * b) == 0)
+    {
+        YES;
     }
     else
     {
-        if (low == 0)
-            cout << 1 << nl;
-        else
-        {
-            cnt = low / 2;
-            if (arr[index + 1] != arr[index])
-                cnt++;
-            cout << cnt << nl;
-        }
+        NO;
     }
 }
 
@@ -184,6 +158,7 @@ int32_t main()
 
     while (t--)
     {
+        // cout << "Case " << c++ << ": ";
         solution();
     }
 
