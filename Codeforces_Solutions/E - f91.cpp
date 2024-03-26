@@ -13,6 +13,8 @@
 #define Write(x) freopen(x, "w", stdout)
 #define CRACKED return 0;
 #define nl "\n"
+using namespace std;
+
 #define newLine cout << nl;
 
 // data_type_compressions :
@@ -21,7 +23,6 @@
 #define ld long double
 
 #define minusone -1
-#define PI 3.14159265358979323846
 
 // I/O :
 #define sp " "                    // space
@@ -46,11 +47,10 @@
 
 #define SumInRange(a, b) ((b * (b + 1)) / 2) - (((a - 1) * (a)) / 2)
 
-using namespace std;
-
 //--------------------------------- Debug --------------------------------
-#define deb(n) cout << "Tashin   " << #n << " = " << n << endl; // debug code
-#define tashin cout << "____Tashin____" << endl;
+
+#define deb(n) cout << "Tashin   " << #n << " = " << n << endl;
+#define tashin cout << "____Tashin____" << endl; // Pointer
 
 #define dbg(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
@@ -69,8 +69,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 //--------------------------------- FOR --------------------------------
 #define FOR0(n) for (int i = 0; i < (int)(n); i++)     //___ 0 to < N
 #define FOR1(i, n) for (int i = 1; i <= (int)(n); i++) //___ 1 to <= N
-
-#define FOR2(a, n) for (int i = a; i < n; i++) //___ A to < N
+#define FOR2(a, n) for (int i = a; i < n; i++)         //___ A to < N
 
 //-------------------------------- Vector -------------------------------
 #define vi vector<int>
@@ -82,6 +81,8 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 
 #define pb push_back
 #define pop pop_back
+
+//-------------------------------- Sort -------------------------------
 
 #define vsort(v) sort(v.begin(), v.end())                    // Vector asc
 #define vSortRev(v) sort(v.begin(), v.end(), greater<int>()) // Vector dec
@@ -105,6 +106,7 @@ typedef pair<string, int> psi;
 #define mapci map<char, int>
 
 /******************************* Some Func ********************************************/
+
 int getASCII(char c)
 {
     return c;
@@ -124,60 +126,48 @@ void printarray(int arr[], int len)
         (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
 }
 
-/********************************* Get used to *************************************************/
+/********************************* CODE NOW *************************************************/
+
 /*
-Use      matrix   =    while 2D array
+
+1. Think Greedy
+2. Think Brute Force
+3. Think solution in reverse order
+4. Think DP [ check constraints carefully ]
+5. Check base cases for DP and prove solution for Greedy
+6. Think Graph
+
 */
 
-void solution()
+const double PI = 3.1415926535;
+const int inf = 1e18;
+const int mod = 1000000007;
+
+int f91(int n)
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-    string s;
-    bool flag = false;
-
-    cin >> n;
-    vector<int> v;
-
-    FOR0(n)
+    if (n >= 101)
     {
-        cin >> a;
-        v.push_back(a);
-    }
-
-    int pre = 1;
-    for (int i = 1; i < n; i++)
-    {
-        if (v[i] == v[i - 1])
-        {
-            pre++;
-        }
-        else
-            break;
-    }
-
-    int suf = 1;
-    for (int i = n - 2; i >= 0; i--)
-    {
-        if (v[i] == v[i + 1])
-        {
-            suf++;
-        }
-        else
-            break;
-    }
-
-    if (v[0] == v[n - 1])
-    {
-        if (suf != n)
-            cout << n - suf - pre << nl;
-        else
-        {
-            cout << 0 << nl;
-        }
+        return n - 10;
     }
     else
     {
-        cout << n - max(pre, suf) << nl;
+        return f91(f91(n + 11));
+    }
+}
+
+void solution()
+{
+    int a, b, c, d;
+    int i, j, k, l, m, n;
+    int x, y, z, t;
+    int cnt = 0, index = -1, sum = 0;
+    string s;
+    bool flag = false;
+    int ans;
+
+    while (cin >> n && n!=0)
+    {
+        cout << "f91(" << n << ") = " << f91(n) << nl;
     }
 }
 
@@ -186,7 +176,6 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
     int c = 1;
 
     while (t--)

@@ -125,59 +125,91 @@ void printarray(int arr[], int len)
 }
 
 /********************************* Get used to *************************************************/
-/*
-Use      matrix   =    while 2D array
-*/
+
+void banglaNumber(ull n)
+{
+    // dbg(n);
+    if (n / 10000000 > 0)
+    {
+        banglaNumber(n / 10000000);
+
+        if (n % 10000000 > 0)
+        {
+            cout << " kuti ";
+        }
+        else
+        {
+            cout << " kuti";
+        }
+
+        banglaNumber(n % 10000000);
+    }
+    else if (n / 100000 > 0)
+    {
+        banglaNumber(n / 100000);
+        if (n % 100000 > 0)
+        {
+            cout << " lakh ";
+        }
+        else
+        {
+            cout << " lakh";
+        }
+
+        banglaNumber(n % 100000);
+    }
+    else if (n / 1000 > 0)
+    {
+        banglaNumber(n / 1000);
+
+        if (n % 1000 > 0)
+            cout << " hajar ";
+        else
+            cout << " hajar";
+
+        banglaNumber(n % 1000);
+    }
+    else if (n / 100 > 0)
+    {
+        banglaNumber(n / 100);
+        if (n % 100 > 0)
+        {
+            cout << " shata ";
+        }
+        else
+        {
+            cout << " shata";
+        }
+        banglaNumber(n % 100);
+    }
+    else if (n > 0)
+    {
+        cout << n;
+        return;
+    }
+    return;
+}
 
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
+    ull i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
     bool flag = false;
 
-    cin >> n;
-    vector<int> v;
-
-    FOR0(n)
+    while (cin >> n)
     {
-        cin >> a;
-        v.push_back(a);
-    }
+        cnt++;
+        // cout << cnt << ". ";
 
-    int pre = 1;
-    for (int i = 1; i < n; i++)
-    {
-        if (v[i] == v[i - 1])
+        cout << setw(4) << cnt << ". ";
+
+        if (n == 0)
         {
-            pre++;
+            cout << n;
         }
         else
-            break;
-    }
-
-    int suf = 1;
-    for (int i = n - 2; i >= 0; i--)
-    {
-        if (v[i] == v[i + 1])
-        {
-            suf++;
-        }
-        else
-            break;
-    }
-
-    if (v[0] == v[n - 1])
-    {
-        if (suf != n)
-            cout << n - suf - pre << nl;
-        else
-        {
-            cout << 0 << nl;
-        }
-    }
-    else
-    {
-        cout << n - max(pre, suf) << nl;
+            banglaNumber(n);
+        cout << nl;
     }
 }
 
@@ -186,12 +218,10 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
     int c = 1;
 
     while (t--)
     {
-        // cout << "Case " << c++ << ": ";
         solution();
     }
 

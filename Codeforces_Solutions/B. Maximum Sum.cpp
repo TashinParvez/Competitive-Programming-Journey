@@ -67,10 +67,10 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 }
 
 //--------------------------------- FOR --------------------------------
-#define FOR0(n) for (int i = 0; i < (int)(n); i++)     //___ 0 to < N
-#define FOR1(i, n) for (int i = 1; i <= (int)(n); i++) //___ 1 to <= N
+#define FOR0(n) for (int i = 0; i < (int)(n); i++)  //___ 0 to < N
+#define FOR1(n) for (int i = 1; i <= (int)(n); i++) //___ 1 to <= N
 
-#define FOR2(a, n) for (int i = a; i < n; i++) //___ A to < N
+#define FOR(a, n) for (int i = a; i < n; i++) //___ A to < N
 
 //-------------------------------- Vector -------------------------------
 #define vi vector<int>
@@ -124,61 +124,54 @@ void printarray(int arr[], int len)
         (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
 }
 
-/********************************* Get used to *************************************************/
+/********************************* Get used to *********************************************/
 /*
 Use      matrix   =    while 2D array
 */
 
 void solution()
 {
-    int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
-    string s;
-    bool flag = false;
+    int k, n, a;
 
-    cin >> n;
-    vector<int> v;
+    cin >> n >> k;
 
+    vector<int> v(n);
+    vector<int> preffixSum(n);
+    vector<int> suffixSum(n);
+
+    int sum = 0;
     FOR0(n)
     {
         cin >> a;
-        v.push_back(a);
+        sum += a;
+        v[i] = a;
     }
+    tashin;
 
-    int pre = 1;
-    for (int i = 1; i < n; i++)
+    sort(v.begin(), v.begin() + n);
+
+    int s = 0, e = n - 1;
+
+    preffixSum[0] = v[0];
+    suffixSum[n - 1] = v[n - 1];
+
+    FOR1(n)
     {
-        if (v[i] == v[i - 1])
-        {
-            pre++;
-        }
-        else
-            break;
+        preffixSum[i] = preffixSum[i - 1] + v[i];
     }
 
-    int suf = 1;
     for (int i = n - 2; i >= 0; i--)
-    {
-        if (v[i] == v[i + 1])
-        {
-            suf++;
-        }
-        else
-            break;
-    }
+        suffixSum[i] = suffixSum[i + 1] + v[i];
 
-    if (v[0] == v[n - 1])
+    int ans = sum - suffixSum[n - k];
+
+    for (int i = 1; i <= k; i++)
     {
-        if (suf != n)
-            cout << n - suf - pre << nl;
-        else
-        {
-            cout << 0 << nl;
-        }
+        //                     i                            k-i
+        // tashin;
+        ans = max(ans, sum - preffixSum[i * 2] - suffixSum[n - (k - i)]);
     }
-    else
-    {
-        cout << n - max(pre, suf) << nl;
-    }
+    cout << ans << nl;
 }
 
 int32_t main()

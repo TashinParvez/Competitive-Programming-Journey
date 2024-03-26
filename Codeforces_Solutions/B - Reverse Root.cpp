@@ -134,50 +134,14 @@ void solution()
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
     string s;
     bool flag = false;
-
-    cin >> n;
-    vector<int> v;
-
-    FOR0(n)
+    if (cin >> n)
     {
-        cin >> a;
-        v.push_back(a);
-    }
-
-    int pre = 1;
-    for (int i = 1; i < n; i++)
-    {
-        if (v[i] == v[i - 1])
-        {
-            pre++;
-        }
-        else
-            break;
-    }
-
-    int suf = 1;
-    for (int i = n - 2; i >= 0; i--)
-    {
-        if (v[i] == v[i + 1])
-        {
-            suf++;
-        }
-        else
-            break;
-    }
-
-    if (v[0] == v[n - 1])
-    {
-        if (suf != n)
-            cout << n - suf - pre << nl;
-        else
-        {
-            cout << 0 << nl;
-        }
+        solution();
+        cout <<setDec(4) << sqrt(n)<< nl; 
     }
     else
     {
-        cout << n - max(pre, suf) << nl;
+        return; 
     }
 }
 
@@ -186,7 +150,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

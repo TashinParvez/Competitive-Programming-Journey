@@ -129,6 +129,40 @@ void printarray(int arr[], int len)
 Use      matrix   =    while 2D array
 */
 
+int mod = 1e9;
+
+// int makePile(vi v, int s, int a, int b)
+// {
+//     if (s == v.size())
+//     {
+//         return abs(b - a);
+//     }
+//     else
+//     {
+//         int temp = v[s];
+//         int p1 = abs(makePile(v, s + 1, a + temp, b) - b);
+//         int p2 = abs(makePile(v, s + 1, a, b + temp) - a);
+
+//         return min(p1, p2);
+//     }
+// }
+
+int makePile2(vi v, int s, int a, int total)
+{
+    if (s == v.size())
+    {
+        return abs(total - 2 * a);
+    }
+
+    // nibo
+    int temp = makePile2(v, s + 1, a + v[s], total);
+
+    // nibo na
+    int temp2 = makePile2(v, s + 1, a, total);
+
+    return min(abs(total - 2 * temp), abs(total - 2 * temp2));
+}
+
 void solution()
 {
     int i, j, k, l, m, n, a, b, c, d, w, x, y, z, t, cnt = 0, index;
@@ -136,64 +170,63 @@ void solution()
     bool flag = false;
 
     cin >> n;
-    vector<int> v;
+    int sum = 0;
+
+    vi v;
 
     FOR0(n)
     {
         cin >> a;
         v.push_back(a);
+        sum += a;
     }
 
-    int pre = 1;
-    for (int i = 1; i < n; i++)
-    {
-        if (v[i] == v[i - 1])
-        {
-            pre++;
-        }
-        else
-            break;
-    }
+    sort(v.begin(), v.end());
 
-    int suf = 1;
-    for (int i = n - 2; i >= 0; i--)
-    {
-        if (v[i] == v[i + 1])
-        {
-            suf++;
-        }
-        else
-            break;
-    }
+    // for (int i = n - 1; i > -1; i--)
+    // {
+    //     if (a == min(a, b))
+    //     {
+    //         a += v[i];
+    //     }
+    //     else
+    //     {
+    //         b += v[i];
+    //     }
+    //     a %= mod;
+    //     b %= mod;
+    // }
 
-    if (v[0] == v[n - 1])
-    {
-        if (suf != n)
-            cout << n - suf - pre << nl;
-        else
-        {
-            cout << 0 << nl;
-        }
-    }
-    else
-    {
-        cout << n - max(pre, suf) << nl;
-    }
+    // a = 0, b = 0;
+    // int mn = sum / 2;
+
+    // for (int i = n - 1; i >= 0; i--)
+    // {
+    //     if (a + v[i] > mn)
+    //     {
+    //         continue;
+    //     }
+    //     else
+    //     {
+    //         a += v[i];
+    //     }
+    // }
+
+    // dbg(a);
+    // dbg(mn);
+
+    // cout << abs((sum - a) - a) << nl;
+    // cout << makePile(v, 0, 0, 0) << nl;
+
+    cout << makePile2(v, 0, 0, sum) << nl;
 }
 
 int32_t main()
 {
     faster;
 
-    int t = 1;
-    cin >> t;
-    int c = 1;
-
-    while (t--)
-    {
-        // cout << "Case " << c++ << ": ";
-        solution();
-    }
+    // cout << "Case " << c++ << ": ";
+    solution();
 
     CRACKED;
 }

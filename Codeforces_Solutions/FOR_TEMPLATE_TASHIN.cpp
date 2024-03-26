@@ -1,60 +1,15 @@
-
-//        ****************  Author :  Tashin.Parvez  ****************
-//        ************* United International University *************
-//        ****************  Updated:    27/10/23     ****************
 #include <bits/stdc++.h>
 using namespace std;
 
+#define pb push_back
+#define pop pop_back
 
-//------------------------------------------ Today  --------------------------------
-#define deb(n) cout << "Tashin   " << #n << " = " << n << endl; // debug
+//------------------------------------------  BELLOW  --------------------------------
 
-#define si(n) cin >> n; // input
-
-//------------------------------------------ FOR --------------------------------
-#define FOR0(i, n) for (int i = 0; i < (int)(n); i++)  // 0 to < N
-#define FOR1(i, n) for (int i = 1; i <= (int)(n); i++) // 1 to <= N
-#define FOR2(a, n) for (int i = a; i < n; i++) // A to < N
-
-// vector
-#define pb     push_back
-#define pop     pop_back
-
-#define vsort(v)       sort(v.begin(), v.end())                    // Vector asc
-#define vSortRev(v)    sort(v.begin(), v.end(), greater<int>())    // Vector dec
-
-#define arrSort(a)     sort(a, a + n)                              // array asc
-#define arrSortRev(a)  sort(a, a + n, greater<int>())              // array dec
-
-#define tolower(s) transform(s.begin(), s.end(), s.begin(), ::tolower) 
-
-typedef pair<int, int> pii; 
-
-#define sp " "
-
-#define vi vector<int>
-#define vc vector<char>
-#define vs vector<string>
-#define vb vector<bool>
 
 #define checkEqual(a, b, c) \
     if (a == b && a == c)   \
         return 1 else return 0; 
-        
-#define mp make_pair
-#define pii pair<int, int>
-#define pll pair<ll, ll>
-
-#define minusone cout << "-1" << el
-
-#define max3(a, b, c)   max(max(a, b), c) 
-#define min3(a, b, c)   min(min(a, b), c)  
-#define mid3(a, b, c)   a+b+c-max3(a, b, c)-min3(a, b, c)
-
-
- #define SumInRange(a, b) ((b * (b + 1)) / 2) - (((a - 1) * (a)) / 2) 
-
-//------------------------------------------ end of Used  --------------------------------
 
 
 
@@ -73,17 +28,18 @@ typedef pair<int, int> pii;
 
 
 
-/*
-fora(i,n){
-        int temp;
-        cin>>temp;
-        sum+=temp;
-    }
-*/
-const double E = 2.718281828459045;
-
 /**************************************** Need to add Func ***********************************************/
 
+int intreverse(int n)
+{
+    int newnumb = 0;
+    while (n)
+    {
+        newnumb = newnumb * 10 + n % 10;
+        n /= 10;
+    }
+    return newnumb;
+}
 
 
 // Get All The Divisors Of That Number
@@ -126,6 +82,7 @@ vector<int> getprimefac(int n)
     }
     return ans;
 }
+
 // get instant prime
 vector<int> sieve(int n)
 {
@@ -144,6 +101,7 @@ vector<int> sieve(int n)
     }
     return vect;
 }
+
 /********************************************************************************/
 
 #define take_the_array_INT(x, o, n) \
@@ -241,3 +199,4 @@ void _print(T t, V... v)
         cout << ", ";
     _print(v...);
 }
+
