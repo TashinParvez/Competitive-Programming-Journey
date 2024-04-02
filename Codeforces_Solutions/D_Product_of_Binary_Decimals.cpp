@@ -80,7 +80,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsi vector<pair<string, int>>
 
 #define pb push_back
-// #define pop pop_back
+#define pop pop_back
 
 //-------------------------------- Sort -------------------------------
 
@@ -143,6 +143,52 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+vector<string> arr;
+
+void generate(int i, int n)
+{
+    if (i > n)
+    {
+        return;
+    }
+
+    for (auto i : arr)
+    {
+        arr.push_back("1" + i);
+        arr.push_back("0" + i);
+    }
+    i++;
+    generate(i, n);
+}
+
+bool check(int s, int e, int mul, int ans)
+{
+    if (mul > ans || s == e)
+    {
+        if (mul == ans)
+            return true;
+        else
+            return false;
+    }
+
+    // take
+    int mult = mul * stoi(arr[s]);
+    int p = s = 1;
+
+    int flag1 = check(p, e, mult, ans);
+    // not take
+    int flag2 = check(p, e, mul, ans);
+
+    if (flag1 == true || flag2 == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 void solution()
 {
     int a, b, c, d;
@@ -150,64 +196,53 @@ void solution()
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
     string s;
-    bool flag = false;
+    bool flag = true;
     int ans;
+    cin >> n;
 
-    cin >> n >> m;
-    int arr[n];
+    int nn = n;
 
-    FOR0(n)
+    while (nn)
     {
-        cin >> arr[i];
-    }
+        int last = nn % 10;
 
-    cin >> s;
-
-    l = -1;
-    int r = n;
- 
-
-    FOR0(n)
-    {
-        if (s[i] == 'L')
-            l++;
-        else
-            r--;
-    } 
-
-    stack<int> stc;
-
-    int product = 1;
-    int last;
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (s[i] == 'R')
-        { 
-            last = (arr[r] * product) % m;
-            r++;
+        if (last == 0 || last == 1)
+        {
+            nn /= 10;
         }
         else
-        { 
-            last = (arr[l] * product) % m;
-            l--;
-        } 
-        stc.push(last);
-        product = last;
+        {
+            flag = false;
+        }
     }
 
-    while (!stc.empty())
+    if (!flag)
+        if (check(1, arr.size(), 1, ans))
+        {
+            YES;
+        }
+        else
+        {
+            NO;
+        }
+    else
     {
-        cout << stc.top() << " ";
-        stc.pop();
+        YES;
     }
-
-    cout << nl;
 }
-
 int32_t main()
 {
     faster;
+
+    arr.pb("0");
+    arr.pb("1");
+
+    generate(2, 5);
+
+    // for (int i = 0; i < 20; i++)
+    // {
+    //     cout << arr[i] << " ";
+    // }
 
     int t = 1;
     cin >> t;

@@ -80,7 +80,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsi vector<pair<string, int>>
 
 #define pb push_back
-// #define pop pop_back
+#define pop pop_back
 
 //-------------------------------- Sort -------------------------------
 
@@ -153,56 +153,21 @@ void solution()
     bool flag = false;
     int ans;
 
-    cin >> n >> m;
-    int arr[n];
+    cin >> a >> b >> c;
 
-    FOR0(n)
+    if (b < c && a < b)
     {
-        cin >> arr[i];
+        cout << "STAIR" << nl;
+    }
+    else if (b > c && a < b)
+    {
+        cout << "PEAK" << nl;
     }
 
-    cin >> s;
-
-    l = -1;
-    int r = n;
- 
-
-    FOR0(n)
+    else
     {
-        if (s[i] == 'L')
-            l++;
-        else
-            r--;
-    } 
-
-    stack<int> stc;
-
-    int product = 1;
-    int last;
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (s[i] == 'R')
-        { 
-            last = (arr[r] * product) % m;
-            r++;
-        }
-        else
-        { 
-            last = (arr[l] * product) % m;
-            l--;
-        } 
-        stc.push(last);
-        product = last;
+        cout << "NONE" << nl;
     }
-
-    while (!stc.empty())
-    {
-        cout << stc.top() << " ";
-        stc.pop();
-    }
-
-    cout << nl;
 }
 
 int32_t main()

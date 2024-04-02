@@ -80,7 +80,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsi vector<pair<string, int>>
 
 #define pb push_back
-// #define pop pop_back
+#define pop pop_back
 
 //-------------------------------- Sort -------------------------------
 
@@ -143,66 +143,26 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+int a[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8092, 16184, 32368, 64736, 129472, 258944, 517888, 1035776, 2071552, 4143104, 8286208, 16572416, 33144832, 66289664, 132579328, 265158656, 530317312ll, 1060634624ll, 2121269248ll, 4242538496ll, 8485076992ll, 16970153984ll, 33940307968ll};
 void solution()
 {
-    int a, b, c, d;
+    int b, c, d;
     int i, j, k, l, m, n;
     int x, y, z, t;
-    int cnt = 0, index = -1, sum = 0;
+    ull cnt = 0, index = -1, sum = 2;
     string s;
     bool flag = false;
-    int ans;
+    ull ans;
 
-    cin >> n >> m;
-    int arr[n];
-
-    FOR0(n)
+    for (int i = 0; i <= 32; i++)
     {
-        cin >> arr[i];
-    }
-
-    cin >> s;
-
-    l = -1;
-    int r = n;
- 
-
-    FOR0(n)
-    {
-        if (s[i] == 'L')
-            l++;
+        cout << a[i] << "   " << pow(2, i) << "  " << i;
+        if (a[i] == pow(2, i))
+            cout << "   matched ";
         else
-            r--;
-    } 
-
-    stack<int> stc;
-
-    int product = 1;
-    int last;
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (s[i] == 'R')
-        { 
-            last = (arr[r] * product) % m;
-            r++;
-        }
-        else
-        { 
-            last = (arr[l] * product) % m;
-            l--;
-        } 
-        stc.push(last);
-        product = last;
+            cout << "   No ";
+        cout << nl;
     }
-
-    while (!stc.empty())
-    {
-        cout << stc.top() << " ";
-        stc.pop();
-    }
-
-    cout << nl;
 }
 
 int32_t main()
@@ -210,7 +170,6 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
     int c = 1;
 
     while (t--)

@@ -80,7 +80,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsi vector<pair<string, int>>
 
 #define pb push_back
-// #define pop pop_back
+#define pop pop_back
 
 //-------------------------------- Sort -------------------------------
 
@@ -153,56 +153,41 @@ void solution()
     bool flag = false;
     int ans;
 
-    cin >> n >> m;
-    int arr[n];
-
-    FOR0(n)
-    {
-        cin >> arr[i];
-    }
-
     cin >> s;
 
-    l = -1;
-    int r = n;
- 
+    int hour = (s[0] - '0') * 10 + (s[1] - '0');
+    b = hour;
+    // cout << hour << nl;
 
-    FOR0(n)
+    int mi = (s[3] - '0') * 10 + (s[4] - '0');
+
+    if (hour >= 12)
     {
-        if (s[i] == 'L')
-            l++;
-        else
-            r--;
-    } 
-
-    stack<int> stc;
-
-    int product = 1;
-    int last;
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (s[i] == 'R')
-        { 
-            last = (arr[r] * product) % m;
-            r++;
-        }
-        else
-        { 
-            last = (arr[l] * product) % m;
-            l--;
-        } 
-        stc.push(last);
-        product = last;
+        flag = 1;
     }
+    // if (hour == 12 &&)
+    // {
+    //     flag = 1;
+    // }
 
-    while (!stc.empty())
+    hour = hour % 12;
+
+    if (hour < 10)
     {
-        cout << stc.top() << " ";
-        stc.pop();
+        if (b == 0 || b == 12)
+            cout << 12;
+        else
+            cout << 0 << hour;
     }
-
-    cout << nl;
+    else
+        cout << hour;
+    cout << ':' << s[3] << s[4] << " ";
+    if (flag)
+    {
+        cout << "PM" << nl;
+    }
+    else
+        cout << "AM" << nl;
 }
 
 int32_t main()

@@ -80,7 +80,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsi vector<pair<string, int>>
 
 #define pb push_back
-// #define pop pop_back
+#define pop pop_back
 
 //-------------------------------- Sort -------------------------------
 
@@ -143,7 +143,7 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-void solution()
+void solution() 
 {
     int a, b, c, d;
     int i, j, k, l, m, n;
@@ -153,56 +153,21 @@ void solution()
     bool flag = false;
     int ans;
 
-    cin >> n >> m;
-    int arr[n];
+    cin >> n;
 
-    FOR0(n)
+    while (n--)
     {
-        cin >> arr[i];
-    }
-
-    cin >> s;
-
-    l = -1;
-    int r = n;
- 
-
-    FOR0(n)
-    {
-        if (s[i] == 'L')
-            l++;
-        else
-            r--;
-    } 
-
-    stack<int> stc;
-
-    int product = 1;
-    int last;
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (s[i] == 'R')
-        { 
-            last = (arr[r] * product) % m;
-            r++;
+        cin >> s;
+        if (s[0] == '+' || s[2] == '+')
+        {
+            sum++;
         }
         else
-        { 
-            last = (arr[l] * product) % m;
-            l--;
-        } 
-        stc.push(last);
-        product = last;
+        {
+            sum--;
+        }
     }
-
-    while (!stc.empty())
-    {
-        cout << stc.top() << " ";
-        stc.pop();
-    }
-
-    cout << nl;
+    cout << sum << nl;
 }
 
 int32_t main()
@@ -210,7 +175,6 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
     int c = 1;
 
     while (t--)

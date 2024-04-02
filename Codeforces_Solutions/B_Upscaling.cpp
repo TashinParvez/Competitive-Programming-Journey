@@ -80,7 +80,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsi vector<pair<string, int>>
 
 #define pb push_back
-// #define pop pop_back
+#define pop pop_back
 
 //-------------------------------- Sort -------------------------------
 
@@ -153,56 +153,38 @@ void solution()
     bool flag = false;
     int ans;
 
-    cin >> n >> m;
-    int arr[n];
+    cin >> n;
+    n *= 2;
 
-    FOR0(n)
+    int row = 1, coll = 1;
+
+    for (int i = 1; i <= n; i++)
     {
-        cin >> arr[i];
-    }
-
-    cin >> s;
-
-    l = -1;
-    int r = n;
- 
-
-    FOR0(n)
-    {
-        if (s[i] == 'L')
-            l++;
-        else
-            r--;
-    } 
-
-    stack<int> stc;
-
-    int product = 1;
-    int last;
-
-    for (int i = n - 1; i >= 0; i--)
-    {
-        if (s[i] == 'R')
-        { 
-            last = (arr[r] * product) % m;
-            r++;
+        if (row == 1 || row == 2)
+        {
+            coll = 1;
         }
         else
-        { 
-            last = (arr[l] * product) % m;
-            l--;
-        } 
-        stc.push(last);
-        product = last;
+        {
+            coll = 3;
+        }
+        for (int j = 1; j <= n; j++)
+        {
+            if (coll == 1 || coll == 2)
+            {
+                cout << '#';
+            }
+            else
+                cout << '.';
+            coll++;
+            if (coll == 5)
+                coll = 1;
+        }
+        cout << nl;
+        row++;
+        if (row == 5)
+            row = 1;
     }
-
-    while (!stc.empty())
-    {
-        cout << stc.top() << " ";
-        stc.pop();
-    }
-
-    cout << nl;
 }
 
 int32_t main()
