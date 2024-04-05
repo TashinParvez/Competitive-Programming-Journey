@@ -23,6 +23,9 @@ I occasionally write about coding, technology, and other topics on [Hashnode](ht
 
 Feel free to explore and engage with my writings!
 
+## My Templates
+
+[Tashin's Templates](https://github.com/TashinParvez/My-CP-Template)
 
 ## Connect with Me
 
