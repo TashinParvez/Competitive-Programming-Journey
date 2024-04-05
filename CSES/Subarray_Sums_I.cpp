@@ -166,19 +166,25 @@ void solution()
         preSum[i] = preSum[i - 1] + arr[i];
     }
 
-    // printarray(preSum, n);
-
-    while (q--)
+    for (int i = 0; i < n; i++)
     {
-        cin >> a >> b;
-        if (a - 2 < 0)
+        for (int j = i; j < n; j++)
         {
-            cout << preSum[b - 1] << nl;
-        }
+            // if (i == 0 && j == 2)
+            //     tashin;
 
-        else
-            cout << preSum[b - 1] - preSum[a - 1 - 1] << nl;
+            if ((preSum[j] - preSum[i - 1]) == q && i - 1 >= 0)
+                cnt++;
+            else if ((preSum[j] - preSum[i - 1]) > q && i - 1 >= 0)
+                break;
+
+            else if (preSum[j] == q && i == 0)
+                cnt++;
+            else if (preSum[j] > q && i == 0)
+                break;
+        }
     }
+    cout << cnt << nl;
 }
 
 int32_t main()

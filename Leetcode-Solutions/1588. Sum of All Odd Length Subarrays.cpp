@@ -128,26 +128,35 @@ void printarray(int arr[], int len)
 
 /********************************* CODE NOW *************************************************/
 
-
 class Solution
 {
 public:
     int sumOddLengthSubarrays(vector<int> &arr)
     {
-
         int sum = 0;
+        int len = arr.size();
+        int preSum[len];
+        preSum[0] = arr[0];
 
-        for (int i = 0; i < arr.size(); i++)
+        for (int i = 1; i<len; i++)
         {
-            int temp = 0;
-            int cnt = 0;
-            for (int j = i; j < arr.size(); j++)
+            preSum[i] = preSum[i - 1] + arr[i];
+        }
+
+        for (int i = 0; i < len; i++)
+        {
+            for (int j = i; j < len; j++)
             {
-                temp += arr[j];
-                cnt++;
-                if (cnt % 2 != 0)
+                int curr = j - i + 1;
+
+                if (curr % 2)
                 {
-                    sum += temp;
+                    if (i - 1 < 0)
+                    {
+                        sum += preSum[j];
+                    }
+                    else
+                        sum += preSum[j] - preSum[i - 1];
                 }
             }
         }

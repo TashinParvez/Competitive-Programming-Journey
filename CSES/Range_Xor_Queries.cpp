@@ -145,30 +145,37 @@ const int mod = 1000000007;
 
 void solution()
 {
-    int a, b, c, d;
-    int i, j, k, l, m, n;
-    int x, y, z, t, q;
+    int n, a, b, q;
     int cnt = 0, index = -1, sum = 0;
     string s;
     bool flag = false;
     int ans;
 
     cin >> n >> q;
-
     int arr[n];
+
     for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
     }
 
-    int pre
+    int preXor[n];
+    preXor[0] = arr[0];
+
+    for (int i = 1; i < n; i++)
+    {
+        preXor[i] = preXor[i - 1] ^ arr[i];
+    }
 
     while (q--)
     {
         cin >> a >> b;
-        
+
+        if (a - 2 < 0)
+            cout << preXor[b - 1] << nl;
+        else
+            cout << (preXor[b - 1] ^ preXor[a - 2]) << nl;
     }
- 
 }
 
 int32_t main()
@@ -176,7 +183,6 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
     int c = 1;
 
     while (t--)

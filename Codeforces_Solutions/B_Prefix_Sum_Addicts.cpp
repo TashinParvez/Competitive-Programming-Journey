@@ -80,7 +80,6 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsi vector<pair<string, int>>
 
 #define pb push_back
-#define pop pop_back
 
 //-------------------------------- Sort -------------------------------
 
@@ -146,47 +145,72 @@ const int mod = 1000000007;
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n, p;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
-    string s;
     bool flag = false;
     int ans;
 
-    cin >> n >> q;
-    int arr[n];
-    FOR0(n)
-    cin >> arr[i];
+    cin >> n >> p;
+    int preSum[p];
 
-    int preSum[n];
-    preSum[0] = arr[0];
-
-    for (int i = 1; i < n; i++)
+    FOR0(p)
     {
-        preSum[i] = preSum[i - 1] + arr[i];
+        cin >> preSum[i];
     }
 
-    // printarray(preSum, n);
-
-    while (q--)
+    if (n == 1 || p == 1)
     {
-        cin >> a >> b;
-        if (a - 2 < 0)
+        cout << "Yes" << nl;
+        return;
+    }
+
+    stack<int> st;
+
+    for (int i = p - 1; i > 0; i--)
+    {
+        st.push(preSum[i] - preSum[i - 1]);
+    }
+
+    n = n - p + 1;
+
+    int
+        last = st.top(); // 1
+
+    // dbg(last);
+    // tashin;
+
+    if (preSum[0] - ((n - 1) * last) > last)
+    {
+        cout << "No" << nl;
+    }
+    else
+    {
+        vi aa;
+        while (!st.empty())
         {
-            cout << preSum[b - 1] << nl;
+            aa.push_back(st.top());
+            st.pop();
         }
 
+        if (is_sorted(aa.begin(), aa.end()))
+        {
+            cout << "Yes" << nl;
+        }
         else
-            cout << preSum[b - 1] - preSum[a - 1 - 1] << nl;
+            cout << "No" << nl;
     }
 }
+
+// 2 1
+// 3
 
 int32_t main()
 {
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)
