@@ -151,37 +151,85 @@ const int mod = 1000000007;
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
+    string s;
+    bool flag = false;
     int ans;
 
-    cin >> n >> q;
+    cin >> n;
 
-    int arr[n + 1];
-    FOR(1, n + 1)
-    cin >> arr[i];
+    string first, second;
+    cin >> first >> second;
 
-    int preSum[n + 1];
-    preSum[0] = 0;
 
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
+    int d1 = 0, x1 = 0, y1 = 0;
 
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
+    FOR(n * 2)
     {
-        if (prev[preSum[i] - q])
+        if (first[i] == second[i] && first[i] == '1')
         {
-            cnt += prev[preSum[i] - q];
+            d1++;
         }
-        prev[preSum[i]]++;
+        else if (first[i] == '1')
+        {
+            x1++;
+        }
+        else if (second[i] == '1')
+        {
+            y1++;
+        }
     }
-    cout << cnt << nl;
+
+    flag = 1;
+
+    n = d1 + x1 + y1;
+
+    x = 0, y = 0;
+
+    while (n--)
+    {
+        if (flag) // x
+        {
+            if (d1)
+            {
+                d1--;
+                x++;
+            }
+            else if (x1)
+            {
+                x1--;
+                x++;
+            }
+            else
+                y1--;
+        }
+        else // y
+        {
+            if (d1)
+            {
+                d1--;
+                y++;
+            }
+            else if (y1)
+            {
+                y1--;
+                y++;
+            }
+            else
+                x1--;
+        }
+
+        flag = !flag;
+    }
+
+    if (x == y)
+        cout << "Draw" << nl;
+    else if (x > y)
+        cout << "First" << nl;
+    else
+        cout << "Second" << nl;
 }
 
 int32_t main()
@@ -189,12 +237,10 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
     int c = 1;
 
     while (t--)
     {
-        // cout << "Case " << c++ << ": ";
         solution();
     }
 

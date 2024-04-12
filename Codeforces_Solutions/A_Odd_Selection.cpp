@@ -131,6 +131,7 @@ void printarray(int arr[], int len)
 
 /********************************* CODE NOW *************************************************/
 
+
 /*
 
 1. Think Greedy
@@ -154,34 +155,43 @@ void solution()
     int i, j, k, l, m, n, q;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
+    string s;
+    bool flag = false;
     int ans;
 
     cin >> n >> q;
+    int arr[n];
+    int even = 0, odd = 0;
 
-    int arr[n + 1];
-    FOR(1, n + 1)
-    cin >> arr[i];
-
-    int preSum[n + 1];
-    preSum[0] = 0;
-
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
-
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
+    FOR(n)
     {
-        if (prev[preSum[i] - q])
+        cin >> arr[i];
+        if (arr[i] % 2)
         {
-            cnt += prev[preSum[i] - q];
+            odd++;
         }
-        prev[preSum[i]]++;
+        else
+            even++;
     }
-    cout << cnt << nl;
+
+    // dbg(even);
+    // dbg(odd);
+
+    for (int i = 1;; i += 2)
+    {
+        // dbg(i);
+
+        if (i > odd)
+        {
+            break;
+        }
+        else if (q - i <= even && q - i >= 0 && i <= odd)
+        {
+            Yes;
+            return;
+        }
+    }
+    No;
 }
 
 int32_t main()
@@ -189,12 +199,11 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)
     {
-        // cout << "Case " << c++ << ": ";
         solution();
     }
 

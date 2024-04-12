@@ -151,37 +151,69 @@ const int mod = 1000000007;
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
+    bool flag = false;
     int ans;
 
-    cin >> n >> q;
+    cin >> n >> k;
+    int arr[n];
 
-    int arr[n + 1];
-    FOR(1, n + 1)
-    cin >> arr[i];
+    int presum[n];
+    int sufsum[n];
 
-    int preSum[n + 1];
-    preSum[0] = 0;
+    sum = 0;
 
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
-
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
+    FOR(n)
     {
-        if (prev[preSum[i] - q])
-        {
-            cnt += prev[preSum[i] - q];
-        }
-        prev[preSum[i]]++;
+        cin >> arr[i];
+
+        sum += arr[i];
+        presum[i] = sum;
     }
-    cout << cnt << nl;
+
+    int sum2 = sum;
+
+    sum = 0;
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        sum += arr[i];
+        sufsum[i] = sum;
+    }
+
+    int pre = (k + 1) / 2;
+    int suf = k / 2;
+
+    if (sum2 <= k)
+    {
+        cout << n << nl;
+    }
+    else
+    {
+        ans = 0;
+
+        FOR(n)
+        {
+            if (presum[i] > pre)
+            {
+                break;
+            }
+            ans++;
+        }
+
+        for (int i = n - 1; i >= 0; i--)
+        {
+            if (sufsum[i] > suf)
+            {
+                break;
+            }
+            ans++;
+        }
+
+        cout << ans << nl;
+    }
 }
 
 int32_t main()
@@ -189,7 +221,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

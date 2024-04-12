@@ -156,7 +156,8 @@ void solution()
     int cnt = 0, index = -1, sum = 0;
     int ans;
 
-    cin >> n >> q;
+    cin >> n;
+    q = n;
 
     int arr[n + 1];
     FOR(1, n + 1)
@@ -166,7 +167,11 @@ void solution()
     preSum[0] = 0;
 
     for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
+        preSum[i] = (preSum[i - 1] + (arr[i] % n) + n) % q;
+
+    // for (int i = 1; i < n + 1; i++)
+    //     cout << preSum[i] << " ";
+    // cout << nl;
 
     mapii prev;
 
@@ -175,9 +180,9 @@ void solution()
 
     for (int i = 1; i < n + 1; i++)
     {
-        if (prev[preSum[i] - q])
+        if (prev[preSum[i]])
         {
-            cnt += prev[preSum[i] - q];
+            cnt += prev[preSum[i]];
         }
         prev[preSum[i]]++;
     }

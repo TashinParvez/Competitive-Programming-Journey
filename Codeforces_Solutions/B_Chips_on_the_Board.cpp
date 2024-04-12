@@ -67,9 +67,12 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 }
 
 //--------------------------------- FOR --------------------------------
-#define FOR0(n) for (int i = 0; i < (int)(n); i++)     //___ 0 to < N
-#define FOR1(i, n) for (int i = 1; i <= (int)(n); i++) //___ 1 to <= N
-#define FOR2(a, n) for (int i = a; i < n; i++)         //___ A to < N
+
+#define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
+#define FOR(...) FOR_OVERLOAD(__VA_ARGS__, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
+
+#define FOR_ONE_ARG(n) for (int i = 0; i < (n); i++)
+#define FOR_TWO_ARGS(a, b) for (int i = (a); (a) <= (b) ? (i < (b)) : (i > (b)); (a) <= (b) ? ++i : --i)
 
 //-------------------------------- Vector -------------------------------
 #define vi vector<int>
@@ -137,21 +140,69 @@ void printarray(int arr[], int len)
 5. Check base cases for DP and prove solution for Greedy
 6. Think Graph
 
+7. SubArray / Continious / SubSegment  =  PrefixSum
+
 */
 
 const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+void solution()
+{
+    int a, b, c, d;
+    int i, j, k, l, m, n;
+    int x, y, z, t;
+    int cnt = 0, index = -1, sum = 0;
+    string s;
+    bool flag = false;
+    int ans;
+
+    cin >> n;
+
+    int row[n];
+    int col[n];
+    int rowMin = INT_MAX;
+    int colMin = INT_MAX;
+    int colSum = 0;
+    int rowSum = 0;
+
+    FOR(n)
+    {
+        cin >> row[i];
+        rowSum += row[i];
+        if (row[i] < rowMin)
+        {
+            rowMin = row[i];
+        }
+    }
+
+    FOR(n)
+    {
+        cin >> col[i];
+        colSum += col[i];
+        if (col[i] < colMin)
+        {
+            colMin = col[i];
+        }
+    }
+
+    cout << min(rowMin * n + colSum, colMin * n + rowSum) << nl;
+}
+
 int32_t main()
 {
-    // 2 4 5
+    faster;
 
-    int a = 3;
-    int b = 4;
-    int c = 5;
+    int t = 1;
+    cin >> t;
+    int c = 1;
 
-    cout << ( b ^c ) << nl;
+    while (t--)
+    {
+        // cout << "Case " << c++ << ": ";
+        solution();
+    }
 
     CRACKED;
 }

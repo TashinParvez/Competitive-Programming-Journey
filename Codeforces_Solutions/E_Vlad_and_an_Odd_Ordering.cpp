@@ -151,37 +151,90 @@ const int mod = 1000000007;
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
+    string s;
+    bool flag = false;
     int ans;
 
-    cin >> n >> q;
+    cin >> n >> k;
 
-    int arr[n + 1];
-    FOR(1, n + 1)
-    cin >> arr[i];
+    j = 1;
+    mapii mi;
 
-    int preSum[n + 1];
-    preSum[0] = 0;
+    // tashin;
 
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
-
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
+    if (k <= (n + 1) / 2)
     {
-        if (prev[preSum[i] - q])
+        for (int i = 1; i <= n; i += 2)
         {
-            cnt += prev[preSum[i] - q];
+            // arr[j] = i;
+            cnt++;
+            mi[i]++;
+            if (cnt == k)
+            {
+                cout << i << nl;
+                return;
+            }
+            j++;
         }
-        prev[preSum[i]]++;
     }
-    cout << cnt << nl;
+
+    // tashin;
+
+    j = (n + 1) / 2;
+    cnt = j;
+    sum = 2;
+
+    while (sum <= n && j <= k)
+    {
+        // arr[j] = sum;
+        mi[sum]++;
+        cnt++;
+
+        if (cnt == k)
+        {
+            cout << sum << nl;
+            return;
+        }
+        dbg(sum);
+        j++;
+        sum += 4;
+    }
+    sum = 4;
+
+    while (sum <= n && j <= k)
+    {
+        // arr[j] = sum;
+
+        cnt++;
+        mi[sum]++;
+        if (cnt == k)
+        {
+            cout << sum << nl;
+            return;
+        }
+        // dbg(sum);
+        j++;
+        sum += 8;
+    }
+    sum = 8;
+    while (j <= n && j <= k)
+    {
+        if (mi[sum] == 0)
+        {
+            // arr[j] = sum;
+            j++;
+            cnt++;
+            if (cnt == k)
+            {
+                cout << sum << nl;
+                return;
+            }
+        }
+        sum++;
+    }
 }
 
 int32_t main()
@@ -189,7 +242,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

@@ -27,12 +27,15 @@ using namespace std;
 
 
 
+//------------------------------------------  Vector Min & Sum  --------------------------------
+
+    int n;
+    vector<int> a(n);
+    int mnA = *min_element(a.begin(), a.end());  
+    int sA = accumulate(a.begin(), a.end(), 0LL);
 
 
-
-
-
-//------------------------------------------  BELLOW  --------------------------------
+//------------------------------------------------  BELLOW  --------------------------------------
 
 
 #define checkEqual(a, b, c) \
@@ -87,6 +90,7 @@ vector<int> getdiv(int n)
     }
     return ans;
 }
+//-------------------------------------------- PRIME NUMBER --------------------------------------
 
 // to get the prime factors of that number
 vector<int> getprimefac(int n)
@@ -112,7 +116,7 @@ vector<int> getprimefac(int n)
 }
 
 // get instant prime
-vector<int> sieve(int n)
+vector<int> sieve(int n) 
 {
     int *a = new int[n + 1]();
     vector<int> vect;
@@ -130,6 +134,146 @@ vector<int> sieve(int n)
     return vect;
 }
 
+
+vector<int> firstnprimes(int n)
+{
+    vector<int> primes;
+
+    if (n <= 0)
+        return primes;
+
+    vector<bool> isPrime(n * log(n) + n, true);
+    isPrime[0] = isPrime[1] = false;
+
+    for (int i = 2; primes.size() < n; ++i)
+    {
+        if (isPrime[i])
+        {
+            primes.push_back(i);
+            for (int j = i * i; j < isPrime.size(); j += i)
+            {
+                isPrime[j] = false;
+            }
+        }
+    }
+    return primes;
+}
+
+
+
+/********************************************************************************/
+
+#define ll long long
+int sum_digit(int x)
+{
+    int sum = 0;
+    while (x > 0)
+    {
+        sum += x % 10;
+        x /= 10;
+    }
+    return sum;
+}
+ll reverse_num(ll n)
+{
+    ll tmp = n, ans = 0, r;
+    while (tmp > 0)
+    {
+        r = tmp % 10;
+        ans = ans * 10 + r;
+        tmp /= 10;
+    }
+    return ans;
+}
+ll factorial(ll n)
+{
+    ll i, ans = 1;
+    for (i = n; i > 1; i--)
+    {
+        ans *= i;
+    }
+    return ans;
+}
+ll gcd(ll num1, ll num2)
+{
+    ll a, b, r;
+    a = num1;
+    b = num2;
+    r = a % b;
+    while (r > 0)
+    {
+        a = b;
+        b = r;
+        r = a % b;
+    }
+    return b;
+}
+ll lcm(ll num1, ll num2) { return (num1 * num2) / gcd(num1, num2); }
+bool prime(ll n)
+{
+    if (n < 2)
+        return false;
+    for (ll i = 2; i <= sqrt(n); i++)
+    {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+bool isSquare(ll x)
+{
+    ll sq = sqrt(x);
+    return sq * sq == x;
+}
+ll mod_inverse(ll a, ll p, ll m)
+{
+    ll r = 1;
+    while (p)
+    {
+        if (p % 2)
+            r = ((r % m) * (a % m)) % m;
+        a = ((a % m) * (a % m)) % m;
+        p /= 2;
+    }
+    return r;
+}
+ll POW(ll a, ll b)
+{
+    if (!b)
+        return 1;
+    ll r = POW(a, b / 2);
+    if (b % 2)
+        return r * r * a;
+    else
+        return r * r;
+}
+ll LOG2(ll n)
+{
+    ll v = 1, c = 0;
+    while (v <= n)
+        c++, v *= 2;
+    return c - 1;
+}
+
+#define all(s) s.begin(),s.end()
+string int_to_str(ll x)
+{
+    string s;
+    while (x)
+    {
+        s += (char)(x % 10) + '0';
+        x /= 10;
+    }
+    reverse(all(s));
+    return s;
+}
+ll str_to_int(string s)
+{
+    istringstream ss(s);
+    ll n;
+    ss >> n;
+    return n;
+}
 /********************************************************************************/
 
 #define take_the_array_INT(x, o, n) \

@@ -151,37 +151,50 @@ const int mod = 1000000007;
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, q, n;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
+    string s;
+    bool flag = false;
     int ans;
 
     cin >> n >> q;
-
     int arr[n + 1];
+
+    int presum[n + 1];
+    presum[0] = 0;
     FOR(1, n + 1)
-    cin >> arr[i];
-
-    int preSum[n + 1];
-    preSum[0] = 0;
-
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
-
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
     {
-        if (prev[preSum[i] - q])
-        {
-            cnt += prev[preSum[i] - q];
-        }
-        prev[preSum[i]]++;
+        cin >> arr[i];
+        presum[i] = presum[i - 1] + arr[i];
     }
-    cout << cnt << nl;
+
+    while (q--)
+    {
+        cin >> index >> a >> b;
+
+        if (index == 1) // k u
+        {
+            // tashin;
+            
+            k = a;
+            int u = b;
+
+            sum = u - arr[k];
+            while (k <= n)
+            {
+                presum[k] += sum;
+                // cout << presum[k] << " ";
+                k++;
+            }
+            // cout << nl;
+        }
+        else // a b
+        {
+
+            cout << presum[b] - presum[a - 1] << nl;
+        }
+    }
 }
 
 int32_t main()

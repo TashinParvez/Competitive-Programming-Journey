@@ -148,40 +148,77 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+vector<int> firstnprimes(int n)
+{
+    vector<int> primes;
+
+    if (n <= 0)
+        return primes;
+
+    vector<bool> isPrime(n * log(n) + n, true);
+    isPrime[0] = isPrime[1] = false;
+
+    for (int i = 2; i < isPrime.size() && primes.size() < n; ++i)
+    {
+        if (isPrime[i])
+        {
+            primes.push_back(i);
+            for (int j = i * i; j < isPrime.size() && j >= 0; j += i)
+            {
+                isPrime[j] = false;
+            }
+        }
+    }
+    return primes;
+}
+
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
-    int ans;
+    string s;
+    bool flag = false;
 
-    cin >> n >> q;
+    cin >> n;
+    int arr[n];
+    mapii mi;
 
-    int arr[n + 1];
-    FOR(1, n + 1)
-    cin >> arr[i];
-
-    int preSum[n + 1];
-    preSum[0] = 0;
-
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
-
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
+    FOR(n)
     {
-        if (prev[preSum[i] - q])
-        {
-            cnt += prev[preSum[i] - q];
-        }
-        prev[preSum[i]]++;
+        cin >> arr[i];
+        mi[arr[i]]++;
     }
-    cout << cnt << nl;
+
+    vi primes = firstnprimes(sqrt(n) * 2);
+
+    int p = 0;
+    sum = 0;
+    if (mi[2] > 0)
+    {
+        mi[2]--;
+        cout << "2 ";
+    }
+    if (mi[1] > 0)
+    {
+        mi[1]--;
+        cout << "1 ";
+    }
+
+    while (mi[2] > 0)
+    {
+        mi[2]--;
+        cout << "2 ";
+    }
+
+    while (mi[1] > 0)
+    {
+        mi[1]--;
+        cout << "1 ";
+    }
+
+    cout << nl;
 }
 
 int32_t main()

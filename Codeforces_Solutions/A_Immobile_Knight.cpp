@@ -148,40 +148,44 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+pii func(int n, int m, int i, int j)
+{
+    if ((j + 2 > m || i + 1 > n || i - 1 < 1) &&
+        (j - 2 < 1 || i + 1 > n || i - 1 < 1) && 
+        (i - 2 < 1 || j + 1 > m || j - 1 < 1) &&
+        (i + 2 > n || j + 1 > m || j - 1 < 1)) 
+    {
+        return {i, j};
+    }
+    return {-1, -1};
+}
+
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
+    string s;
+    bool flag = false;
     int ans;
 
-    cin >> n >> q;
+    cin >> n >> m;
 
-    int arr[n + 1];
-    FOR(1, n + 1)
-    cin >> arr[i];
+    pii pr;
 
-    int preSum[n + 1];
-    preSum[0] = 0;
+    pr = func(n, m, (n + 1) / 2, (m + 1) / 2);
+    // dbg(pr.first);
+    // dbg(pr.second);
 
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
-
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
+    if (pr.first != -1)
     {
-        if (prev[preSum[i] - q])
-        {
-            cnt += prev[preSum[i] - q];
-        }
-        prev[preSum[i]]++;
+        cout << pr.first << " " << pr.second << nl; 
     }
-    cout << cnt << nl;
+    else
+    {
+        cout << n << " " << m << nl; 
+    }
 }
 
 int32_t main()
@@ -189,7 +193,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

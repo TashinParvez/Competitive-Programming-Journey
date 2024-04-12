@@ -151,37 +151,113 @@ const int mod = 1000000007;
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
+    bool flag = false;
     int ans;
 
-    cin >> n >> q;
+    string given;
+    cin >> given;
 
-    int arr[n + 1];
-    FOR(1, n + 1)
-    cin >> arr[i];
+    string s = "";
+    // cout << len(s) << nl;
 
-    int preSum[n + 1];
-    preSum[0] = 0;
+    int big = -1, small = -1; // not set
 
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
-
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
+    for (int i = 0; i < len(given); i++)
     {
-        if (prev[preSum[i] - q])
+        if (given[i] == 'B')
         {
-            cnt += prev[preSum[i] - q];
+            // tashin;
+            // dbg(big);
+
+            if (big != -1)
+            {
+            }
+            else // loop
+            {
+                int j = len(s) - 1;
+                // cout << given[i] << nl;
+
+                while (j > -1)
+                {
+                    // tashin;
+                    // cout << s[j] << "  ";
+
+                    if (s[j] >= 'A' && s[j] <= 'Z')
+                    {
+                        big = j;
+                        break;
+                        // dbg("FIND");
+                    }
+                    j--;
+                }
+
+                // cout << nl;
+                // dbg("here--------");
+                // dbg(big);
+                // dbg(s);
+                // dbg("here--------");
+            }
+
+            if (big == -1)
+            {
+                continue;
+            }
+            // dbg(big);
+            if (small > big)
+                small--;
+            string lst = s.substr(big + 1, len(s) - (big + 1)); // last part (ok)
+            s = s.substr(0, big) + lst;
+            big = -1;
+            // dbg(s);
         }
-        prev[preSum[i]]++;
+        else if (given[i] == 'b')
+        {
+            if (small != -1)
+            {
+            }
+            else // loop
+            {
+                int j = len(s) - 1;
+                // dbg(j);
+
+                while (j > -1)
+                {
+                    if (s[j] >= 'a' && s[j] <= 'z')
+                    {
+                        small = j;
+                        break;
+                    }
+                    j--;
+                }
+            }
+
+            if (small == -1)
+            {
+                continue;
+            }
+
+            if (small < big)
+                big--;
+
+            string lst = s.substr(small + 1, len(s) - (small + 1)); // last part (ok)
+            s = s.substr(0, small) + lst;
+            small = -1;
+        }
+        else
+        {
+            s = s + given[i];
+
+            if (given[i] >= 'A' && given[i] <= 'Z')
+                big = len(s) - 1;
+            else
+                small = len(s) - 1;
+        }
     }
-    cout << cnt << nl;
+
+    cout << s << nl;
 }
 
 int32_t main()
@@ -189,7 +265,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

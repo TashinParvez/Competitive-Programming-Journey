@@ -1,5 +1,5 @@
 
-//        ****************  Author :  Tashin.Parvez  ****************
+    //    ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
 //        ****************  Updated:    16/03/24     ****************
 
@@ -151,37 +151,66 @@ const int mod = 1000000007;
 void solution()
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n;
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
+    string s;
+    bool flag = 1;
     int ans;
 
-    cin >> n >> q;
+    cin >> n >> c >> d;
 
-    int arr[n + 1];
-    FOR(1, n + 1)
-    cin >> arr[i];
+    int arr[n * n];
+    int mn = INT_MAX;
+    mapii mp;
 
-    int preSum[n + 1];
-    preSum[0] = 0;
+    l = n * n;
+    // tashin;
 
-    for (int i = 1; i < n + 1; i++)
-        preSum[i] = preSum[i - 1] + arr[i];
-
-    mapii prev;
-
-    cnt = 0;
-    prev[0] = 1;
-
-    for (int i = 1; i < n + 1; i++)
+    FOR(0, l)
     {
-        if (prev[preSum[i] - q])
-        {
-            cnt += prev[preSum[i] - q];
-        }
-        prev[preSum[i]]++;
+        cin >> arr[i];
+        if (arr[i] < mn)
+            mn = arr[i];
+        mp[arr[i]]++;
+        // tashin;
     }
-    cout << cnt << nl;
+
+    // printarray(arr, n * n);
+
+    // tashin;
+
+    int matrix[n][n];
+
+    // mp[mn]--;
+
+    int stand = mn;
+
+    for (int i = 0; i < n; i++)
+    {
+        stand = mn + (i * c);
+
+        for (int j = 0; j < n; j++) 
+        {
+            // if (i == 0 && j == 0)
+            //     continue;
+
+            if (mp[stand])
+            {
+                mp[stand]--;
+            }
+            else
+            {
+                flag = 0;
+            }
+            stand += d;
+        }
+    }
+
+    if (flag)
+        YES else NO
+
+    // cout << ans << nl;
 }
 
 int32_t main()
@@ -189,11 +218,13 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
+
     int c = 1;
 
     while (t--)
     {
+        // tashin;
         // cout << "Case " << c++ << ": ";
         solution();
     }
