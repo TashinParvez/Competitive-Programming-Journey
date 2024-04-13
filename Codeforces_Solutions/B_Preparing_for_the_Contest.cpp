@@ -160,21 +160,13 @@ void solution()
 
     cin >> n >> k;
 
-   
+    FOR(n - k, n + 1)
+    cout << i << " ";
 
-    if (n % 2 == 0)
-    {
-        YES
-    }
-    else
-    {
-        if (k % 2)
-        {
-            YES
-        }
-        else
-            NO
-    }
+    FOR(n - k - 1, 0)
+    cout << i << " ";
+
+    cout << nl;
 }
 
 int32_t main()

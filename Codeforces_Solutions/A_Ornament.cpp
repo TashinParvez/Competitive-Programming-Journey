@@ -158,22 +158,28 @@ void solution()
     bool flag = false;
     int ans;
 
-    cin >> n >> k;
+    cin >> n;
 
-   
-
-    if (n % 2 == 0)
+    FOR(1, n + 1)
     {
-        YES
-    }
-    else
-    {
-        if (k % 2)
+        for (int j = 1; j < n + 1; j++)
         {
-            YES
+            if (i % 2)
+            {
+                cout << 'R';
+            }
+            else if (j % 2 == 0)
+            {
+
+                cout << 'R';
+            }
+            else
+            {
+
+                cout << 'W';
+            }
         }
-        else
-            NO
+        cout << nl;
     }
 }
 
@@ -182,7 +188,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

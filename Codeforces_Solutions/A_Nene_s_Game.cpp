@@ -152,29 +152,28 @@ void solution()
 {
     int a, b, c, d;
     int i, j, k, l, m, n;
-    int x, y, z, t;
+    int x, y, z, t, q;
     int cnt = 0, index = -1, sum = 0;
     string s;
     bool flag = false;
     int ans;
 
-    cin >> n >> k;
+    cin >> k >> q;
+    int arr[k];
+    FOR(k)
+    cin >> arr[i];
 
-   
+    int arr2[q];
+    FOR(q)
+    cin >> arr2[i];
 
-    if (n % 2 == 0)
+    i = 0;
+    while (i < q)
     {
-        YES
+        cout << min(arr[0] - 1, arr2[i]) << " ";
+        i++;
     }
-    else
-    {
-        if (k % 2)
-        {
-            YES
-        }
-        else
-            NO
-    }
+    cout << nl;
 }
 
 int32_t main()

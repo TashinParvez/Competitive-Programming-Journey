@@ -158,23 +158,18 @@ void solution()
     bool flag = false;
     int ans;
 
-    cin >> n >> k;
-
-   
-
-    if (n % 2 == 0)
+    cin >> n;
+    int arr[n];
+    mapii mi;
+    FOR(n)
     {
-        YES
+        cin >> arr[i];
+        mi[arr[i]]++;
+        if (mi[arr[i]] == 2)
+            cnt++;
     }
-    else
-    {
-        if (k % 2)
-        {
-            YES
-        }
-        else
-            NO
-    }
+
+    cout << cnt << nl;
 }
 
 int32_t main()

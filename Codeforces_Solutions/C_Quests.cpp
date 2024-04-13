@@ -148,33 +148,82 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+const int mex = 2e5 + 5;
+int arr[mex];
+int brr[mex];
+int i, j, k, l, m, n;
+
+int func(int m, int ptr, int sum, int bmx)
+{
+    if (m >= k)
+        return sum;
+
+    if (ptr > n)
+    {
+        return func(m + 1, ptr, sum + bmx, bmx);
+    }
+
+    // not take
+    int ntake;
+    if (bmx == 0)
+    {
+        bmx = brr[ptr];
+        ntake = func(m + 1, ptr + 1, sum + arr[ptr], bmx);
+    }
+    else
+        ntake = func(m + 1, ptr, sum + bmx, bmx);
+
+    // take
+    if (brr[ptr] > bmx)
+        bmx = brr[ptr];
+    int take = func(m + 1, ptr + 1, sum + arr[ptr], bmx);
+
+    return max(take, ntake);
+}
+
 void solution()
 {
-    int a, b, c, d;
-    int i, j, k, l, m, n;
-    int x, y, z, t;
-    int cnt = 0, index = -1, sum = 0;
-    string s;
-    bool flag = false;
     int ans;
 
     cin >> n >> k;
+    FOR(1, n + 1) { cin >> arr[i]; }
+    FOR(1, n + 1) { cin >> brr[i]; }
 
-   
-
-    if (n % 2 == 0)
+    // ans = func(0, 1, 0, 0);
+    int bmx = 0;
+    int sum = 0, ptr = 1;
+    while (k--)
     {
-        YES
-    }
-    else
-    {
-        if (k % 2)
+        if (ptr > n)
         {
-            YES
+            sum += bmx;
+            // dbg(bmx);
+        }
+        else if (bmx == 0)
+        {
+            sum += arr[ptr];
+            // dbg(arr[ptr]);
+            bmx = brr[ptr];
+            ptr++;
         }
         else
-            NO
+        {
+            if (bmx > arr[ptr])
+            {
+                sum += bmx;
+                // dbg(bmx);
+            }
+            else
+            {
+                sum += arr[ptr];
+                // dbg(arr[ptr]);
+                bmx = max(bmx, brr[ptr]);
+                ptr++;
+            }
+        }
     }
+
+    cout << sum << nl;
 }
 
 int32_t main()

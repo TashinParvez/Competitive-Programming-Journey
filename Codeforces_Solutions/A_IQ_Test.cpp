@@ -148,6 +148,57 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+char matrix[5][5];
+
+pii colorcheckup(int i, int j)
+{
+    int a = 0, b = 0;
+
+    if (matrix[i][j] == '#')
+        a++;
+    else
+        b++;
+    if (matrix[i][j + 1] == '#')
+        a++;
+    else
+        b++;
+
+    if (matrix[i - 1][j] == '#')
+        a++;
+    else
+        b++;
+    if (matrix[i - 1][j + 1] == '#')
+        a++;
+    else
+        b++;
+
+    return {a, b};
+}
+
+pii colorcheckdown(int i, int j)
+{
+    int a = 0, b = 0;
+
+    if (matrix[i][j] == '#')
+        a++;
+    else
+        b++;
+    if (matrix[i][j + 1] == '#')
+        a++;
+    else
+        b++;
+
+    if (matrix[i + 1][j] == '#')
+        a++;
+    else
+        b++;
+    if (matrix[i + 1][j + 1] == '#')
+        a++;
+    else
+        b++;
+
+    return {a, b};
+}
 void solution()
 {
     int a, b, c, d;
@@ -158,23 +209,35 @@ void solution()
     bool flag = false;
     int ans;
 
-    cin >> n >> k;
-
-   
-
-    if (n % 2 == 0)
+    FOR(1, 5)
     {
-        YES
-    }
-    else
-    {
-        if (k % 2)
+        for (int j = 1; j < 5; j++)
         {
-            YES
+            cin >> matrix[i][j];
         }
-        else
-            NO
     }
+
+    FOR(2, 4)
+    {
+        for (int j = 1; j < 4; j++)
+        {
+            if (i == 2) // up
+            {
+                pii aa = colorcheckup(i, j);
+                if (aa.first > 2 || aa.second > 2)
+                {
+                    YES return;
+                }
+            }
+            // down
+            pii aa = colorcheckdown(i, j);
+            if (aa.first > 2 || aa.second > 2) 
+            {
+                YES return;
+            }
+        }
+    }
+    NO
 }
 
 int32_t main()
@@ -182,7 +245,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

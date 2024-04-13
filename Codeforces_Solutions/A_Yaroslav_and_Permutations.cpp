@@ -158,23 +158,21 @@ void solution()
     bool flag = false;
     int ans;
 
-    cin >> n >> k;
-
-   
-
-    if (n % 2 == 0)
+    cin >> n;
+    int arr[n];
+    mapii mi;
+    int mx = INT_MIN;
+    FOR(n)
     {
-        YES
+        cin >> arr[i];
+        mi[arr[i]]++;
+        mx = max(mx, mi[arr[i]]);
     }
-    else
-    {
-        if (k % 2)
-        {
-            YES
-        }
-        else
-            NO
-    }
+    
+    if (mx - 1 <= n - mx)
+        YES else NO
+
+    // cout<< ans <<nl;
 }
 
 int32_t main()
@@ -182,7 +180,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

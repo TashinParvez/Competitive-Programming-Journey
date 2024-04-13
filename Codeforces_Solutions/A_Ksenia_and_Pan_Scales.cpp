@@ -155,25 +155,81 @@ void solution()
     int x, y, z, t;
     int cnt = 0, index = -1, sum = 0;
     string s;
+    string s2;
     bool flag = false;
     int ans;
 
-    cin >> n >> k;
+    cin >> s;
+    cin >> s2;
 
-   
-
-    if (n % 2 == 0)
+    a = 0;
+    FOR(0, len(s))
     {
-        YES
+        if (s[i] == '|')
+            break;
+        a++;
+    }
+    b = len(s) - 1 - a;
+    // dbg(a);
+    // dbg(b);
+    if (a == b)
+    {
+        dbg((len(s2) - (a - b)));
+        if (len(s2) % 2 == 0)
+        {
+            cout << s.substr(0, a);
+            cout << s2.substr(0, len(s2) / 2);
+            cout << s.substr(a, b + 1);
+            cout << s2.substr(len(s2) / 2, len(s2) / 2);
+            cout << nl;
+        }
+        else
+        {
+            cout << "Impossible" << nl;
+        }
+    }
+    else if (a > b)
+    {
+        tashin;
+        // dbg(len(s2));
+        // dbg(len(s));
+        // dbg(a);
+        // dbg(b);
+        // dbg((len(s2) - (a - b)));
+
+        // cout << a - b << nl;
+        // cout << len(s2) - (a - b) << nl;
+
+        cout << -(a - b) << nl;
+        cout << s2.length() << nl;
+        i = s2.length();
+        cout << i - a + b << nl;
+        cout << i - (a - b) << nl;
+        cout << len(s2) - (a - b) << nl;
+
+        // if ((len(s2) - (a - b)) % 2 == 0 && (len(s2) - (a - b)) > 0)
+        // {
+        //     cout << s.substr(0, a);
+        //     cout << s2.substr(0, (len(s2) - (a - b)) / 2);
+        //     cout << s.substr(a, b + 1);
+        //     cout << s2.substr((len(s2) - (a - b)) / 2, len(s2) - (len(s2) - (a - b)) / 2);
+        //     cout << nl;
+        // }
+        // else
+        //     cout << "Impossible" << nl;
     }
     else
     {
-        if (k % 2)
+        if ((len(s2) - (b - a)) % 2 == 0)
         {
-            YES
+            cout << s.substr(0, a);
+            cout << s2.substr(0, (len(s2) - (a - b)) / 2);
+            cout << s.substr(a, b + 1);
+            cout << s2.substr((len(s2) - (a - b)) / 2, len(s2) - (len(s2) - (a - b)) / 2);
+            cout << nl;
         }
         else
-            NO
+            cout << "Impossible" << nl;
     }
 }
 
@@ -182,7 +238,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)
