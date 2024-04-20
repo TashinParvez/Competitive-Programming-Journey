@@ -225,19 +225,6 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-string dncchar(string s)
-{
-    string ans = "";
-    ans += s[0];
-
-    for (int i = 1; i < len(s); i++)
-    {
-        if (s[i] != ans[len(ans) - 1])
-            ans += s[i];
-    }
-    return ans;
-}
-
 void solution() // main solution
 {
     int a, b, c, d;
@@ -249,22 +236,27 @@ void solution() // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0;
 
-    cin >> n;
-    mpsi mp;
-    int nn = n;
-
-    while (nn--)
+    cin >> n >> k;
+    if (k == n || k == 1)
     {
-        cin >> s;
-        sort(s.begin(), s.end());
-        mp[dncchar(s)]++;
+        if (k == n)
+        {
+            FOR(1, n + 1)
+            {
+                cout << 1 << " ";
+            }
+        }
+        else
+        {
+            FOR(1, n + 1)
+            {
+                cout << i << " "; 
+            }
+        }
+        cout << nl;
     }
-
-    for (auto i : mp)
-    {
-        cnt++;
-    }
-    cout << cnt << nl;
+    else
+        cout << minusone << nl;
 
     // newline;
 }
@@ -274,7 +266,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

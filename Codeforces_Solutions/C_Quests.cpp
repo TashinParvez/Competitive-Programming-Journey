@@ -1,7 +1,7 @@
 
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
-//        ****************  Updated:    16/03/24     ****************
+//        ****************  Updated:    15/04/24     ****************
 
 #include <bits/stdc++.h>
 #define faster                        \
@@ -15,10 +15,11 @@
 #define nl "\n"
 using namespace std;
 
-#define newLine cout << nl;
+#define newline cout << nl;
 
 // data_type_compressions :
 #define int long long
+#define ll long long
 #define ull unsigned long long
 #define ld long double
 
@@ -29,28 +30,19 @@ using namespace std;
 #define si(n) cin >> n;           // input  [ si = scan input]
 #define output(x) cout << x << nl // output
 
-#define square(x) ((x) * (x)) // x^2  square
-
-#define setDec(x) fixed << setprecision(x)
+#define setdec(x) fixed << setprecision(x)
 
 #define len(s) s.length()
-#define tolower(s) transform(s.begin(), s.end(), s.begin(), ::tolower) // make string lowercase
 
-#define YES cout << "YES" << endl;
-#define Yes cout << "Yes" << endl;
-#define NO cout << "NO" << endl;
-#define No cout << "No" << endl;
-
-#define min3(a, b, c) min(min(a, b), c)
-#define mid3(a, b, c) (a + b + c) - max3(a, b, c) - min3(a, b, c)
-#define max3(a, b, c) max(max(a, b), c)
-
-#define SumInRange(a, b) ((b * (b + 1)) / 2) - (((a - 1) * (a)) / 2)
+#define YES cout << "YES" << nl;
+#define Yes cout << "Yes" << nl;
+#define NO cout << "NO" << nl;
+#define No cout << "No" << nl;
 
 //--------------------------------- Debug --------------------------------
 
-#define deb(n) cout << "Tashin   " << #n << " = " << n << endl;
-#define tashin cout << "____Tashin____" << endl; // Pointer
+#define deb(n) cout << "Tashin   " << #n << " = " << n << nl;
+#define tashin cout << "____Tashin____" << nl; // Pointer
 
 #define dbg(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
@@ -83,15 +75,21 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsi vector<pair<string, int>>
 
 #define pb push_back
-#define pop pop_back
+#define pob pop_back
+
+#define vmin(a) (*min_element(a.begin(), a.end()))
+#define vmax(a) (*max_element(a.begin(), a.end()))
+#define vsum(a) accumulate(a.begin(), a.end(), 0LL)
 
 //-------------------------------- Sort -------------------------------
 
-#define vsort(v) sort(v.begin(), v.end())                    // Vector asc
-#define vSortRev(v) sort(v.begin(), v.end(), greater<int>()) // Vector dec
+#define all(a) (a).begin(), (a).end()
 
-#define arrSort(a) sort(a, a + n)                    // array asc
-#define arrSortRev(a) sort(a, a + n, greater<int>()) // array dec
+#define vsort(v) sort(v.begin(), v.end())                    // Vector asc
+#define vsortrev(v) sort(v.begin(), v.end(), greater<int>()) // Vector dec
+
+#define arrsort(a) sort(a, a + n)                    // array asc
+#define arrsortrev(a) sort(a, a + n, greater<int>()) // array dec
 
 //-------------------------------- pair -------------------------------
 
@@ -104,32 +102,111 @@ typedef pair<string, int> psi;
 #define ss second
 
 //-------------------------------- Map -------------------------------
-#define mapii map<int, int>
-#define mapsi map<string, int>
-#define mapci map<char, int>
 
-/******************************* Some Func ********************************************/
+#define mpii map<int, int>
+#define mpsi map<string, int>
+#define mpci map<char, int>
 
-int getASCII(char c)
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Some Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+//================== Int func's =================
+
+#define min3(a, b, c) min(min(a, b), c)
+#define mid3(a, b, c) (a + b + c) - max3(a, b, c) - min3(a, b, c)
+#define max3(a, b, c) max(max(a, b), c)
+
+ll revnum(ll n)
 {
-    return c;
+    ll tmp = n, ans = 0, r;
+    while (tmp)
+    {
+        r = tmp % 10;
+        ans = ans * 10 + r;
+        tmp /= 10;
+    }
+    return ans;
 }
 
-bool evenOdd(int n) //  Odd = 0   &&   Even = 1
+bool isprime(ll n)
 {
-    if (!(n & 1)) // Formula:  EVEN  (for even --->> i&1 == 0)
+    if (n < 2)
+        return false;
+    if (n == 2)
+        return true;
+    if (n % 2 == 0)
+        return false;
+    for (ll i = 3; i <= sqrt(n); i += 2)
+    {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+bool issquare(ll x)
+{
+    ll sq = sqrt(x);
+    return sq * sq == x;
+}
+bool iseven(int n) { return !(n & 1); }
+
+ll POW(ll a, ll b)
+{
+    if (!b)
         return 1;
+    ll r = POW(a, b / 2);
+    if (b % 2)
+        return r * r * a;
     else
-        return 0;
+        return r * r;
 }
 
-void printarray(int arr[], int len)
+#define suminrange(a, b) ((b * (b + 1)) / 2) - (((a - 1) * (a)) / 2)
+
+//================== string func's =================
+
+ll strtoint(string s)
+{
+    istringstream ss(s);
+    ll n;
+    ss >> n;
+    return n;
+}
+string inttostr(ll x)
+{
+    string s;
+    while (x)
+    {
+        s += (char)(x % 10) + '0';
+        x /= 10;
+    }
+    reverse(all(s));
+    return s;
+}
+
+#define strtolower(s) transform(s.begin(), s.end(), s.begin(), ::tolower) // make string lowercase
+
+//================== Char func's =================
+int getASCII(char c) { return c; }
+
+//================== Print func's =================
+
+void printarr(int arr[], int len)
 {
     for (int i = 0; i < len; i++)
         (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
 }
+void printvec(const vector<int> &vec)
+{
+    for (size_t i = 0; i < vec.size(); ++i)
+    {
+        if (i + 1 == vec.size())
+            cout << vec[i] << nl;
+        else
+            cout << vec[i] << " ";
+    }
+}
 
-/********************************* CODE NOW *************************************************/
+/************************************************* CODE NOW *************************************************/
 
 /*
 
@@ -148,82 +225,44 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-const int mex = 2e5 + 5;
-int arr[mex];
-int brr[mex];
-int i, j, k, l, m, n;
-
-int func(int m, int ptr, int sum, int bmx)
+void solution() // main solution
 {
-    if (m >= k)
-        return sum;
-
-    if (ptr > n)
-    {
-        return func(m + 1, ptr, sum + bmx, bmx);
-    }
-
-    // not take
-    int ntake;
-    if (bmx == 0)
-    {
-        bmx = brr[ptr];
-        ntake = func(m + 1, ptr + 1, sum + arr[ptr], bmx);
-    }
-    else
-        ntake = func(m + 1, ptr, sum + bmx, bmx);
-
-    // take
-    if (brr[ptr] > bmx)
-        bmx = brr[ptr];
-    int take = func(m + 1, ptr + 1, sum + arr[ptr], bmx);
-
-    return max(take, ntake);
-}
-
-void solution()
-{
-    int ans;
+    int ans, n, k;
 
     cin >> n >> k;
+    int arr[n + 1];
+    int brr[n + 1];
+
     FOR(1, n + 1) { cin >> arr[i]; }
     FOR(1, n + 1) { cin >> brr[i]; }
 
-    // ans = func(0, 1, 0, 0);
+    // printarr(arr, n + 1);
+
     int bmx = 0;
-    int sum = 0, ptr = 1;
-    while (k--)
+    int sum = 0;
+    int i = 1;
+
+    int prevans = 0;
+    int ptr = 1;
+
+    while (ptr <= k)
     {
-        if (ptr > n)
+        if (i > n)
         {
             sum += bmx;
-            // dbg(bmx);
-        }
-        else if (bmx == 0)
-        {
-            sum += arr[ptr];
-            // dbg(arr[ptr]);
-            bmx = brr[ptr];
-            ptr++;
         }
         else
         {
-            if (bmx > arr[ptr])
-            {
-                sum += bmx;
-                // dbg(bmx);
-            }
-            else
-            {
-                sum += arr[ptr];
-                // dbg(arr[ptr]);
-                bmx = max(bmx, brr[ptr]);
-                ptr++;
-            }
+            prevans = max(prevans, sum + bmx * (k - ptr + 1));
+            sum += arr[i];
+            bmx = max(bmx, brr[i]);
+            i++;
         }
+
+        ptr++;
     }
 
-    cout << sum << nl;
+    cout << max(prevans, sum) << nl;
 }
 
 int32_t main()
@@ -232,11 +271,9 @@ int32_t main()
 
     int t = 1;
     cin >> t;
-    int c = 1;
 
     while (t--)
     {
-        // cout << "Case " << c++ << ": ";
         solution();
     }
 

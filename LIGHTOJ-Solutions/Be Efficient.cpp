@@ -225,19 +225,6 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-string dncchar(string s)
-{
-    string ans = "";
-    ans += s[0];
-
-    for (int i = 1; i < len(s); i++)
-    {
-        if (s[i] != ans[len(ans) - 1])
-            ans += s[i];
-    }
-    return ans;
-}
-
 void solution() // main solution
 {
     int a, b, c, d;
@@ -249,22 +236,41 @@ void solution() // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0;
 
-    cin >> n;
-    mpsi mp;
-    int nn = n;
+    cin >> n >> m;
 
-    while (nn--)
+    int arr[n + 1];
+    int presum[n + 1];
+    
+    presum[0] = 0;
+    FOR(1, n + 1)
     {
-        cin >> s;
-        sort(s.begin(), s.end());
-        mp[dncchar(s)]++;
+        cin >> arr[i];
+        presum[i] = presum[i - 1] + arr[i];
     }
 
-    for (auto i : mp)
+    FOR(1, n + 1)
     {
-        cnt++;
+        presum[i] %= m;
     }
-    cout << cnt << nl;
+
+    // FOR(1, n + 1)
+    // {
+    //     cout << presum[i] << " ";
+    // }
+    // cout << nl;
+
+    mpii mp;
+    mp[0]++;
+
+    ans = 0;
+    FOR(1, n + 1)
+    {
+
+        ans += mp[presum[i]];
+
+        mp[presum[i]]++;
+    }
+    cout << ans << nl;
 
     // newline;
 }
@@ -274,12 +280,12 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)
     {
-        // cout << "Case " << c++ << ": ";
+        cout << "Case " << c++ << ": ";
         solution();
     }
 

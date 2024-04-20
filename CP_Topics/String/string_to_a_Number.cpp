@@ -6,13 +6,28 @@
 #define nl endl // NewLine
 #define null NULL
 using namespace std;
+#define ll long long
+
+ll str_to_int(string s)   // optimize
+{
+    istringstream ss(s);
+    ll n;
+    ss >> n;
+    return n;
+}
+
+ //====================== String to Number ======================= string to int
+
+    //    string num = "786";
+    //    int n = stoi(num);
+    //    output(n);
 
 int32_t main()
 {
 
     string s;
     cin >> s;
-    int number = 0; 
+    int number = 0;
 
     for (int i = 0; i < s.length(); i++)
     {

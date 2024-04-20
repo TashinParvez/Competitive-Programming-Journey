@@ -225,19 +225,6 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-string dncchar(string s)
-{
-    string ans = "";
-    ans += s[0];
-
-    for (int i = 1; i < len(s); i++)
-    {
-        if (s[i] != ans[len(ans) - 1])
-            ans += s[i];
-    }
-    return ans;
-}
-
 void solution() // main solution
 {
     int a, b, c, d;
@@ -250,21 +237,33 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0;
 
     cin >> n;
-    mpsi mp;
-    int nn = n;
-
-    while (nn--)
+    int arr[n];
+    int submax = INT_MIN;
+    int mn = 999999, mx = -999999;
+    FOR(n)
     {
-        cin >> s;
-        sort(s.begin(), s.end());
-        mp[dncchar(s)]++;
+        cin >> arr[i];
+        if (i > 0)
+        {
+            submax = max(submax, arr[i - 1] - arr[i]);
+            mx = max(mx, arr[i]);
+        }
+        if (i < n - 1)
+        {
+            mn = min(mn, arr[i]);
+        }
+    }
+    
+    if (n == 1)
+    {
+        mn = arr[0];
+        mx = arr[0];
     }
 
-    for (auto i : mp)
-    {
-        cnt++;
-    }
-    cout << cnt << nl;
+    // dbg(mn);
+    // dbg(mx);
+
+    cout << max3(submax, mx - arr[0], arr[n - 1]-mn) << nl;
 
     // newline;
 }
@@ -274,7 +273,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

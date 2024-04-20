@@ -6,41 +6,7 @@ using namespace std;
 
 
 
-
-//--------------------------------- FOR --------------------------------
-
-
-// OLD 
-
-#define FOR0(n)                  for (int i = 0; i < (int)(n); i++)     //___ 0 to < N
-#define FOR1(i, n)               for (int i = 1; i <= (int)(n); i++)    //___ 1 to <= N
-#define FOR2(a, n)               for (int i = a; i < n; i++)            //___ A to < N
-
-// NEW
-
-#define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
-#define FOR(...)                 FOR_OVERLOAD(__VA_ARGS__, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
-
-#define FOR_ONE_ARG(n)           for(int i = 0; i < (n); i++)
-#define FOR_TWO_ARGS(a, b)       for(int i = (a); (a) <= (b) ? (i < (b)) : (i > (b)); (a) <= (b) ? ++i : --i)
-
-
-
-
-//------------------------------------------  Vector Min & Sum  --------------------------------
-
-    int n;
-    vector<int> a(n);
-    int mnA = *min_element(a.begin(), a.end());  
-    int sA = accumulate(a.begin(), a.end(), 0LL);
-
-
-//------------------------------------------------  BELLOW  --------------------------------------
-
-
-#define checkEqual(a, b, c) \
-    if (a == b && a == c)   \
-        return 1 else return 0; 
+//--------------------------------------------------------------------------------
 
 
 
@@ -57,6 +23,10 @@ using namespace std;
 //     }
 // }
 
+
+
+const int dr[] = { 0,  1,  0, -1,        -1,  1,  1, -1,     -2, -2,  2,  2, -1, -1,  1,  1};
+const int dc[] = { 1,  0, -1,  0,         1,  1, -1, -1,     -1,  1, -1,  1, -2,  2, -2,  2};
 
 
 /**************************************** Need to add Func ***********************************************/
@@ -275,6 +245,20 @@ ll str_to_int(string s)
     return n;
 }
 /********************************************************************************/
+ 
+#define ll long long
+#define     all(a)                  (a).begin(),(a).end()
+
+ll reverse_num(ll n){ ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*10+r;tmp/=10;}return ans;}
+ll gcd(ll num1, ll num2) { ll a,b,r; a=num1; b=num2; r=a%b; while(r>0){ a=b; b=r; r=a%b; } return b; }
+ll lcm(ll num1, ll num2) { return (num1*num2)/gcd(num1, num2); }
+bool isprime(ll n){if(n<2)return false;if(n==2)return true;if(n%2==0)return false;for(ll i=3;i<=sqrt(n);i+=2){if(n%i==0)return false;}return true;}
+bool isSquare(ll x){ll sq=sqrt(x);return sq*sq==x;}
+ll POW(ll a,ll b){if(!b) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
+string int_to_str(ll x){string s;while(x){s+=(char)(x%10)+'0';x/=10;}reverse(all(s));return s;}
+ll str_to_int(string s){istringstream ss(s);ll n;ss>>n;return n;}
+
+ /********************************************************************************/
 
 #define take_the_array_INT(x, o, n) \
     for (int i = o; i <= n; i++)    \

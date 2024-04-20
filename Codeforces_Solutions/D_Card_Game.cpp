@@ -225,22 +225,9 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-string dncchar(string s)
-{
-    string ans = "";
-    ans += s[0];
-
-    for (int i = 1; i < len(s); i++)
-    {
-        if (s[i] != ans[len(ans) - 1])
-            ans += s[i];
-    }
-    return ans;
-}
-
 void solution() // main solution
 {
-    int a, b, c, d;
+    int a, b, d;
     int i, j, k, l, m, n, q;
     int x, y, z, t;
 
@@ -250,21 +237,98 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0;
 
     cin >> n;
-    mpsi mp;
-    int nn = n;
+    getchar();
+    char c;
+    cin >> c;
+    map<char, vi> mp;
 
-    while (nn--)
+    FOR(1, 2 * n + 1)
     {
         cin >> s;
-        sort(s.begin(), s.end());
-        mp[dncchar(s)]++;
+        // cout << s[0]<< nl;
+        mp[s[1]].pb((s[0] - '0'));
     }
 
-    for (auto i : mp)
+    if (mp[c].size() == 0)
     {
-        cnt++;
+        cout << "IMPOSSIBLE" << nl;
     }
-    cout << cnt << nl;
+    // else if (0) // for check
+    // {
+    //     for (auto i : mp)
+    //     {
+    //         cout << i.ff << nl;
+    //         for (auto j : i.ss)
+    //         {
+    //             cout << j << " ";
+    //         }
+    //         cout << nl;
+    //     }
+    // }
+    else
+    {
+
+        char cr = c; // extra
+
+        cout << mp.size() << nl;
+        // cout << mp[c].size() << nl;
+
+        for (auto i : mp)
+        {
+            // tashin;
+            if (i.ff == c)
+            {
+                // tashin;
+                continue;
+            }
+            else
+            {
+                int l = 0, r = i.ss.size() - 1;
+                for (int j = 0; j < i.ss.size() / 2; j++)
+                {
+                    cout << i.ss[l] << i.ff << " " << i.ss[r] << i.ff << nl;
+                    l++;
+                    r--;
+                }
+
+                flag = 0;
+
+                if (i.ss.size() % 2)
+                {
+                    flag = 1;
+                    cr = i.ff;
+                    m = i.second[i.ss.size() / 2]; // middle index
+                }
+                i.ss.clear();
+                if (i.ff == 'C')
+                {
+                    tashin;
+                    dbg(i.ss[0]);
+                }
+                if (flag)
+                    mp[cr].pb(m);
+            }
+        }
+
+        cout << mp.size() << nl;
+
+        // tashin;
+        int r = 0;
+
+        if (mp[c].size() > 1)
+        {
+            l = 1, r = mp[cr].size() - 1;
+            if (l != r)
+                for (int j = 0; j < (mp[c].size() - 1) / 2; j++)
+                {
+                    cout << mp[cr][l] << cr << " " << mp[c][r] << c << nl;
+                    l++;
+                    r--;
+                }
+        }
+
+        cout << mp[cr][r] << cr << " " << mp[c][0] << c << nl;
+    }
 
     // newline;
 }
@@ -274,7 +338,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

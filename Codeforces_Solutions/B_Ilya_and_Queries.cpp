@@ -225,48 +225,55 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-string dncchar(string s)
-{
-    string ans = "";
-    ans += s[0];
-
-    for (int i = 1; i < len(s); i++)
-    {
-        if (s[i] != ans[len(ans) - 1])
-            ans += s[i];
-    }
-    return ans;
-}
-
 void solution() // main solution
 {
     int a, b, c, d;
     int i, j, k, l, m, n, q;
-    int x, y, z, t;
+    int x, y, z, t, r;
 
     string s;
     bool flag = false;
 
     int ans, cnt = 0, idx = -1, sum = 0;
 
-    cin >> n;
-    mpsi mp;
-    int nn = n;
+    cin >> s;
 
-    while (nn--)
+    pii arr[len(s) + 1];
+
+    arr[0] = {0, 0}; // # , .
+
+    FOR(len(s))
     {
-        cin >> s;
-        sort(s.begin(), s.end());
-        mp[dncchar(s)]++;
+        if (i == 0)
+        {
+            arr[i + 1] = {0, 0}; // # , .
+        }
+        else
+        {
+            if (s[i] == s[i - 1])
+            {
+                if (s[i] == '#')
+                    arr[i + 1] = {arr[i].ff + 1, arr[i].ss};
+                else
+                    arr[i + 1] = {arr[i].ff, arr[i].ss + 1};
+            }
+            else
+                arr[i + 1] = {arr[i].ff, arr[i].ss};
+        }
     }
 
-    for (auto i : mp)
-    {
-        cnt++;
-    }
-    cout << cnt << nl;
+    // for (auto i : arr)
+    // {
+    //     cout << i.ff << "  " << i.ss << nl;
+    // }
+    // tashin;
 
-    // newline;
+    cin >> q;
+    while (q--)
+    {
+        cin >> l >> r; 
+        cout << arr[r].ff - arr[l].ff + arr[r].ss - arr[l].ss << nl; 
+    }
 }
 
 int32_t main()

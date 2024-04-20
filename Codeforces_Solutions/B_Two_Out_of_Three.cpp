@@ -225,19 +225,6 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-string dncchar(string s)
-{
-    string ans = "";
-    ans += s[0];
-
-    for (int i = 1; i < len(s); i++)
-    {
-        if (s[i] != ans[len(ans) - 1])
-            ans += s[i];
-    }
-    return ans;
-}
-
 void solution() // main solution
 {
     int a, b, c, d;
@@ -250,23 +237,61 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0;
 
     cin >> n;
-    mpsi mp;
-    int nn = n;
+    int arr[n];
+    mpii mp; // value , cnt , last_index
+    mpii index;
 
-    while (nn--)
+    flag = 0;
+
+    FOR(n)
     {
-        cin >> s;
-        sort(s.begin(), s.end());
-        mp[dncchar(s)]++;
+        cin >> arr[i];
+        mp[arr[i]]++;
     }
 
     for (auto i : mp)
     {
-        cnt++;
+        if (i.ss > 1)
+        {
+            // mp[2] += i.ss - 1;
+            mp[i.ff] = 0;
+            // mp[1] = 1;
+            cnt = 1;
+        }
     }
-    cout << cnt << nl;
 
-    // newline;
+    for (auto i : mp)
+    {
+        if (i.ss > 1)
+        {
+            // mp[3] += i.ss - 1;
+            mp[i.ff] = 0;
+            // mp[1] = 1;
+            cnt = 2;
+        }
+    }
+
+    for (auto i : mp)
+    {
+        if (i.ss > 1)
+        {
+            // mp[3] += i.ss - 1;
+            mp[i.ff] = 0;
+            // mp[2] = 1;
+            cnt = 3;
+        }
+        if (cnt == 3)
+            break;
+    }
+
+    if (cnt == 2)
+    {
+        tashin;
+    }
+    else
+    {
+        cout << -1 << nl;
+    }
 }
 
 int32_t main()
@@ -274,7 +299,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)
