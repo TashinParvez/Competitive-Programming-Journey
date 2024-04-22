@@ -232,20 +232,19 @@ void solution() // main solution
     int i, j, k, l, m, n, q;
     int x, y, z, t;
 
-    cin >> n >> m >> k;
+    string s;
+    bool flag = false;
 
-    // dbg(n);
-    // dbg(m);
-    // dbg(k);
+    int ans, cnt = 0, idx = -1, sum = 0;
 
-    if (m == 1 || n - k >= m)
+    cin >> n;
+
+    if (360 % (180 - n))
     {
-        NO;
+        NO
     }
     else
-    {
-        YES;
-    }
+        YES
 
     // newline;
 }
@@ -260,6 +259,7 @@ int32_t main()
 
     while (t--)
     {
+        // cout << "Case " << c++ << ": ";
         solution();
     }
 

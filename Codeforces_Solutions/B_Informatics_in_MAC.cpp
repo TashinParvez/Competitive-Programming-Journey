@@ -1,8 +1,8 @@
-
-//        ****************  Author :  Tashin.Parvez  ****************
-//        ************* United International University *************
-//        **************     Temp.Updated:   18/04/24   *************
-//        *************  Created: 21/04/2024  Sunday **************
+/**
+ *    Author :  Tashin.Parvez
+ *    United International University
+ *    Created: 22.04.2024
+**/ 
 
 #include <bits/stdc++.h>
 #define faster                        \
@@ -10,8 +10,8 @@
     cin.tie(0);                       \
     cout.tie(0);
 
-#define Read(x) freopen(x, "r", stdin)
-#define Write(x) freopen(x, "w", stdout)
+// #define Read(x)          freopen(x, "r", stdin)
+// #define Write(x)         freopen(x, "w", stdout)
 #define CRACKED return 0;
 #define nl "\n"
 using namespace std;
@@ -232,22 +232,66 @@ void solution() // main solution
     int i, j, k, l, m, n, q;
     int x, y, z, t;
 
-    cin >> n >> m >> k;
+    string s;
+    bool flag = false;
 
-    // dbg(n);
-    // dbg(m);
-    // dbg(k);
+    int ans, cnt = 0, idx = -1, sum = 0;
 
-    if (m == 1 || n - k >= m)
+    cin >> n;
+    int arr[n + 1];
+    FOR(1, n + 1)
     {
-        NO;
-    }
-    else
-    {
-        YES;
+        cin >> arr[i];
     }
 
-    // newline;
+    int prearr[n + 1];
+    int sufarr[n + 1];
+    mpii mp;
+
+    int mex = 0;
+    a = 0;
+
+    FOR(1, n + 1)
+    {
+        mp[arr[i]]++;
+        while (mp[a])
+        {
+            a++;
+        }
+        mex = a;
+        prearr[i] = mex;
+    }
+    mp.clear();
+
+    mex = 0;
+    a = 0; 
+
+    FOR(n, 0)
+    {
+        mp[arr[i]]++;
+        while (mp[a])
+        {
+            a++;
+        }
+        mex = a;
+        sufarr[i] = mex;
+    }
+
+    FOR(1, n)
+    {
+        // tashin;
+        if (prearr[i] == sufarr[i + 1])
+        {
+            cout << 2 << nl;
+            cout << 1 << " " << i << nl;
+            cout << i + 1 << " " << n << nl;
+            return;
+        }
+    }
+    cout << -1 << nl;
+
+    // printarr(prearr, n + 1);
+    // printarr(sufarr, n + 1);
 }
 
 int32_t main()
@@ -260,6 +304,7 @@ int32_t main()
 
     while (t--)
     {
+        // cout << "Case " << c++ << ": ";
         solution();
     }
 

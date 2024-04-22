@@ -1,8 +1,6 @@
 
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
-//        **************     Temp.Updated:   18/04/24   *************
-//        *************  Created: 21/04/2024  Sunday **************
 
 #include <bits/stdc++.h>
 #define faster                        \
@@ -232,22 +230,26 @@ void solution() // main solution
     int i, j, k, l, m, n, q;
     int x, y, z, t;
 
-    cin >> n >> m >> k;
+    string s;
+    bool flag = false;
 
-    // dbg(n);
-    // dbg(m);
-    // dbg(k);
+    int ans, cnt = 0, idx = -1, sum = 0;
 
-    if (m == 1 || n - k >= m)
+    cin >> n;
+    int arr[n];
+    mpii mp;
+    FOR(n)
     {
-        NO;
-    }
-    else
-    {
-        YES;
+        cin >> arr[i];
+        mp[arr[i]]++;
+        if (mp[arr[i]] == 3)
+        {
+            cnt++;
+            mp[arr[i]] = 0;
+        }
     }
 
-    // newline;
+    cout << cnt << nl;
 }
 
 int32_t main()
@@ -260,6 +262,7 @@ int32_t main()
 
     while (t--)
     {
+        // cout << "Case " << c++ << ": ";
         solution();
     }
 
