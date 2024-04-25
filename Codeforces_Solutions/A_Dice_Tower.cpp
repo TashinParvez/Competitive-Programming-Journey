@@ -237,17 +237,72 @@ void solution() // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0;
 
-    cin >> n;
+    cin >> n >> t;
+    b = 7 - t;
 
-    // newline;
+    while (n--)
+    {
+        mpii dice;
+        cin >> a >> c;
+        dice[a]++;
+        dice[c]++;
+        dice[7 - a]++;
+        dice[7 - c]++;
+
+        if (dice[1] == 0)
+        {
+            if ((7 - 1 == t || 7 - (7 - 1) == b) || (7 - 1 == b || 7 - (7 - 1) == t))
+            {
+                t = 1;
+                b = 7 - t;
+            }
+            else
+            {
+
+                NO return;
+            }
+        }
+        else if (dice[2] == 0)
+        {
+            if ((7 - 2 == t || 7 - (7 - 2) == b) || (7 - 2 == b || 7 - (7 - 2) == t))
+            {
+                t = 2;
+                b = 7 - t;
+            }
+            else
+            {
+                NO return;
+            }
+        }
+        else if (dice[3] == 0)
+        {
+            if ((7 - 3 == t || 7 - (7 - 3) == b) || (7 - 3 == b || 7 - (7 - 3) == t))
+            {
+                t = 3;
+                b = 7 - t;
+            }
+            else
+            {
+                NO return;
+            }
+        }
+    }
+
+    cout << "YES" << nl;
 }
 
 int32_t main()
 {
     faster;
 
-    cout << "TASHIN"
-         << nl;
+    int t = 1;
+    int c = 1;
+
+    while (t--)
+    {
+        // cout << "Case " << c++ << ": ";
+        solution();
+    }
 
     CRACKED;
 }

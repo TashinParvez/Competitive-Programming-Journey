@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 25.04.2024
+ *    Created: 24.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -237,7 +237,34 @@ void solution() // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0;
 
-    cin >> n;
+    cin >> s;
+    int zero = 0, one = 0;
+
+    FOR(len(s))
+    {
+        if (s[i] == '0')
+            zero++;
+        else
+            one++;
+    }
+
+    cnt = min(zero, one);
+
+    zero = 0, one = 0;
+    int icnt = -1;
+
+    FOR(0, cnt * 2)
+    {
+        s[i] == '0' ? one++ : zero++;  
+        if (zero > cnt || one > cnt)
+            break;
+
+        // cout << "zero " << zero << "  one " << one << nl;
+
+        icnt = i; 
+    }
+
+    cout << len(s) - (icnt + 1) << nl;
 
     // newline;
 }
@@ -246,8 +273,15 @@ int32_t main()
 {
     faster;
 
-    cout << "TASHIN"
-         << nl;
+    int t = 1;
+    cin >> t;
+    int c = 1;
+
+    while (t--)
+    {
+        // cout << "Case " << c++ << ": ";
+        solution();
+    }
 
     CRACKED;
 }

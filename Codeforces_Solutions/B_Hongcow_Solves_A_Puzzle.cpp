@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 25.04.2024
+ *    Created: 23.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -232,12 +232,83 @@ void solution() // main solution
     int i, j, k, l, m, n, q;
     int x, y, z, t;
 
-    string s;
-    bool flag = false;
+    bool flag = true;
 
     int ans, cnt = 0, idx = -1, sum = 0;
 
-    cin >> n;
+    cin >> n >> m;
+    char arr[n][m];
+    int notset = -1;
+
+    int s = notset, e = notset;
+
+    FOR(n)
+    {
+        for (int j = 0; j < m; j++)
+            cin >> arr[i][j];
+    }
+
+    int xcnt = 0;
+    int row;
+    FOR(n)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (arr[i][j] == 'X')
+            {
+                if (s == notset)
+                    s = j;
+                e = j;
+                xcnt++;
+            }
+        }
+        row = i;
+        if (s != notset)
+            break;
+    }
+
+    if (xcnt != e - s + 1)
+    {
+        // tashin;
+        NO return;
+    }
+    bool collspace = false;
+
+    FOR(row + 1, n)
+    {
+        cnt = 0;
+        for (int j = 0; j < m; j++)
+        {
+            if (arr[i][j] == 'X')
+            {
+                if (j < s || j > e)
+                {
+                    NO return; 
+                }
+                cnt++;
+            }
+        }
+
+        if (cnt > 0 && collspace == true)
+        {
+            NO return;
+        }
+
+        if (cnt == 0)
+        {
+            collspace = true;
+            continue; 
+        }
+
+        if (cnt != xcnt)
+        {
+            NO return;
+        }
+    }
+
+    if (flag)
+        YES else NO
+            // tashin;
 
     // newline;
 }
@@ -246,8 +317,15 @@ int32_t main()
 {
     faster;
 
-    cout << "TASHIN"
-         << nl;
+    int t = 1;
+    // cin >> t;
+    int c = 1;
+
+    while (t--)
+    {
+        // cout << "Case " << c++ << ": ";
+        solution();
+    }
 
     CRACKED;
 }

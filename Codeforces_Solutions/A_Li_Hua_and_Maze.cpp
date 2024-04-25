@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 25.04.2024
+ *    Created: 23.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -229,25 +229,52 @@ const int mod = 1000000007;
 void solution() // main solution
 {
     int a, b, c, d;
-    int i, j, k, l, m, n, q;
+    int i, j, k, l, m, n, q, r;
     int x, y, z, t;
 
     string s;
     bool flag = false;
 
     int ans, cnt = 0, idx = -1, sum = 0;
+    int x1, x2, y1, y2;
 
-    cin >> n;
+    cin >> r >> c;
+    cin >> x1 >> y1 >> x2 >> y2;
 
-    // newline;
+    if (x2 < x1)
+    {
+        swap(x1, x2);
+        swap(y1, y2);
+    }
+
+    a = min(min(y1, c - y1 + 1), min(x1, r - x1 + 1));
+    b = min(min(y2, c - y2 + 1), min(x2, r - x2 + 1));
+
+    ans = min(a, b) * 2 + 1;
+
+    a = (min(y1, c - y1 + 1) + min(x1, r - x1 + 1));
+    b = (min(y2, c - y2 + 1) + min(x2, r - x2 + 1));
+    cnt = min(min(ans, a), b);
+
+    if (cnt > 4) 
+        cout << 4 << nl; 
+    else
+        cout << cnt << nl;
 }
 
 int32_t main()
 {
     faster;
 
-    cout << "TASHIN"
-         << nl;
+    int t = 1;
+    cin >> t;
+    int c = 1;
+
+    while (t--)
+    {
+        // cout << "Case " << c++ << ": ";
+        solution();
+    }
 
     CRACKED;
 }

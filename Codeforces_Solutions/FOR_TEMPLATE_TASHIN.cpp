@@ -9,9 +9,14 @@ using namespace std;
 //--------------------------------------------------------------------------------
 
 
+// Big Mod
+
+int BigMod(int n, int power, int mod) 
+{ if (power == 0) return 1; int ans = BigMod(n, power / 2, mod); ans = (ans % mod * ans % mod) % mod; if (power % 2) return (ans * (n % mod)) % mod; else return ans; } 
 
 
-//  4.  add big mod
+
+ 
 
 
 // FOR(0, a.length())
@@ -195,6 +200,7 @@ bool isSquare(ll x)
     ll sq = sqrt(x);
     return sq * sq == x;
 }
+
 ll mod_inverse(ll a, ll p, ll m)
 {
     ll r = 1;
@@ -207,6 +213,7 @@ ll mod_inverse(ll a, ll p, ll m)
     }
     return r;
 }
+
 ll POW(ll a, ll b)
 {
     if (!b)

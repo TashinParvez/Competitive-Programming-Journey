@@ -1,6 +1,8 @@
-//        ****************  Author :  Tashin.Parvez  ****************
-//        ************* United International University *************
-//        ****************  Updated:    15/04/24     ****************
+/**
+ *    Author :  Tashin.Parvez
+ *    United International University
+ *    Created: 25.04.2024
+ **/
 
 #include <bits/stdc++.h>
 #define faster                        \
@@ -8,8 +10,8 @@
     cin.tie(0);                       \
     cout.tie(0);
 
-#define Read(x) freopen(x, "r", stdin)
-#define Write(x) freopen(x, "w", stdout)
+// #define Read(x)          freopen(x, "r", stdin)
+// #define Write(x)         freopen(x, "w", stdout)
 #define CRACKED return 0;
 #define nl "\n"
 using namespace std;
@@ -106,11 +108,127 @@ typedef pair<string, int> psi;
 #define mpsi map<string, int>
 #define mpci map<char, int>
 
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Some Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+//================== Int func's =================
+
+#define min3(a, b, c) min(min(a, b), c)
+#define mid3(a, b, c) (a + b + c) - max3(a, b, c) - min3(a, b, c)
+#define max3(a, b, c) max(max(a, b), c)
+
+ll revnum(ll n)
+{
+    ll tmp = n, ans = 0, r;
+    while (tmp)
+    {
+        r = tmp % 10;
+        ans = ans * 10 + r;
+        tmp /= 10;
+    }
+    return ans;
+}
+
+bool isprime(ll n)
+{
+    if (n < 2)
+        return false;
+    if (n == 2)
+        return true;
+    if (n % 2 == 0)
+        return false;
+    for (ll i = 3; i <= sqrt(n); i += 2)
+    {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+bool issquare(ll x)
+{
+    ll sq = sqrt(x);
+    return sq * sq == x;
+}
+bool iseven(int n) { return !(n & 1); }
+
+ll POW(ll a, ll b)
+{
+    if (!b)
+        return 1;
+    ll r = POW(a, b / 2);
+    if (b % 2)
+        return r * r * a;
+    else
+        return r * r;
+}
+
+#define suminrange(a, b) ((b * (b + 1)) / 2) - (((a - 1) * (a)) / 2)
+
+//================== string func's =================
+
+ll strtoint(string s)
+{
+    istringstream ss(s);
+    ll n;
+    ss >> n;
+    return n;
+}
+string inttostr(ll x)
+{
+    string s;
+    while (x)
+    {
+        s += (char)(x % 10) + '0';
+        x /= 10;
+    }
+    reverse(all(s));
+    return s;
+}
+
+#define strtolower(s) transform(s.begin(), s.end(), s.begin(), ::tolower) // make string lowercase
+
+//================== Char func's =================
+int getASCII(char c) { return c; }
+
+//================== Print func's =================
+
+void printarr(int arr[], int len)
+{
+    for (int i = 0; i < len; i++)
+        (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
+}
+void printvec(const vector<int> &vec)
+{
+    for (size_t i = 0; i < vec.size(); ++i)
+    {
+        if (i + 1 == vec.size())
+            cout << vec[i] << nl;
+        else
+            cout << vec[i] << " ";
+    }
+}
+
 /************************************************* CODE NOW *************************************************/
+
+/*
+
+1. Think Greedy
+2. Think Brute Force
+3. Think solution in reverse order
+4. Think DP [ check constraints carefully ]
+5. Check base cases for DP and prove solution for Greedy
+6. Think Graph
+
+7. SubArray / Continious / SubSegment  =  PrefixSum
+
+*/
+
+const double PI = 3.1415926535;
+const int inf = 1e18;
+const int mod = 1000000007;
 
 void solution() // main solution
 {
-    int a, b, d;
+    int a, b, c, d;
     int i, j, k, l, m, n, q;
     int x, y, z, t;
 
@@ -119,84 +237,51 @@ void solution() // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0;
 
-    cin >> n;
+    cin >> s;
 
-    char c;
-    cin >> c;
+    int even = 0, odd = 0;
+    mpci numarr;
 
-    map<char, vi> mp;
-
-    FOR(1, 2 * n + 1)
+    FOR(len(s))
     {
-        cin >> s;
-        mp[s[1]].pb((s[0] - '0'));
+        numarr[s[i]]++;
+
+        if (numarr[s[i]] % 2 == 0)
+        {
+            odd--;
+            even++;
+        }
+        else
+            odd++;
     }
 
-    int ccnt = 0;
-    cnt = 0;
-
-    for (auto i : mp) // i.ss  = vector of int's
+    i = 0;
+    while (i < len(s))
     {
-        if (i.ff == c) // trump card
+        if (odd == 1 || odd == 0)
         {
-            vi vct = i.ss;
-            ccnt = vct.size();
+            if (i % 2)
+                cout << "Second" << nl;
+            else
+                cout << "First" << nl;
+            return;
         }
         else
         {
-            vi vct = i.ss;
-            cnt += vct.size() % 2;
-        }
-    }
-
-    if (ccnt - cnt < 0 || (ccnt - cnt) % 2)
-    {
-        cout << "IMPOSSIBLE" << nl;
-        return;
-    }
-
-    idx = 0;
-
-    vi vct = mp[c];
-    vsort(vct);
-    mp[c] = vct;
-
-    for (auto i : mp) // i.ss  = vector of int's
-    {
-        if (i.ff == c) // trump card
-            continue;
-        else
-        {
-            vi vct = i.ss;
-            vsort(vct);
-            int len = vct.size();
-            if (len)
+            if (even)
             {
-                for (int j = 0; j + 1 < len; j += 2)
-                {
-                    a = vct[j];
-                    b = vct[j + 1]; 
-                    cout << min(a, b) << i.ff << " " << max(a, b) << i.ff << nl;
-                }
-                if (len % 2)
-                {
-                    cout << vct[len - 1] << i.ff << " " << mp[c][idx] << c << nl;
-                    idx++;
-                }
+                even--;
+                odd++;
+            }
+            else
+            {
+                odd--;
             }
         }
+        i++;
     }
 
-    vct = mp[c];
-    int len = vct.size();
-
-    while (idx + 1 < len)
-    {
-        a = mp[c][idx];
-        b = mp[c][idx + 1];
-        cout << min(a, b) << c << " " << max(a, b) << c << nl;
-        idx += 2;
-    }
+    // newline;
 }
 
 int32_t main()
@@ -204,11 +289,11 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
     int c = 1;
 
     while (t--)
     {
+        // cout << "Case " << c++ << ": ";
         solution();
     }
 
