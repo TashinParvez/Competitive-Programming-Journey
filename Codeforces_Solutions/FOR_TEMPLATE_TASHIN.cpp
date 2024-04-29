@@ -4,20 +4,21 @@ using namespace std;
 #define pb push_back
 #define pop pop_back
 
-
-
 //--------------------------------------------------------------------------------
-
 
 // Big Mod
 
-int BigMod(int n, int power, int mod) 
-{ if (power == 0) return 1; int ans = BigMod(n, power / 2, mod); ans = (ans % mod * ans % mod) % mod; if (power % 2) return (ans * (n % mod)) % mod; else return ans; } 
-
-
-
- 
-
+int BigMod(int n, int power, int mod)
+{
+    if (power == 0)
+        return 1;
+    int ans = BigMod(n, power / 2, mod);
+    ans = (ans % mod * ans % mod) % mod;
+    if (power % 2)
+        return (ans * (n % mod)) % mod;
+    else
+        return ans;
+} 
 
 // FOR(0, a.length())
 // {
@@ -28,11 +29,8 @@ int BigMod(int n, int power, int mod)
 //     }
 // }
 
-
-
-const int dr[] = { 0,  1,  0, -1,        -1,  1,  1, -1,     -2, -2,  2,  2, -1, -1,  1,  1};
-const int dc[] = { 1,  0, -1,  0,         1,  1, -1, -1,     -1,  1, -1,  1, -2,  2, -2,  2};
-
+const int dr[] = {0, 1, 0, -1, -1, 1, 1, -1, -2, -2, 2, 2, -1, -1, 1, 1};
+const int dc[] = {1, 0, -1, 0, 1, 1, -1, -1, -1, 1, -1, 1, -2, 2, -2, 2};
 
 /**************************************** Need to add Func ***********************************************/
 
@@ -47,9 +45,8 @@ int intreverse(int n)
     return newnumb;
 }
 
-
 // Get All The Divisors Of That Number
-vector<int> getdiv(int n) 
+vector<int> getdiv(int n)
 {
     vector<int> ans;
     for (int i = 1; i * i <= n; i++)
@@ -91,7 +88,7 @@ vector<int> getprimefac(int n)
 }
 
 // get instant prime
-vector<int> sieve(int n) 
+vector<int> sieve(int n)
 {
     int *a = new int[n + 1]();
     vector<int> vect;
@@ -108,7 +105,6 @@ vector<int> sieve(int n)
     }
     return vect;
 }
-
 
 vector<int> firstnprimes(int n)
 {
@@ -133,8 +129,6 @@ vector<int> firstnprimes(int n)
     }
     return primes;
 }
-
-
 
 /********************************************************************************/
 
@@ -232,7 +226,7 @@ ll LOG2(ll n)
     return c - 1;
 }
 
-#define all(s) s.begin(),s.end()
+#define all(s) s.begin(), s.end()
 string int_to_str(ll x)
 {
     string s;
@@ -252,20 +246,86 @@ ll str_to_int(string s)
     return n;
 }
 /********************************************************************************/
- 
+
 #define ll long long
-#define     all(a)                  (a).begin(),(a).end()
+#define all(a) (a).begin(), (a).end()
 
-ll reverse_num(ll n){ ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*10+r;tmp/=10;}return ans;}
-ll gcd(ll num1, ll num2) { ll a,b,r; a=num1; b=num2; r=a%b; while(r>0){ a=b; b=r; r=a%b; } return b; }
-ll lcm(ll num1, ll num2) { return (num1*num2)/gcd(num1, num2); }
-bool isprime(ll n){if(n<2)return false;if(n==2)return true;if(n%2==0)return false;for(ll i=3;i<=sqrt(n);i+=2){if(n%i==0)return false;}return true;}
-bool isSquare(ll x){ll sq=sqrt(x);return sq*sq==x;}
-ll POW(ll a,ll b){if(!b) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
-string int_to_str(ll x){string s;while(x){s+=(char)(x%10)+'0';x/=10;}reverse(all(s));return s;}
-ll str_to_int(string s){istringstream ss(s);ll n;ss>>n;return n;}
+ll reverse_num(ll n)
+{
+    ll tmp = n, ans = 0, r;
+    while (tmp)
+    {
+        r = tmp % 10;
+        ans = ans * 10 + r;
+        tmp /= 10;
+    }
+    return ans;
+}
+ll gcd(ll num1, ll num2)
+{
+    ll a, b, r;
+    a = num1;
+    b = num2;
+    r = a % b;
+    while (r > 0)
+    {
+        a = b;
+        b = r;
+        r = a % b;
+    }
+    return b;
+}
+ll lcm(ll num1, ll num2) { return (num1 * num2) / gcd(num1, num2); }
+bool isprime(ll n)
+{
+    if (n < 2)
+        return false;
+    if (n == 2)
+        return true;
+    if (n % 2 == 0)
+        return false;
+    for (ll i = 3; i <= sqrt(n); i += 2)
+    {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+bool isSquare(ll x)
+{
+    ll sq = sqrt(x);
+    return sq * sq == x;
+}
+ll POW(ll a, ll b)
+{
+    if (!b)
+        return 1;
+    ll r = POW(a, b / 2);
+    if (b % 2)
+        return r * r * a;
+    else
+        return r * r;
+}
+string int_to_str(ll x)
+{
+    string s;
+    while (x)
+    {
+        s += (char)(x % 10) + '0';
+        x /= 10;
+    }
+    reverse(all(s));
+    return s;
+}
+ll str_to_int(string s)
+{
+    istringstream ss(s);
+    ll n;
+    ss >> n;
+    return n;
+}
 
- /********************************************************************************/
+/********************************************************************************/
 
 #define take_the_array_INT(x, o, n) \
     for (int i = o; i <= n; i++)    \
@@ -292,7 +352,6 @@ ll str_to_int(string s){istringstream ss(s);ll n;ss>>n;return n;}
     }                                \
     printf("\n");
 
-
 #define print_the_array_LL(x, o, n) \
     for (int i = o; i <= n; i++)    \
     {                               \
@@ -313,7 +372,6 @@ ll str_to_int(string s){istringstream ss(s);ll n;ss>>n;return n;}
     }                            \
     cout << endl;
 
-
 #define printa(a, L, R)         \
     for (int i = L; i < R; i++) \
     cout << a[i] << (i == R - 1 ? '\n' : ' ')
@@ -329,7 +387,6 @@ ll str_to_int(string s){istringstream ss(s);ll n;ss>>n;return n;}
 #define sffl(a, b) scanf("%lld %lld", &a, &b)
 #define sfff(a, b, c) scanf("%d %d %d", &a, &b, &c)
 #define sfffl(a, b, c) scanf("%lld %lld %lld", &a, &b, &c)
-
 
 //------------------------------------------ template --------------------------------
 template <typename T, typename V>
@@ -362,4 +419,3 @@ void _print(T t, V... v)
         cout << ", ";
     _print(v...);
 }
-

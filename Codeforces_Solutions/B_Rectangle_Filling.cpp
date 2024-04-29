@@ -237,57 +237,53 @@ void solution() // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0;
     int mn = INT_MAX, mx = INT_MIN;
+    int e, l, r;
 
-    cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
+    cin >> n >> m;
 
-    FOR(1, idx + 1)
+    char arr[n][m];
+
+    int frw = -1, fcw = -1, frb = -1, fcb = -1;
+    int lrw = -1, lcw = -1, lrb = -1, lcb = -1;
+
+    FOR(n)
     {
-        cin >> arr[i];
-        if (i % 2 == 0)
+        for (int j = 0; j < m; j++)
         {
-            if (arr[i - 1] < arr[i])
+            cin >> arr[i][j];
+            if (i == 0)
             {
+                arr[i][j] == 'W' ? frw = j : frb = j;
             }
-            else
+            if (j == 0)
             {
-                arr[i - 1] -= 1;
-                k--;
+                arr[i][j] == 'W' ? fcw = j : fcb = j;
             }
-        }
-        if (i > 2 && i % 2)
-        {
-            if (arr[i - 1] > arr[i])
+
+            if (i == n - 1)
             {
+                arr[i][j] == 'W' ? lrw = j : lrb = j;
             }
-            else
+            if (j == m - 1)
             {
-                arr[i] -= 1;
-                k--;
+                arr[i][j] == 'W' ? lcw = j : lcb = j;
             }
         }
     }
 
-    // dbg(k);
-
-    for (int i = 2; i < idx + 1; i += 2)
+    // white
+    if (frw != -1 && fcw != -1 && lrw != -1 && lcw != -1)
     {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
-        {
-            arr[i]--;
-            k--;
-        }
-        if (k == 0)
-            break;
+        YES
     }
-
-    FOR(1, idx + 1)
+    else if (frb != -1 && fcb != -1 && lrb != -1 && lcb != -1)
     {
-        cout << arr[i] << " ";
+        YES
     }
+    else
+        NO
 
-    newline;
+    // newline;
 }
 
 int32_t main()
@@ -295,6 +291,7 @@ int32_t main()
     faster;
 
     int t = 1;
+    cin >> t;
     int c = 1;
 
     while (t--)

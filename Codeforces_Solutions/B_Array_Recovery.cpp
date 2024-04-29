@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 28.04.2024
+ *    Created: 26.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -229,65 +229,51 @@ const int mod = 1000000007;
 void solution() // main solution
 {
     int a, b, c, d;
-    int i, j, k, m, n, q;
-    int x, y, z;
+    int i, j, k, l, m, n, q;
+    int x, y, z, t;
 
     string s;
     bool flag = false;
 
     int ans, cnt = 0, idx = -1, sum = 0;
-    int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
+    cin >> n;
+    int arrd[n];
 
-    FOR(1, idx + 1)
+    FOR(n)
+    cin >> arrd[i];
+
+    int arr[n];
+
+    FOR(n)
     {
-        cin >> arr[i];
-        if (i % 2 == 0)
+        if (i == 0)
         {
-            if (arr[i - 1] < arr[i])
-            {
-            }
+            arr[i] = arrd[i];
+            continue;
+        }
+        x = arrd[i] + arr[i - 1];
+        y = -arrd[i] + arr[i - 1];
+
+        // dbg(x);
+        // dbg(y);
+
+        if (n >= 0 && y >= 0 && x!=y)
+        {
+            cout << -1 << nl;
+            return;
+        }
+        else
+        {
+            if (x >= 0)
+                arr[i] = x;
             else
-            {
-                arr[i - 1] -= 1;
-                k--;
-            }
-        }
-        if (i > 2 && i % 2)
-        {
-            if (arr[i - 1] > arr[i])
-            {
-            }
-            else
-            {
-                arr[i] -= 1;
-                k--;
-            }
+                arr[i] = y;
         }
     }
 
-    // dbg(k);
-
-    for (int i = 2; i < idx + 1; i += 2)
-    {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
-        {
-            arr[i]--;
-            k--;
-        }
-        if (k == 0)
-            break;
-    }
-
-    FOR(1, idx + 1)
-    {
-        cout << arr[i] << " ";
-    }
-
-    newline;
+    printarr(arr, n);
+    // newline;
 }
 
 int32_t main()
@@ -295,6 +281,7 @@ int32_t main()
     faster;
 
     int t = 1;
+    cin >> t;
     int c = 1;
 
     while (t--)

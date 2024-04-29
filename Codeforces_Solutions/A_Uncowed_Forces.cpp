@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 28.04.2024
+ *    Created: 27.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -229,65 +229,45 @@ const int mod = 1000000007;
 void solution() // main solution
 {
     int a, b, c, d;
-    int i, j, k, m, n, q;
+    int i, j, m, n, q;
     int x, y, z;
 
-    string s;
     bool flag = false;
 
     int ans, cnt = 0, idx = -1, sum = 0;
     int mn = INT_MAX, mx = INT_MIN;
+    int s, e, l, r, k;
 
-    cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
+    n = 5;
+    
 
-    FOR(1, idx + 1)
+    int arr[n];
+    int wrong[n];
+
+    vi rank = {500, 1000, 1500, 2000, 2500};
+
+    sum = 0;
+    FOR(n)
+    cin >> arr[i];
+
+    FOR(n)
+    cin >> wrong[i];
+
+    FOR(n)
     {
-        cin >> arr[i];
-        if (i % 2 == 0)
-        {
-            if (arr[i - 1] < arr[i])
-            {
-            }
-            else
-            {
-                arr[i - 1] -= 1;
-                k--;
-            }
-        }
-        if (i > 2 && i % 2)
-        {
-            if (arr[i - 1] > arr[i])
-            {
-            }
-            else
-            {
-                arr[i] -= 1;
-                k--;
-            }
-        }
+        float aa = .3 * rank[i];
+        float bb = (1 - arr[i] / 250.0) * rank[i] - 50 * wrong[i];
+
+        sum += max(aa, bb);
     }
 
-    // dbg(k);
+    cin >> a >> b;
+    sum += a * 100;
+    sum -= b * 50;
 
-    for (int i = 2; i < idx + 1; i += 2)
-    {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
-        {
-            arr[i]--;
-            k--;
-        }
-        if (k == 0)
-            break;
-    }
+    cout << sum << nl;
 
-    FOR(1, idx + 1)
-    {
-        cout << arr[i] << " ";
-    }
-
-    newline;
+    // newline;
 }
 
 int32_t main()

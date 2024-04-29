@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 28.04.2024
+ *    Created: 27.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -228,66 +228,53 @@ const int mod = 1000000007;
 
 void solution() // main solution
 {
-    int a, b, c, d;
-    int i, j, k, m, n, q;
+
     int x, y, z;
 
     string s;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0;
-    int mn = INT_MAX, mx = INT_MIN;
+    int cnt = 0, sum = 0;
+    int e, l, r, k, n;
 
     cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
 
-    FOR(1, idx + 1)
+    int arr[n];
+    mpii cntarr;
+    FOR(n)
     {
         cin >> arr[i];
-        if (i % 2 == 0)
-        {
-            if (arr[i - 1] < arr[i])
-            {
-            }
-            else
-            {
-                arr[i - 1] -= 1;
-                k--;
-            }
-        }
-        if (i > 2 && i % 2)
-        {
-            if (arr[i - 1] > arr[i])
-            {
-            }
-            else
-            {
-                arr[i] -= 1;
-                k--;
-            }
-        }
+        cntarr[arr[i]]++;
     }
 
-    // dbg(k);
-
-    for (int i = 2; i < idx + 1; i += 2)
+    for (auto i : cntarr)
     {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
+        cnt += i.second;
+    }
+
+    vector<pair<int, int>> vec(cntarr.begin(), cntarr.end());
+    sort(vec.begin(), vec.end(), [](const auto &a, const auto &b)
+         { return a.second > b.second; });
+
+    int hand = 0;
+
+    for (auto i : vec)
+    {
+        if (i.second + hand >= k)
         {
-            arr[i]--;
-            k--;
+            hand = i.second + hand - 1;
+            cnt--;
         }
-        if (k == 0)
+        else
             break;
     }
-
-    FOR(1, idx + 1)
+    
+    if (hand >= k)
     {
-        cout << arr[i] << " ";
+        cnt -= hand - (k - 1);
     }
 
-    newline;
+    cout << cnt << nl;
 }
 
 int32_t main()
@@ -295,6 +282,7 @@ int32_t main()
     faster;
 
     int t = 1;
+    cin >> t;
     int c = 1;
 
     while (t--)

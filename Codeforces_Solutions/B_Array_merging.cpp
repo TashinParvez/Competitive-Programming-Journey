@@ -235,59 +235,75 @@ void solution() // main solution
     string s;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0;
+    int ans = 0, cnt = 0, idx = -1, sum = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
+    cin >> n; 
+    int arr[n];
 
-    FOR(1, idx + 1)
+    mpii consA, consB; 
+
+    cnt = 1;
+    FOR(n)
     {
         cin >> arr[i];
-        if (i % 2 == 0)
+        if (i > 0 && arr[i] == arr[i - 1])
         {
-            if (arr[i - 1] < arr[i])
-            {
-            }
-            else
-            {
-                arr[i - 1] -= 1;
-                k--;
-            }
+            cnt++;
         }
-        if (i > 2 && i % 2)
+        else
         {
-            if (arr[i - 1] > arr[i])
+            if (i == 0)
             {
+                consA[arr[i]] = cnt;
+                cnt = 1;
+                continue;
             }
-            else
-            {
-                arr[i] -= 1;
-                k--;
-            }
+            a = max(consA[arr[i - 1]], cnt);
+            consA[arr[i - 1]] = a;
+            cnt = 1;
         }
     }
+    a = max(consA[arr[n - 1]], cnt);
+    consA[arr[n - 1]] = a;
 
-    // dbg(k);
+    cnt = 1;
 
-    for (int i = 2; i < idx + 1; i += 2)
+    FOR(n)
     {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
+        cin >> arr[i];
+        if (i > 0 && arr[i] == arr[i - 1])
         {
-            arr[i]--;
-            k--;
+            cnt++;
         }
-        if (k == 0)
-            break;
+        else
+        {
+            if (i == 0)
+            {
+                consB[arr[i]] = cnt;
+                cnt = 1;
+                continue;
+            }
+            a = max(consB[arr[i - 1]], cnt);
+            consB[arr[i - 1]] = a;
+            cnt = 1;
+        }
     }
+    a = max(consB[arr[n - 1]], cnt);
+    consB[arr[n - 1]] = a;
+    ans = 0;
 
-    FOR(1, idx + 1)
+    for (auto i : consA)
     {
-        cout << arr[i] << " ";
+        ans = max(ans, i.ss + consB[i.ff]);
     }
 
-    newline;
+    for (auto i : consB)
+    {
+        ans = max(ans, i.ss);
+    }
+
+    cout << ans << nl;
 }
 
 int32_t main()
@@ -295,6 +311,7 @@ int32_t main()
     faster;
 
     int t = 1;
+    cin >> t;
     int c = 1;
 
     while (t--)

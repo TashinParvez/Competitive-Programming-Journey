@@ -226,6 +226,22 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+int bigmod(int b, int p, int m)
+{
+
+    if (p == 0)
+        return 1;
+
+    int power = bigmod(b, p / 2, m);
+
+    if (p % 2)
+    {
+        return ((power % m * power % m) % m * b % m) % m;
+    }
+    else
+        return (power % m * power % m) % m;
+}
+
 void solution() // main solution
 {
     int a, b, c, d;
@@ -237,57 +253,14 @@ void solution() // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0;
     int mn = INT_MAX, mx = INT_MIN;
+    int   e, l, r , p;
 
-    cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
-
-    FOR(1, idx + 1)
+    while (cin >> b >> p >> m)
     {
-        cin >> arr[i];
-        if (i % 2 == 0)
-        {
-            if (arr[i - 1] < arr[i])
-            {
-            }
-            else
-            {
-                arr[i - 1] -= 1;
-                k--;
-            }
-        }
-        if (i > 2 && i % 2)
-        {
-            if (arr[i - 1] > arr[i])
-            {
-            }
-            else
-            {
-                arr[i] -= 1;
-                k--;
-            }
-        }
+        cout << bigmod(b, p, m) << nl;
     }
 
-    // dbg(k);
-
-    for (int i = 2; i < idx + 1; i += 2)
-    {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
-        {
-            arr[i]--;
-            k--;
-        }
-        if (k == 0)
-            break;
-    }
-
-    FOR(1, idx + 1)
-    {
-        cout << arr[i] << " ";
-    }
-
-    newline;
+    // newline;
 }
 
 int32_t main()
@@ -295,6 +268,7 @@ int32_t main()
     faster;
 
     int t = 1;
+    // cin >> t;
     int c = 1;
 
     while (t--)

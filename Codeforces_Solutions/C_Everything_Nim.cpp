@@ -237,57 +237,45 @@ void solution() // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0;
     int mn = INT_MAX, mx = INT_MIN;
+    int l, r;
 
-    cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
+    cin >> n;
 
-    FOR(1, idx + 1)
+    vi arr(n);
+    FOR(n)
     {
         cin >> arr[i];
-        if (i % 2 == 0)
-        {
-            if (arr[i - 1] < arr[i])
-            {
-            }
-            else
-            {
-                arr[i - 1] -= 1;
-                k--;
-            }
-        }
-        if (i > 2 && i % 2)
-        {
-            if (arr[i - 1] > arr[i])
-            {
-            }
-            else
-            {
-                arr[i] -= 1;
-                k--;
-            }
-        }
     }
-
-    // dbg(k);
-
-    for (int i = 2; i < idx + 1; i += 2)
+    vsort(arr);
+    // tashin;
+    // return;
+    printvec(arr);
+    cnt = 1;
+    flag = 0; // alice
+    while (cnt <= n)
     {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
+        if (cnt == n)
         {
-            arr[i]--;
-            k--;
-        }
-        if (k == 0)
             break;
+        }
+        if (cnt + 1 == n)
+        {
+            flag = !flag;
+            if (arr[cnt - 1] > 1)
+            {
+                arr[cnt - 1] = 1;
+                continue;
+            }
+        }
+
+        cnt++;
+        flag = !flag;
     }
 
-    FOR(1, idx + 1)
-    {
-        cout << arr[i] << " ";
-    }
-
-    newline;
+    if (flag)
+        cout << "Bob" << nl;
+    else
+        cout << "Alice" << nl;
 }
 
 int32_t main()
@@ -295,6 +283,7 @@ int32_t main()
     faster;
 
     int t = 1;
+    cin >> t;
     int c = 1;
 
     while (t--)

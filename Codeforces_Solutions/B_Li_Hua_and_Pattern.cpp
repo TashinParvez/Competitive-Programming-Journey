@@ -239,55 +239,49 @@ void solution() // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
+    int arr[n][n];
 
-    FOR(1, idx + 1)
+    FOR(n)
     {
-        cin >> arr[i];
-        if (i % 2 == 0)
+        for (int j = 0; j < n; j++)
         {
-            if (arr[i - 1] < arr[i])
-            {
-            }
-            else
-            {
-                arr[i - 1] -= 1;
-                k--;
-            }
-        }
-        if (i > 2 && i % 2)
-        {
-            if (arr[i - 1] > arr[i])
-            {
-            }
-            else
-            {
-                arr[i] -= 1;
-                k--;
-            }
+            cin >> arr[i][j];
         }
     }
 
-    // dbg(k);
-
-    for (int i = 2; i < idx + 1; i += 2)
+    FOR(n / 2)
     {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
+        for (int j = 0; j < n; j++)
         {
-            arr[i]--;
-            k--;
+            if (arr[i][j] != arr[n - 1 - i][n - 1 - j])
+                cnt++;
         }
-        if (k == 0)
-            break;
     }
 
-    FOR(1, idx + 1)
+    if (n % 2)
     {
-        cout << arr[i] << " ";
+        for (int j = 0; j < n / 2; j++)
+        {
+            if (arr[n / 2][j] != arr[n / 2][n - 1 - j])
+                cnt++;
+        }
     }
 
-    newline;
+    if (cnt > k)
+    {
+        NO
+    }
+    else
+    {
+        if ((k - cnt) % 2 && n % 2 == 0)
+        {
+            NO
+        }
+        else
+        {
+            YES
+        }
+    }
 }
 
 int32_t main()
@@ -295,6 +289,7 @@ int32_t main()
     faster;
 
     int t = 1;
+    cin >> t;
     int c = 1;
 
     while (t--)

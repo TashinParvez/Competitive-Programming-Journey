@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 28.04.2024
+ *    Created: 26.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -226,68 +226,69 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
+#define debug(x)       \
+    cerr << #x << " "; \
+    cerr << x << " ";  \
+    cerr << endl;
+#define debug(x) ;
+
 void solution() // main solution
 {
     int a, b, c, d;
-    int i, j, k, m, n, q;
-    int x, y, z;
+    int i, j, k, l, m, n, q;
+    int x, y, z, t;
 
     string s;
     bool flag = false;
 
     int ans, cnt = 0, idx = -1, sum = 0;
-    int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> k;
-    idx = 2 * n + 1;
-    int arr[idx + 1];
+    cin >> n;
 
-    FOR(1, idx + 1)
+    int arr[n];
+    mpii occ;
+    int mx = INT_MIN;
+
+    FOR(n)
     {
         cin >> arr[i];
-        if (i % 2 == 0)
-        {
-            if (arr[i - 1] < arr[i])
-            {
-            }
-            else
-            {
-                arr[i - 1] -= 1;
-                k--;
-            }
-        }
-        if (i > 2 && i % 2)
-        {
-            if (arr[i - 1] > arr[i])
-            {
-            }
-            else
-            {
-                arr[i] -= 1;
-                k--;
-            }
-        }
+        occ[arr[i]]++;
+        mx = max(mx, occ[arr[i]]);
     }
 
-    // dbg(k);
-
-    for (int i = 2; i < idx + 1; i += 2)
+    if (occ.size() == 1)
     {
-        if (arr[i] - 1 > arr[i - 1] && arr[i] - 1 > arr[i + 1])
-        {
-            arr[i]--;
-            k--;
-        }
-        if (k == 0)
-            break;
+        cout << -1 << nl;
+        return;
     }
 
-    FOR(1, idx + 1)
+    if (occ[arr[0]] != mx || occ[arr[n - 1]] != mx || arr[0] != arr[n - 1])
     {
-        cout << arr[i] << " ";
+        cout << 0 << nl;
+        return;
     }
 
-    newline;
+    int mn = INT_MAX;
+    cnt = 0;
+    FOR(n)
+    {
+        if (arr[0] == arr[i])
+        {
+            cnt++;
+        }
+        else
+        {
+            if (cnt == 0)
+            {
+                cout << 0 << nl;
+                return;
+            }
+            mn = min(mn, cnt);
+            cnt = 0;
+        }
+    }
+    mn = min(mn, cnt);
+    cout << mn << nl;
 }
 
 int32_t main()
@@ -295,6 +296,7 @@ int32_t main()
     faster;
 
     int t = 1;
+    cin >> t;
     int c = 1;
 
     while (t--)
