@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 01.05.2024
+ *    Created: 30.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -89,11 +89,11 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 
 #define all(a) (a).begin(), (a).end()
 
-#define vsort(v) sort(v.begin(), v.end())                 // Vector asc
-#define vsortrev(v) sort(v.begin(), v.end(), greater<>()) // Vector dec
+#define vsort(v) sort(v.begin(), v.end())                    // Vector asc
+#define vsortrev(v) sort(v.begin(), v.end(), greater<int>()) // Vector dec
 
-#define arrsort(a) sort(a, a + n)                    // array asc
-#define arrsortrev(a, n) sort(a, a + n, greater<>()) // array dec
+#define arrsort(a) sort(a, a + n)                       // array asc
+#define arrsortrev(a, n) sort(a, a + n, greater<int>()) // array dec
 
 //-------------------------------- pair -------------------------------
 
@@ -115,6 +115,7 @@ typedef pair<string, int> psi;
 
 //================== Int func's =================
 
+#define min3(a, b, c) min(min(a, b), c)
 #define mid3(a, b, c) (a + b + c) - max3(a, b, c) - min3(a, b, c)
 #define max3(a, b, c) max(max(a, b), c)
 
@@ -198,7 +199,7 @@ void printarr(int arr[], int len)
     for (int i = 0; i < len; i++)
         (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
 }
-void printvec(const vector<int> &vec)
+void printvec(vector<int> &vec)
 {
     for (size_t i = 0; i < vec.size(); ++i)
     {
@@ -228,46 +229,72 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; }
-
 void solution() // main solution
 {
     int a, b, c, d;
     int i, j, k, m, n, q;
     int x, y, z;
-    int l, r;
 
     string s;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
+    int ans, cnt = 0, idx = -1, sum = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> k;
-
+    cin >> n >> m;
     vi arr(n);
-    int even = 0;
+
     FOR(n)
     {
         cin >> arr[i];
-        if (arr[i] % 2 == 0)
-            even++;
-        mn = min(mn, k - arr[i] % k);
-        if (arr[i] % k == 0)
-            mn = 0;
     }
+    sort(arr.begin(), arr.end());
+    // vsort(arr); // asc
 
-    if (k == 4)
+    // printvec(arr);
+    // for (auto i : arr)
+    // {
+    //     cout << i << " ";
+    // }
+    // cout << nl;
+
+    vi arr2(m);
+    FOR(m)
     {
-        if (even >= 2)
-            mn = min(mn, (int)0);
-        else if (even == 1)
-            mn = min(mn, (int)1);
-        else
-            mn = min(mn, (int)2);
+        cin >> arr2[i];
     }
 
-    cout << mn << nl;
+    vsort(arr2); // asc
+
+    sum = 0;
+    int l = 0;
+    int r = m - 1;
+
+    // printvec(arr2);
+
+    int ptr1 = 0, ptr2 = n - 1;
+
+    while (ptr1 <= ptr2)
+    {
+        if (abs(arr[ptr1] - arr2[r]) >= abs(arr[ptr2] - arr2[l]))
+        {
+            // dbg(arr[ptr1]);
+            // dbg(arr2[r]);
+            sum += abs(arr[ptr1] - arr2[r]);
+            ptr1++;
+            r--;
+        }
+        else
+        {
+            // dbg(arr[ptr2]);
+            // dbg(arr2[l]);
+            sum += abs(arr[ptr2] - arr2[l]);
+            ptr2--;
+            l++;
+        }
+    }
+
+    cout << sum << nl;
 
     // newline;
 }

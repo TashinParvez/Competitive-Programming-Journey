@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 01.05.2024
+ *    Created: 30.04.2024
  **/
 
 #include <bits/stdc++.h>
@@ -72,9 +72,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 
 //-------------------------------- Vector -------------------------------
 #define vi vector<int>
-#define vc vector<char>
 #define vs vector<string>
-#define vb vector<bool>
 #define vii vector<pair<int, int>>
 #define vsi vector<pair<string, int>>
 
@@ -89,11 +87,11 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 
 #define all(a) (a).begin(), (a).end()
 
-#define vsort(v) sort(v.begin(), v.end())                 // Vector asc
-#define vsortrev(v) sort(v.begin(), v.end(), greater<>()) // Vector dec
+#define vsort(v) sort(v.begin(), v.end())                    // Vector asc
+#define vsortrev(v) sort(v.begin(), v.end(), greater<int>()) // Vector dec
 
-#define arrsort(a) sort(a, a + n)                    // array asc
-#define arrsortrev(a, n) sort(a, a + n, greater<>()) // array dec
+#define arrsort(a) sort(a, a + n)                       // array asc
+#define arrsortrev(a, n) sort(a, a + n, greater<int>()) // array dec
 
 //-------------------------------- pair -------------------------------
 
@@ -115,6 +113,7 @@ typedef pair<string, int> psi;
 
 //================== Int func's =================
 
+#define min3(a, b, c) min(min(a, b), c)
 #define mid3(a, b, c) (a + b + c) - max3(a, b, c) - min3(a, b, c)
 #define max3(a, b, c) max(max(a, b), c)
 
@@ -193,11 +192,6 @@ int getASCII(char c) { return c; }
 
 //================== Print func's =================
 
-void printarr(int arr[], int len)
-{
-    for (int i = 0; i < len; i++)
-        (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";
-}
 void printvec(const vector<int> &vec)
 {
     for (size_t i = 0; i < vec.size(); ++i)
@@ -228,48 +222,77 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; }
+bool comparePairs(const pii &a, const pii &b)
+{
+    return a.first > b.first;
+}
 
 void solution() // main solution
 {
     int a, b, c, d;
     int i, j, k, m, n, q;
     int x, y, z;
-    int l, r;
 
     string s;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
+    int ans, cnt = 0, idx = -1, sum = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> k;
+    cin >> n;
 
-    vi arr(n);
-    int even = 0;
+    vi arra(n);
+    vi arrb(n);
+    vi arrc(n);
+
+    vector<pii> sa;
+    vector<pii> sb;
+    vector<pii> sc;
+
     FOR(n)
     {
-        cin >> arr[i];
-        if (arr[i] % 2 == 0)
-            even++;
-        mn = min(mn, k - arr[i] % k);
-        if (arr[i] % k == 0)
-            mn = 0;
+        cin >> arra[i];
+        sa.pb({arra[i], i});
     }
-
-    if (k == 4)
+    FOR(n)
     {
-        if (even >= 2)
-            mn = min(mn, (int)0);
-        else if (even == 1)
-            mn = min(mn, (int)1);
-        else
-            mn = min(mn, (int)2);
+        cin >> arrb[i];
+        sb.pb({arrb[i], i});
+    }
+    FOR(n)
+    {
+        cin >> arrc[i];
+        sc.pb({arrc[i], i});
     }
 
-    cout << mn << nl;
+    sort(sa.begin(), sa.end(),  greater<>());
+    sort(sb.begin(), sb.end(),  greater<>());
+    sort(sc.begin(), sc.end(),  greater<>()); 
 
-    // newline;
+    for (ll i = 0; i < 3; i++)
+    {
+        for (ll j = 0; j < 3; j++)
+        {
+            for (ll k = 0; k < 3; k++)
+            {
+                a = sa[i].ss;
+                b = sb[j].ss;
+                c = sc[k].ss;
+
+                if (b == a)
+                    continue;
+                if (b == c || a == c)
+                    continue;
+                else
+                {
+                    int kk = sa[i].ff + sb[j].ff + sc[k].ff;
+                    mx = max(mx, kk);
+                }
+            }
+        }
+    }
+
+    cout << mx << nl;
 }
 
 int32_t main()

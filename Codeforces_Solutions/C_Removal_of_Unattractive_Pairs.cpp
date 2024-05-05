@@ -115,6 +115,7 @@ typedef pair<string, int> psi;
 
 //================== Int func's =================
 
+#define min3(a, b, c) min(min(a, b), c)
 #define mid3(a, b, c) (a + b + c) - max3(a, b, c) - min3(a, b, c)
 #define max3(a, b, c) max(max(a, b), c)
 
@@ -240,34 +241,25 @@ void solution() // main solution
     string s;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
+    int ans, cnt = 0, idx = -1, sum = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> k;
-
-    vi arr(n);
-    int even = 0;
+    cin >> n >> s;
+    map<char, int> same;
     FOR(n)
     {
-        cin >> arr[i];
-        if (arr[i] % 2 == 0)
-            even++;
-        mn = min(mn, k - arr[i] % k);
-        if (arr[i] % k == 0)
-            mn = 0;
+        same[s[i]]++;
+        mx = max(mx, same[s[i]]);
     }
 
-    if (k == 4)
+    if (mx > n / 2)
     {
-        if (even >= 2)
-            mn = min(mn, (int)0);
-        else if (even == 1)
-            mn = min(mn, (int)1);
-        else
-            mn = min(mn, (int)2);
+        cout << mx - (n - mx) << nl;
     }
-
-    cout << mn << nl;
+    else
+    {
+        cout << n % 2 << nl;
+    }
 
     // newline;
 }

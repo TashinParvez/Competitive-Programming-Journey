@@ -1,7 +1,7 @@
 /**
  *    Author :  Tashin.Parvez
  *    United International University
- *    Created: 01.05.2024
+ *    Created: 04.05.2024
  **/
 
 #include <bits/stdc++.h>
@@ -59,6 +59,11 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
     __f(comma + 1, args...);
 }
 
+#define fst cout << "----- First -----" << nl;
+#define snd cout << "----- Second -----" << nl;
+#define trd cout << "----- Third -----" << nl;
+#define fth cout << "----- Fourth -----" << nl;
+
 //--------------------------------- FOR --------------------------------
 
 #define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
@@ -115,6 +120,7 @@ typedef pair<string, int> psi;
 
 //================== Int func's =================
 
+#define min3(a, b, c) min(min(a, b), c)
 #define mid3(a, b, c) (a + b + c) - max3(a, b, c) - min3(a, b, c)
 #define max3(a, b, c) max(max(a, b), c)
 
@@ -236,6 +242,7 @@ void solution() // main solution
     int i, j, k, m, n, q;
     int x, y, z;
     int l, r;
+    int even = 0, odd = 0;
 
     string s;
     bool flag = false;
@@ -243,31 +250,34 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> k;
-
-    vi arr(n);
-    int even = 0;
-    FOR(n)
+    cin >> k >> n;
+    cnt = 0;
+    idx = 0;
+    i = 1;
+    while (1)
     {
-        cin >> arr[i];
-        if (arr[i] % 2 == 0)
-            even++;
-        mn = min(mn, k - arr[i] % k);
-        if (arr[i] % k == 0)
-            mn = 0;
-    }
-
-    if (k == 4)
-    {
-        if (even >= 2)
-            mn = min(mn, (int)0);
-        else if (even == 1)
-            mn = min(mn, (int)1);
+        if (i + cnt <= n && i + cnt + (k - idx - 1) <= n)
+        {
+            idx++;
+            i += cnt;
+            cout << i << " ";
+            cnt++;
+        }
         else
-            mn = min(mn, (int)2);
+        {
+            idx++;
+            i++;
+            cout << i << " ";
+        }
+
+        // newline;
+        // cout << "cnt ->" << cnt << "    idx ->" << idx << "   i  ->" << i << nl;
+
+        if (k - idx == 0)
+            break;
     }
 
-    cout << mn << nl;
+    cout << nl;
 
     // newline;
 }

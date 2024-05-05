@@ -91,5 +91,6 @@
         "stop_token": "cpp",
         "syncstream": "cpp",
         "variant": "cpp"
-    }
+    },
+    "git.ignoreLimitWarning": true
 }

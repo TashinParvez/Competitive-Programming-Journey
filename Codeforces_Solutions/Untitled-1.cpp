@@ -1,7 +1,7 @@
 /**
- *    Author :  Tashin.Parvez
+ *        Author :  Tashin.Parvez
  *    United International University
- *    Created: 29.04.2024
+ *          Created: 04.05.2024
 **/
 
 #include <bits/stdc++.h>
@@ -60,6 +60,10 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
     __f(comma + 1, args...);
 }
 
+#define fst                      cout << "----- First -----" << nl;
+#define snd                      cout << "----- Second -----" << nl;
+#define trd                      cout << "----- Third -----" << nl;
+#define fth                      cout << "----- Fourth -----" << nl;
 
 //--------------------------------- FOR --------------------------------
 
@@ -92,11 +96,11 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 
 #define all(a)                   (a).begin(),(a).end()
 
-#define vsort(v)                 sort(v.begin(), v.end())                    // Vector asc
-#define vsortrev(v)              sort(v.begin(), v.end(), greater<int>())    // Vector dec
+#define vsort(v)                 sort(v.begin(), v.end())                 // Vector asc
+#define vsortrev(v)              sort(v.begin(), v.end(), greater<>())    // Vector dec
 
-#define arrsort(a)               sort(a, a + n)                              // array asc
-#define arrsortrev(a)            sort(a, a + n, greater<int>())              // array dec
+#define arrsort(a)               sort(a, a + n)                           // array asc
+#define arrsortrev(a, n)         sort(a, a + n, greater<>())              // array dec
 
 //-------------------------------- pair -------------------------------
 
@@ -123,9 +127,11 @@ typedef pair<string, int>        psi;
 //================== Int func's =================    
 
 
-#define  min3(a, b, c)          min(min(a, b), c)
-#define  mid3(a, b, c)          (a + b + c) - max3(a, b, c) - min3(a, b, c) 
-#define  max3(a, b, c)          max(max(a, b), c)
+#define   min3(a, b, c)          min(min(a, b), c)
+#define   mid3(a, b, c)          (a + b + c) - max3(a, b, c) - min3(a, b, c) 
+#define   max3(a, b, c)          max(max(a, b), c)
+
+#define   MID(a, b)              a + ((b - a) / 2);
 
  
 ll   revnum     (ll n)          { ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*10+r;tmp/=10;}return ans;}
@@ -183,17 +189,20 @@ const int inf = 1e18;
 const int mod = 1000000007;
 
 
+bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; } 
 
 void solution()  // main solution
 {
     int a, b, c, d;
     int i, j, k, m, n, q;
     int x, y, z;
+    int l, r;
+    int even = 0, odd = 0;
 
     string s;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0;
+    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;

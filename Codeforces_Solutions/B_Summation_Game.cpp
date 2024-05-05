@@ -1,7 +1,7 @@
 /**
- *    Author :  Tashin.Parvez
+ *        Author :  Tashin.Parvez
  *    United International University
- *    Created: 01.05.2024
+ *          Created: 05.05.2024
  **/
 
 #include <bits/stdc++.h>
@@ -59,6 +59,11 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
     __f(comma + 1, args...);
 }
 
+#define fst cout << "----- First -----" << nl;
+#define snd cout << "----- Second -----" << nl;
+#define trd cout << "----- Third -----" << nl;
+#define fth cout << "----- Fourth -----" << nl;
+
 //--------------------------------- FOR --------------------------------
 
 #define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
@@ -115,8 +120,11 @@ typedef pair<string, int> psi;
 
 //================== Int func's =================
 
+#define min3(a, b, c) min(min(a, b), c)
 #define mid3(a, b, c) (a + b + c) - max3(a, b, c) - min3(a, b, c)
 #define max3(a, b, c) max(max(a, b), c)
+
+#define MID(a, b) a + ((b - a) / 2);
 
 ll revnum(ll n)
 {
@@ -236,6 +244,7 @@ void solution() // main solution
     int i, j, k, m, n, q;
     int x, y, z;
     int l, r;
+    int even = 0, odd = 0;
 
     string s;
     bool flag = false;
@@ -243,33 +252,68 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> k;
+    cin >> n >> k >> x;
 
-    vi arr(n);
-    int even = 0;
-    FOR(n)
+    vi arr(n + 1);
+    vi sufSum(n + 1);
+    vi presum(n + 1);
+
+    FOR(1, n + 1)
     {
         cin >> arr[i];
-        if (arr[i] % 2 == 0)
-            even++;
-        mn = min(mn, k - arr[i] % k);
-        if (arr[i] % k == 0)
-            mn = 0;
     }
+    arr[0] = 0;
 
-    if (k == 4)
+    vsort(arr);
+
+    presum[0] = 0;
+    FOR(1, n + 1)
     {
-        if (even >= 2)
-            mn = min(mn, (int)0);
-        else if (even == 1)
-            mn = min(mn, (int)1);
-        else
-            mn = min(mn, (int)2);
+        presum[i] = presum[i - 1] + arr[i];
     }
 
-    cout << mn << nl;
+    sufSum[n] = arr[n];
+    FOR(n - 1, 0)
+    {
+        sufSum[i] = sufSum[i + 1] + arr[i];
+    }
 
-    // newline;
+    sum = INT_MIN;
+    int remove = k;
+
+    FOR(n, 0)
+    {
+        if (remove < 0)
+            break;
+
+        if (i - x >= 0)
+            l = i - x + 1;
+        else
+            l = 1;
+
+        if (i == n)
+            r = 0;
+        else
+            r = i + 1;
+
+        int biyog = sufSum[l] - sufSum[r];
+
+        if (l == 1)
+            l = 0;
+        else
+            l--; 
+
+        int temp = presum[l] - biyog;
+
+        int prevsum = sum;
+        sum = max(sum, temp);
+        remove--;
+    }
+
+    if (n <= k)
+        sum = max((int)0, sum);
+
+    cout << sum << nl;
 }
 
 int32_t main()
