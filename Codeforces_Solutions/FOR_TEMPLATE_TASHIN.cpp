@@ -247,6 +247,14 @@ ll str_to_int(string s)
 }
 /********************************************************************************/
 
+void swap(int &a, int &b)  // need to add must
+{
+    a = a + b;
+    b = a - b;
+    a = a - b;
+}
+
+
 #define ll long long
 #define all(a) (a).begin(), (a).end()
 
