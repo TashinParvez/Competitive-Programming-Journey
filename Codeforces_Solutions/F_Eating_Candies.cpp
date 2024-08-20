@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 17.08.2024
+ *          Created: 18.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -246,44 +246,80 @@ void solution() // main solution
     string s;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
+    int cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    r = 0;
-    b = 0;
+    cin >> n;
+    int arr[n + 1];
 
-    FOR(n)
+    int presum[n + 1];
+    int sufsum[n + 1];
+    sum = 0;
+    presum[0] = sum;
+
+    FOR(1, n + 1)
     {
-        if (s[i] == 'W')
-        {
-            if ((r == 0 && b == 0) || (r == 1 && b == 1))
-            {
-                r = 0;
-                b = 0;
-            }
-            else
-            {
-                NO;
-                return;
-            }
-        }
-        else if (s[i] == 'B')
-        {
-            b = 1;
-        }
-        else if (s[i] == 'R')
-        {
-            r = 1;
-        }
+        cin >> arr[i];
+        sum += arr[i];
+        presum[i] = sum;
     }
 
-    if ((r == 0 && b == 0) || (r == 1 && b == 1))
+    sum = 0;
+    sufsum[0] = sum;
+
+    FOR(n, 0)
     {
-        YES;
+        sum += arr[i];
+        sufsum[i] = sum;
+    }
+
+    // printarr(presum, n + 1);
+    // printarr(sufsum, n + 1);
+
+    vector<pair<int, int>> ans;
+    ans.pb({-1, -1});
+
+    j = n;
+    FOR(1, n + 1)
+    {
+        // tashin;
+
+        while (j > 0)
+        {
+            if (presum[i] == sufsum[j] && i < j)
+            {
+                // cout << i << " " << j << nl;
+                ans.pb({i, j});
+            }
+            if (i >= j)
+                break;
+
+            if (presum[i] > sufsum[j])
+            {
+                j--;
+                continue;
+            }
+            else if (presum[i] <= sufsum[j])
+            {
+                break;
+            }
+        }
+        if (i >= j)
+            break;
+    }
+
+    int alice = ans[ans.size() - 1].ff, bob = ans[ans.size() - 1].ss;
+
+    if (alice == -1)
+    {
+        cout << 0 << nl;
     }
     else
-        NO;
+    {
+        // dbg(alice);
+        // dbg(bob);
+        cout << alice + n + 1 - bob << nl;
+    }
 
     // newline;
 }

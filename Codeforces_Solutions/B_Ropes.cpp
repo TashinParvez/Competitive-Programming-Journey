@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 17.08.2024
+ *          Created: 19.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -246,46 +246,51 @@ void solution() // main solution
     string s;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
+    int ans, cnt = 0, idx = -1, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    r = 0;
-    b = 0;
+    cin >> n >> k;
 
+    int arr[n];
     FOR(n)
     {
-        if (s[i] == 'W')
-        {
-            if ((r == 0 && b == 0) || (r == 1 && b == 1))
-            {
-                r = 0;
-                b = 0;
-            }
-            else
-            {
-                NO;
-                return;
-            }
-        }
-        else if (s[i] == 'B')
-        {
-            b = 1;
-        }
-        else if (s[i] == 'R')
-        {
-            r = 1;
-        }
+        cin >> arr[i];
     }
 
-    if ((r == 0 && b == 0) || (r == 1 && b == 1))
+    double start = 0, end = 10000;
+    cout << setprecision(7);
+
+    while (start <= end)
     {
-        YES;
-    }
-    else
-        NO;
+        double mid = start + (end - start) / 2.0;
+        int sum = 0;
+        // cout << start << " " << end << nl;
+        // dbg(mid);
 
-    // newline;
+        FOR(n)
+        {
+            sum += arr[i] / mid;
+        }
+        // dbg(sum);
+        // cout << "---------" << nl;
+
+        if (sum == k || mid == 0)
+        {
+            ans = mid;
+            start = mid ;
+        }
+        else if (sum < k)
+        {
+            end = mid;
+        }
+        else
+        {
+            ans = mid;
+            start = mid;
+        }
+    }
+
+    cout << ans << nl; 
 }
 
 int32_t main()
@@ -293,7 +298,6 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
     int c = 1;
 
     while (t--)

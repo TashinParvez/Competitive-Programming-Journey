@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 17.08.2024
+ *          Created: 20.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -12,6 +12,7 @@
 
 // #define Read(x)          freopen(x, "r", stdin)
 // #define Write(x)         freopen(x, "w", stdout)
+
 #define CRACKED return 0;
 #define nl "\n"
 using namespace std;
@@ -116,6 +117,13 @@ typedef pair<string, int> psi;
 #define mpci map<char, int>
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Some Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#define mem (a, b) memset(a, b, sizeof(a))
+
+//------------------------------ NumberTheory ------------------------------
+
+#define lcm(a, b) (a * (b / __gcd(a, b)))
+#define gcd(a, b) __gcd(a, b)
 
 //------------------------------- Int func's -------------------------------
 
@@ -234,7 +242,10 @@ const int inf = 1e18;
 const int mod = 1000000007;
 
 bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; }
-
+struct Presum
+{
+    int a, b, c;
+};
 void solution() // main solution
 {
     int a, b, c, d;
@@ -249,41 +260,39 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    r = 0;
-    b = 0;
+    cin >> n >> q;
+    int arr[n + 1];
+    vector<Presum> presum;
+    a = 0, b = 0, c = 0;
+    presum.pb({a, b, c});
 
-    FOR(n)
+    FOR(1, n + 1)
     {
-        if (s[i] == 'W')
+        cin >> arr[i];
+        if (arr[i] == 1)
         {
-            if ((r == 0 && b == 0) || (r == 1 && b == 1))
-            {
-                r = 0;
-                b = 0;
-            }
-            else
-            {
-                NO;
-                return;
-            }
+            a += 1;
         }
-        else if (s[i] == 'B')
+        else if (arr[i] == 2)
         {
-            b = 1;
+            b += 1;
         }
-        else if (s[i] == 'R')
+        else
         {
-            r = 1;
+            c += 1;
         }
+
+        presum.push_back({a, b, c});
     }
 
-    if ((r == 0 && b == 0) || (r == 1 && b == 1))
+    while (q--)
     {
-        YES;
+        cin >> l >> r;
+        cout
+            << presum[r].a - presum[l - 1].a << " "
+            << presum[r].b - presum[l - 1].b << " "
+            << presum[r].c - presum[l - 1].c << nl;
     }
-    else
-        NO;
 
     // newline;
 }
@@ -291,9 +300,12 @@ void solution() // main solution
 int32_t main()
 {
     faster;
-
+    
+    freopen("bcount.in", "r", stdin);  // for  usaco
+	freopen("bcount.out", "w", stdout); // for  usaco
+    
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

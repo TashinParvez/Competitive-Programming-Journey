@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 17.08.2024
+ *          Created: 19.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -249,41 +249,85 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    r = 0;
-    b = 0;
+    cin >> n;
 
+    int arr[n];
     FOR(n)
     {
-        if (s[i] == 'W')
+        cin >> arr[i];
+    }
+    cin >> q;
+
+    arrsort(arr);
+    // printarr(arr, n);
+
+    while (q--)
+    {
+        cin >> l >> r;
+
+        int lowerbound = -1, upperbound = -1;
+
+        x = l;
+        ans = -1;
+        int start = 0, end = n - 1;
+        while (start <= end)
         {
-            if ((r == 0 && b == 0) || (r == 1 && b == 1))
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == x)
             {
-                r = 0;
-                b = 0;
+                ans = mid;
+                end = mid - 1;
+            }
+            else if (arr[mid] < x)
+            {
+                start = mid + 1;
             }
             else
             {
-                NO;
-                return;
+                ans = mid;
+                end = mid - 1;
             }
         }
-        else if (s[i] == 'B')
-        {
-            b = 1;
-        }
-        else if (s[i] == 'R')
-        {
-            r = 1;
-        }
-    }
 
-    if ((r == 0 && b == 0) || (r == 1 && b == 1))
-    {
-        YES;
+        if (ans == -1)
+        {
+            ans = n;
+        }
+        lowerbound = ans;
+
+        x = r;
+        ans = -1;
+        start = 0, end = n - 1;
+        while (start <= end)
+        {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == x)
+            {
+                // ans = mid;
+                start = mid + 1;
+            }
+            else if (arr[mid] < x)
+            {
+                start = mid + 1;
+            }
+            else
+            {
+                ans = mid;
+                end = mid - 1;
+            }
+        }
+
+        if (ans == -1)
+        {
+            ans = n;
+        }
+        upperbound = ans;
+
+        // dbg(lowerbound);
+        // dbg(upperbound);
+        cout << upperbound - lowerbound  << " ";
+        // tashin;
     }
-    else
-        NO;
 
     // newline;
 }
@@ -293,7 +337,6 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
     int c = 1;
 
     while (t--)

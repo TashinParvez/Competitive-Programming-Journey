@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 17.08.2024
+ *          Created: 20.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -116,6 +116,13 @@ typedef pair<string, int> psi;
 #define mpci map<char, int>
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Some Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#define mem (a, b) memset(a, b, sizeof(a))
+
+//------------------------------ NumberTheory ------------------------------
+
+#define lcm(a, b) (a * (b / __gcd(a, b)))
+#define gcd(a, b) __gcd(a, b)
 
 //------------------------------- Int func's -------------------------------
 
@@ -249,41 +256,25 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    r = 0;
-    b = 0;
-
-    FOR(n)
+    cin >> n;
+    int arr[n];
+    cin >> arr[0];
+    FOR(1, n)
     {
-        if (s[i] == 'W')
-        {
-            if ((r == 0 && b == 0) || (r == 1 && b == 1))
-            {
-                r = 0;
-                b = 0;
-            }
-            else
-            {
-                NO;
-                return;
-            }
-        }
-        else if (s[i] == 'B')
-        {
-            b = 1;
-        }
-        else if (s[i] == 'R')
-        {
-            r = 1;
-        }
+        cin >> arr[i];
+        ans = gcd(arr[i - 1], arr[i]);
     }
 
-    if ((r == 0 && b == 0) || (r == 1 && b == 1))
+    i = 2;
+    cnt = 1;
+    while (i <= ans)
     {
-        YES;
+        if (ans % i == 0)
+            cnt++;
+        i++;
     }
-    else
-        NO;
+
+    cout << cnt << nl;
 
     // newline;
 }
@@ -293,7 +284,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)

@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 17.08.2024
+ *          Created: 20.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -116,6 +116,13 @@ typedef pair<string, int> psi;
 #define mpci map<char, int>
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Some Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#define mem (a, b) memset(a, b, sizeof(a))
+
+//------------------------------ NumberTheory ------------------------------
+
+#define lcm(a, b) (a * (b / __gcd(a, b)))
+#define gcd(a, b) __gcd(a, b)
 
 //------------------------------- Int func's -------------------------------
 
@@ -249,41 +256,8 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    r = 0;
-    b = 0;
-
-    FOR(n)
-    {
-        if (s[i] == 'W')
-        {
-            if ((r == 0 && b == 0) || (r == 1 && b == 1))
-            {
-                r = 0;
-                b = 0;
-            }
-            else
-            {
-                NO;
-                return;
-            }
-        }
-        else if (s[i] == 'B')
-        {
-            b = 1;
-        }
-        else if (s[i] == 'R')
-        {
-            r = 1;
-        }
-    }
-
-    if ((r == 0 && b == 0) || (r == 1 && b == 1))
-    {
-        YES;
-    }
-    else
-        NO;
+    cin >> a >> b;
+    cout << lcm(a, b) << " " << gcd(a, b) << nl;
 
     // newline;
 }

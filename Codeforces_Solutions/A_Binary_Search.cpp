@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 17.08.2024
+ *          Created: 19.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -249,41 +249,44 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    r = 0;
-    b = 0;
+    cin >> n >> q;
 
+    int arr[n];
     FOR(n)
     {
-        if (s[i] == 'W')
-        {
-            if ((r == 0 && b == 0) || (r == 1 && b == 1))
-            {
-                r = 0;
-                b = 0;
-            }
-            else
-            {
-                NO;
-                return;
-            }
-        }
-        else if (s[i] == 'B')
-        {
-            b = 1;
-        }
-        else if (s[i] == 'R')
-        {
-            r = 1;
-        }
+        cin >> arr[i];
     }
 
-    if ((r == 0 && b == 0) || (r == 1 && b == 1))
+    while (q--)
     {
-        YES;
+        cin >> x;
+        flag = 0;
+
+        int start = 0, end = n - 1;
+        while (start <= end)
+        {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == x)
+            {
+                flag = 1;
+                break;
+            }
+            else if (arr[mid] < x)
+            {
+                start = mid + 1;
+            }
+            else
+                end = mid - 1;
+        }
+        if (flag)
+        {
+            YES;
+        }
+        else
+        {
+            NO;
+        }
     }
-    else
-        NO;
 
     // newline;
 }
@@ -293,7 +296,6 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
     int c = 1;
 
     while (t--)

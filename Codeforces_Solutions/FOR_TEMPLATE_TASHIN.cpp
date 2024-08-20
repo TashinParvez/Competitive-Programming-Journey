@@ -4,6 +4,7 @@ using namespace std;
 #define pb push_back
 #define pop pop_back
 
+
 //--------------------------------------------------------------------------------
 
 // Big Mod
@@ -33,17 +34,6 @@ const int dr[] = {0, 1, 0, -1, -1, 1, 1, -1, -2, -2, 2, 2, -1, -1, 1, 1};
 const int dc[] = {1, 0, -1, 0, 1, 1, -1, -1, -1, 1, -1, 1, -2, 2, -2, 2};
 
 /**************************************** Need to add Func ***********************************************/
-
-int intreverse(int n)
-{
-    int newnumb = 0;
-    while (n)
-    {
-        newnumb = newnumb * 10 + n % 10;
-        n /= 10;
-    }
-    return newnumb;
-}
 
 // Get All The Divisors Of That Number
 vector<int> getdiv(int n)
@@ -143,6 +133,7 @@ int sum_digit(int x)
     }
     return sum;
 }
+
 ll reverse_num(ll n)
 {
     ll tmp = n, ans = 0, r;
@@ -154,6 +145,7 @@ ll reverse_num(ll n)
     }
     return ans;
 }
+
 ll factorial(ll n)
 {
     ll i, ans = 1;
@@ -163,21 +155,7 @@ ll factorial(ll n)
     }
     return ans;
 }
-ll gcd(ll num1, ll num2)
-{
-    ll a, b, r;
-    a = num1;
-    b = num2;
-    r = a % b;
-    while (r > 0)
-    {
-        a = b;
-        b = r;
-        r = a % b;
-    }
-    return b;
-}
-ll lcm(ll num1, ll num2) { return (num1 * num2) / gcd(num1, num2); }
+
 bool prime(ll n)
 {
     if (n < 2)
@@ -208,16 +186,6 @@ ll mod_inverse(ll a, ll p, ll m)
     return r;
 }
 
-ll POW(ll a, ll b)
-{
-    if (!b)
-        return 1;
-    ll r = POW(a, b / 2);
-    if (b % 2)
-        return r * r * a;
-    else
-        return r * r;
-}
 ll LOG2(ll n)
 {
     ll v = 1, c = 0;
@@ -227,6 +195,7 @@ ll LOG2(ll n)
 }
 
 #define all(s) s.begin(), s.end()
+
 string int_to_str(ll x)
 {
     string s;
@@ -238,6 +207,7 @@ string int_to_str(ll x)
     reverse(all(s));
     return s;
 }
+
 ll str_to_int(string s)
 {
     istringstream ss(s);
@@ -246,14 +216,6 @@ ll str_to_int(string s)
     return n;
 }
 /********************************************************************************/
-
-void swap(int &a, int &b)  // need to add must
-{
-    a = a + b;
-    b = a - b;
-    a = a - b;
-}
-
 
 #define ll long long
 #define all(a) (a).begin(), (a).end()
@@ -269,21 +231,8 @@ ll reverse_num(ll n)
     }
     return ans;
 }
-ll gcd(ll num1, ll num2)
-{
-    ll a, b, r;
-    a = num1;
-    b = num2;
-    r = a % b;
-    while (r > 0)
-    {
-        a = b;
-        b = r;
-        r = a % b;
-    }
-    return b;
-}
-ll lcm(ll num1, ll num2) { return (num1 * num2) / gcd(num1, num2); }
+
+
 bool isprime(ll n)
 {
     if (n < 2)
@@ -299,21 +248,14 @@ bool isprime(ll n)
     }
     return true;
 }
+
 bool isSquare(ll x)
 {
     ll sq = sqrt(x);
     return sq * sq == x;
 }
-ll POW(ll a, ll b)
-{
-    if (!b)
-        return 1;
-    ll r = POW(a, b / 2);
-    if (b % 2)
-        return r * r * a;
-    else
-        return r * r;
-}
+
+
 string int_to_str(ll x)
 {
     string s;
@@ -380,13 +322,15 @@ ll str_to_int(string s)
     }                            \
     cout << endl;
 
+
 #define printa(a, L, R)         \
     for (int i = L; i < R; i++) \
     cout << a[i] << (i == R - 1 ? '\n' : ' ')
 
+
 #define printv(a) printa(a, 0, a.size())
 
-/********************************************************************************/
+/********************************** input **********************************************/
 
 #define sf(a) scanf("%d", &a)
 #define sfl(a) scanf("%lld", &a)
@@ -426,4 +370,27 @@ void _print(T t, V... v)
     if (sizeof...(v))
         cout << ", ";
     _print(v...);
+}
+
+
+//------------------------------------------ Binary Search  ------------------------------------------
+
+#define   MID(a, b)              a + ((b - a) / 2);
+
+int binary_search_first_true(function<bool(int)> f, int low, int high) {
+    while (low < high) {
+        int mid = MID(low, high);
+        if (f(mid)) high = mid;
+        else low = mid + 1;
+    }
+    return low;
+}
+
+int binary_search_last_true(function<bool(int)> f, int low, int high) {
+    while (low < high) {
+        int mid = MID(low, high);
+        if (f(mid)) low = mid;
+        else high = mid - 1;
+    }
+    return low;
 }

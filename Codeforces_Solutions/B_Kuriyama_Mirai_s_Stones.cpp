@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 17.08.2024
+ *          Created: 20.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -97,7 +97,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsort(v) sort(v.begin(), v.end())                 // Vector asc
 #define vsortrev(v) sort(v.begin(), v.end(), greater<>()) // Vector dec
 
-#define arrsort(a) sort(a, a + n)                    // array asc
+#define arrsort(a, n) sort(a, a + n)                 // array asc
 #define arrsortrev(a, n) sort(a, a + n, greater<>()) // array dec
 
 //-------------------------------- pair -------------------------------
@@ -116,6 +116,13 @@ typedef pair<string, int> psi;
 #define mpci map<char, int>
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Some Func $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+#define mem (a, b) memset(a, b, sizeof(a))
+
+//------------------------------ NumberTheory ------------------------------
+
+#define lcm(a, b) (a * (b / __gcd(a, b)))
+#define gcd(a, b) __gcd(a, b)
 
 //------------------------------- Int func's -------------------------------
 
@@ -249,41 +256,43 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    r = 0;
-    b = 0;
-
-    FOR(n)
+    cin >> n;
+    int arr[n + 1];
+    arr[0] = 0;
+    int presum[n + 1];
+    presum[0] = 0;
+    FOR(1, n + 1)
     {
-        if (s[i] == 'W')
-        {
-            if ((r == 0 && b == 0) || (r == 1 && b == 1))
-            {
-                r = 0;
-                b = 0;
-            }
-            else
-            {
-                NO;
-                return;
-            }
-        }
-        else if (s[i] == 'B')
-        {
-            b = 1;
-        }
-        else if (s[i] == 'R')
-        {
-            r = 1;
-        }
+        cin >> arr[i];
+        presum[i] = presum[i - 1] + arr[i];
     }
 
-    if ((r == 0 && b == 0) || (r == 1 && b == 1))
+    // printarr(presum, n + 1);
+
+    arrsort(arr, n + 1);
+
+    int sortedPresum[n + 1];
+    sortedPresum[0] = 0;
+    FOR(n + 1)
     {
-        YES;
+        sortedPresum[i] = sortedPresum[i - 1] + arr[i];
     }
-    else
-        NO;
+
+    cin >> q;
+    while (q--)
+    {
+        int type;
+        cin >> type >> l >> r;
+
+        if (type == 1)
+        {
+            cout << presum[r] - presum[l - 1] << nl;
+        }
+        else
+        {
+            cout << sortedPresum[r] - sortedPresum[l - 1] << nl;
+        }
+    }
 
     // newline;
 }
@@ -293,7 +302,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
 
     while (t--)
