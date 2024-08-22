@@ -77,24 +77,6 @@ vector<int> getprimefac(int n)
     return ans;
 }
 
-// get instant prime
-vector<int> sieve(int n)
-{
-    int *a = new int[n + 1]();
-    vector<int> vect;
-    for (int i = 2; i <= n; i++)
-    {
-        if (a[i] == 0)
-        {
-            vect.push_back(i);
-            for (int j = i * i; j <= n; j += i)
-            {
-                a[j] = 1;
-            }
-        }
-    }
-    return vect;
-}
 
 vector<int> firstnprimes(int n)
 {
@@ -156,7 +138,7 @@ ll factorial(ll n)
     return ans;
 }
 
-bool prime(ll n)
+bool primeCheck(ll n)
 {
     if (n < 2)
         return false;
@@ -167,6 +149,7 @@ bool prime(ll n)
     }
     return true;
 }
+
 bool isSquare(ll x)
 {
     ll sq = sqrt(x);
@@ -394,3 +377,23 @@ int binary_search_last_true(function<bool(int)> f, int low, int high) {
     }
     return low;
 }
+
+
+
+// =======================================================
+// ======================= OLD ===========================
+// =======================================================
+
+
+//--------------------------------- FOR Previous --------------------------------
+#define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
+#define FOR(...)                 FOR_OVERLOAD(__VA_ARGS__, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
+
+#define FOR_ONE_ARG(n)           for(int i = 0; i < (n); i++)
+#define FOR_TWO_ARGS(a, b)       for(int i = (a); (a) <= (b) ? (i < (b)) : (i > (b)); (a) <= (b) ? ++i : --i)
+
+#define FORJ(n)                  for (int j = 0; j < (n); j++)
+#define FORK(n)                  for (int k = 0; k < (n); k++) 
+
+// ------------------
+

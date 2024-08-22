@@ -1,7 +1,7 @@
 /**
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 21.08.2024
+ *          Created: 20.08.2024
  **/
 
 #include <bits/stdc++.h>
@@ -97,7 +97,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsort(v) sort(v.begin(), v.end())                 // Vector asc
 #define vsortrev(v) sort(v.begin(), v.end(), greater<>()) // Vector dec
 
-#define arrsort(a, n) sort(a, a + n)                 // array asc
+#define arrsort(a) sort(a, a + n)                    // array asc
 #define arrsortrev(a, n) sort(a, a + n, greater<>()) // array dec
 
 //-------------------------------- pair -------------------------------
@@ -242,9 +242,6 @@ const int mod = 1000000007;
 
 bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; }
 
-const int idxlimit = 1e12;
-int arr[idxlimit + 2];
-
 void solution() // main solution
 {
     int a, b, c, d;
@@ -259,34 +256,49 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    int nums[n];
-    FOR(n)
-    {
-        cin >> nums[i];
-        mx = max(mx, nums[i]);
-    }
-    arrsort(nums, n);
-    int ansCnt = 0;
+    cin >> r >> c;
+    char arr[r][c];
 
-    FOR(1, mx + 1)
+    int row[r], col[c], cntR = r, cntC = c;
+    mem(row, 0);
+    mem(col, 0);
+
+    FOR(r)
     {
-        cnt = 0;
-        for (int j = 0, k = i; j <= n, k < mx + 1; k += i)
+        FORJ(c)
         {
-            if (arr[j] == k)
+            cin >> arr[i][j];
+
+            if (arr[i][j] == 'S')
             {
-                cnt++;
-            }
-            if (arr[j] == k || arr[j] < k)
-            {
-                j++;
+                if (row[i] == 0)
+                {
+                    row[i] = 1;
+                    cntR--;
+                }
+
+                if (col[j] == 0)
+                {
+                    col[j] = 1;
+                    cntC--;
+                }
             }
         }
-        if (cnt == n)
-            ansCnt++;
     }
-    cout << ansCnt << nl;
+
+    // FOR(r)
+    // {
+    //     FORJ(c)
+    //     {
+    //         cout << arr[i][j];
+    //     }
+    //     cout << nl;
+    // }
+
+    // dbg(cntR, cntC);
+
+    cout << cntR * c + (cntC * r) - (cntR * cntC) << nl;
+
     // newline;
 }
 

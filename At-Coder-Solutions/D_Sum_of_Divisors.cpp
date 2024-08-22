@@ -97,7 +97,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsort(v) sort(v.begin(), v.end())                 // Vector asc
 #define vsortrev(v) sort(v.begin(), v.end(), greater<>()) // Vector dec
 
-#define arrsort(a, n) sort(a, a + n)                 // array asc
+#define arrsort(a) sort(a, a + n)                    // array asc
 #define arrsortrev(a, n) sort(a, a + n, greater<>()) // array dec
 
 //-------------------------------- pair -------------------------------
@@ -242,8 +242,8 @@ const int mod = 1000000007;
 
 bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; }
 
-const int idxlimit = 1e12;
-int arr[idxlimit + 2];
+const int limit = 1e7;
+int arr[limit + 2];
 
 void solution() // main solution
 {
@@ -260,33 +260,23 @@ void solution() // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    int nums[n];
-    FOR(n)
-    {
-        cin >> nums[i];
-        mx = max(mx, nums[i]);
-    }
-    arrsort(nums, n);
-    int ansCnt = 0;
 
-    FOR(1, mx + 1)
+    for (int i = 1; i <= limit; i++)
     {
-        cnt = 0;
-        for (int j = 0, k = i; j <= n, k < mx + 1; k += i)
+        for (int j = i; j < n + 1; j += i)
         {
-            if (arr[j] == k)
-            {
-                cnt++;
-            }
-            if (arr[j] == k || arr[j] < k)
-            {
-                j++;
-            }
+            arr[j]++;
         }
-        if (cnt == n)
-            ansCnt++;
+        if (i > n)
+            break;
     }
-    cout << ansCnt << nl;
+    for (int i = 1; i <= n; i++)
+    {
+        sum += arr[i] * i;
+    }
+
+    cout << sum << nl;
+
     // newline;
 }
 

@@ -97,7 +97,7 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define vsort(v) sort(v.begin(), v.end())                 // Vector asc
 #define vsortrev(v) sort(v.begin(), v.end(), greater<>()) // Vector dec
 
-#define arrsort(a, n) sort(a, a + n)                 // array asc
+#define arrsort(a) sort(a, a + n)                    // array asc
 #define arrsortrev(a, n) sort(a, a + n, greater<>()) // array dec
 
 //-------------------------------- pair -------------------------------
@@ -237,72 +237,41 @@ void vecprint(const vector<int> &vec)
 */
 
 const double PI = 3.1415926535;
-const int inf = 1e18;
+const int inf = 1e6 + 123;
 const int mod = 1000000007;
 
 bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; }
 
-const int idxlimit = 1e12;
-int arr[idxlimit + 2];
+int divi[inf];
 
 void solution() // main solution
 {
-    int a, b, c, d;
-    int i, j, k, m, n, q;
-    int u, v, x, y, z;
-    int l, r;
-    int even = 0, odd = 0;
+    int n, x;
 
-    string s;
-    bool flag = false;
+    int limit = 1e6;
 
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
-    int mn = INT_MAX, mx = INT_MIN;
+    for (int i = 1; i <= limit; i++)
+    {
+        for (int j = i; j <= limit; j += i)
+        {
+            divi[j]++;
+        }
+    }
 
     cin >> n;
-    int nums[n];
+
     FOR(n)
     {
-        cin >> nums[i];
-        mx = max(mx, nums[i]);
+        cin >> x;
+        cout << divi[x] << nl;
     }
-    arrsort(nums, n);
-    int ansCnt = 0;
-
-    FOR(1, mx + 1)
-    {
-        cnt = 0;
-        for (int j = 0, k = i; j <= n, k < mx + 1; k += i)
-        {
-            if (arr[j] == k)
-            {
-                cnt++;
-            }
-            if (arr[j] == k || arr[j] < k)
-            {
-                j++;
-            }
-        }
-        if (cnt == n)
-            ansCnt++;
-    }
-    cout << ansCnt << nl;
-    // newline;
 }
 
 int32_t main()
 {
     faster;
 
-    int t = 1;
-    // cin >> t;
-    int c = 1;
-
-    while (t--)
-    {
-        // cout << "Case " << c++ << ": ";
-        solution();
-    }
+    solution();
 
     CRACKED;
 }

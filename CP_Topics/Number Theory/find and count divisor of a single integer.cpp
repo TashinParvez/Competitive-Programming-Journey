@@ -12,13 +12,16 @@ using namespace std;
 
 int32_t main()
 {
-    /* Brute force*/
-    // find and count divisor
     cout << nl;
+    /*-------------------------------------- Brute force -------------------------------- */
+    //-------------------------------- find and count divisor of a single integer
+
     // int n = 24;
     int n = 36;
     int count = 0;
     int sum = 0;
+
+    cout << "Divisors: ";
     for (int i = 1; i <= n; i++) // O(n)
     {
         if (n % i == 0)
@@ -29,13 +32,18 @@ int32_t main()
         }
     }
     cout << "\nTotal divisor " << count << nl;
-    cout << "Sum divisor " << sum << nl << nl;
+    cout << "Sum of divisors " << sum << nl << nl;
     count = 0;
     sum = 0;
+    //
+    //
+    //
+    /*------------------------------------- Optimized -------------------------------------*/
+    //-------------------------------- worked for any code
 
-    /*Optimized*/                      // worked for any code
+    cout << "Divisors: ";
     for (int i = 1; i <= sqrt(n); i++) // square root n  //  O(squareRoot N)
-    // for (int i = 1; i*1 <= n; i++)  // another way
+    // for (int i = 1; i*i <= n; i++)  // another way
     {
         if (n % i == 0)
         {

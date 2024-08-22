@@ -67,11 +67,12 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
 #define fth cout << "----- Fourth -----" << nl;
 
 //--------------------------------- FOR --------------------------------
-#define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
-#define FOR(...) FOR_OVERLOAD(__VA_ARGS__, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
+#define FOR_OVERLOAD(_1, _2, _3, NAME, ...) NAME
+#define FOR(...) FOR_OVERLOAD(__VA_ARGS__, FOR_THREE_ARGS, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
 
 #define FOR_ONE_ARG(n) for (int i = 0; i < (n); i++)
 #define FOR_TWO_ARGS(a, b) for (int i = (a); (a) <= (b) ? (i < (b)) : (i > (b)); (a) <= (b) ? ++i : --i)
+#define FOR_THREE_ARGS(a, b, c) for (int i = (a); (c) > 0 ? (i < (b)) : (i > (b)); i += (c))
 
 #define FORJ(n) for (int j = 0; j < (n); j++)
 #define FORK(n) for (int k = 0; k < (n); k++)
@@ -123,6 +124,25 @@ typedef pair<string, int> psi;
 
 #define lcm(a, b) (a * (b / __gcd(a, b)))
 #define gcd(a, b) __gcd(a, b)
+
+vector<int> sieve(int n)
+{
+    const int idx = 1e8;
+    bitset<idx> isprime;
+    vector<int> primeNumbers;
+    for (int i = 3; i <= n; i += 2)
+        isprime[i] = 1;
+    int sq = sqrt(n);
+    for (int i = 3; i <= sq; i += 2)
+        if (isprime[i])
+            for (int j = i * i; j <= n; j += i)
+                isprime[j] = 0;
+    primeNumbers.push_back(2);
+    for (int i = 3; i <= n; i += 2)
+        if (isprime[i])
+            primeNumbers.push_back(i);
+    return primeNumbers;
+}
 
 //------------------------------- Int func's -------------------------------
 
@@ -242,9 +262,6 @@ const int mod = 1000000007;
 
 bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; }
 
-const int idxlimit = 1e12;
-int arr[idxlimit + 2];
-
 void solution() // main solution
 {
     int a, b, c, d;
@@ -259,34 +276,14 @@ void solution() // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    int nums[n];
-    FOR(n)
-    {
-        cin >> nums[i];
-        mx = max(mx, nums[i]);
-    }
-    arrsort(nums, n);
-    int ansCnt = 0;
+    n = 1e8;
+    vi primes = sieve(n);
 
-    FOR(1, mx + 1)
+    for (int i = 0; i < primes.size(); i += 100)
     {
-        cnt = 0;
-        for (int j = 0, k = i; j <= n, k < mx + 1; k += i)
-        {
-            if (arr[j] == k)
-            {
-                cnt++;
-            }
-            if (arr[j] == k || arr[j] < k)
-            {
-                j++;
-            }
-        }
-        if (cnt == n)
-            ansCnt++;
+        cout << primes[i] << nl;
     }
-    cout << ansCnt << nl;
+
     // newline;
 }
 

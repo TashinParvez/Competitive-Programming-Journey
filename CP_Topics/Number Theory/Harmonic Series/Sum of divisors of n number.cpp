@@ -28,10 +28,30 @@ using namespace std;
 #define FORK(n) for (int k = 0; k < (n); k++)
 
 //--------------------------------------------------------------------------------------------------
+const int idx = 1e7;
+int arr[idx + 2];
+vector<int> divisors[idx + 2]; //********* it will work up to 10e6 *********
 
 int32_t main()
 {
-    cout << sqrt(1e18)
-         << nl;
+    int limit = 1e6;
+    cin >> limit;
+
+    for (int i = 1; i <= limit; i++)
+    {
+        for (int j = i; j <= limit; j += i)
+        {
+            arr[j] += i;
+        }
+    }
+
+    cout << "Sum of Divisors : " << nl;
+
+    FOR(1, limit + 1)
+    {
+        cout << i << " -> ";
+        cout << arr[i] << nl;
+    }
+
     CRACKED;
 }

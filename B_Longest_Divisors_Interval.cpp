@@ -242,9 +242,6 @@ const int mod = 1000000007;
 
 bool comparePairs(const pii &a, const pii &b) { return a.first > b.first; }
 
-const int idxlimit = 1e12;
-int arr[idxlimit + 2];
-
 void solution() // main solution
 {
     int a, b, c, d;
@@ -260,33 +257,28 @@ void solution() // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    int nums[n];
-    FOR(n)
-    {
-        cin >> nums[i];
-        mx = max(mx, nums[i]);
-    }
-    arrsort(nums, n);
-    int ansCnt = 0;
 
-    FOR(1, mx + 1)
+    cnt = 0;
+    l = r = -1;
+    flag = false;
+
+    for (i = 1; i <= sqrt(n) + 1; i++)
     {
-        cnt = 0;
-        for (int j = 0, k = i; j <= n, k < mx + 1; k += i)
+        if (!flag && n % i == 0)
         {
-            if (arr[j] == k)
-            {
-                cnt++;
-            }
-            if (arr[j] == k || arr[j] < k)
-            {
-                j++;
-            }
+            l = i;
+            flag = true;
         }
-        if (cnt == n)
-            ansCnt++;
+        else if (flag == true && n % i != 0)
+        {
+            r = i - 1;
+            cnt = max(cnt, r - l + 1);
+            flag = false;
+        }
     }
-    cout << ansCnt << nl;
+
+    cout << cnt << nl;
+
     // newline;
 }
 
@@ -295,7 +287,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)
