@@ -4,7 +4,6 @@ using namespace std;
 #define pb push_back
 #define pop pop_back
 
-
 //--------------------------------------------------------------------------------
 
 // Big Mod
@@ -19,7 +18,7 @@ int BigMod(int n, int power, int mod)
         return (ans * (n % mod)) % mod;
     else
         return ans;
-} 
+}
 
 // FOR(0, a.length())
 // {
@@ -54,7 +53,7 @@ vector<int> getdiv(int n)
 }
 //-------------------------------------------- PRIME NUMBER --------------------------------------
 
-// to get the prime factors of that number
+// to get the prime factors of that number ------------ use when working with a single number and don't want the overhead of precomputing primes.
 vector<int> getprimefac(int n)
 {
     vector<int> ans;
@@ -76,6 +75,30 @@ vector<int> getprimefac(int n)
     }
     return ans;
 }
+
+
+// working with multiple numbers and can afford the initial cost of generating the prime list.
+vector<int> getprimefac(int n, vector<int> &primeNumbers) 
+{
+    vector<int> factors;
+
+    for (auto i : primeNumbers)
+    {
+        if (i * i > n)
+            break;
+
+        while (n % i == 0)
+        {
+            factors.push_back(i);
+            n /= i;
+        }
+    }
+    if (n > 1)
+        factors.push_back(n);
+
+    return factors;
+}
+
 
 
 vector<int> firstnprimes(int n)
@@ -138,17 +161,6 @@ ll factorial(ll n)
     return ans;
 }
 
-bool primeCheck(ll n)
-{
-    if (n < 2)
-        return false;
-    for (ll i = 2; i <= sqrt(n); i++)
-    {
-        if (n % i == 0)
-            return false;
-    }
-    return true;
-}
 
 bool isSquare(ll x)
 {
@@ -215,29 +227,11 @@ ll reverse_num(ll n)
     return ans;
 }
 
-
-bool isprime(ll n)
-{
-    if (n < 2)
-        return false;
-    if (n == 2)
-        return true;
-    if (n % 2 == 0)
-        return false;
-    for (ll i = 3; i <= sqrt(n); i += 2)
-    {
-        if (n % i == 0)
-            return false;
-    }
-    return true;
-}
-
 bool isSquare(ll x)
 {
     ll sq = sqrt(x);
     return sq * sq == x;
 }
-
 
 string int_to_str(ll x)
 {
@@ -305,11 +299,9 @@ ll str_to_int(string s)
     }                            \
     cout << endl;
 
-
 #define printa(a, L, R)         \
     for (int i = L; i < R; i++) \
     cout << a[i] << (i == R - 1 ? '\n' : ' ')
-
 
 #define printv(a) printa(a, 0, a.size())
 
@@ -355,45 +347,52 @@ void _print(T t, V... v)
     _print(v...);
 }
 
-
 //------------------------------------------ Binary Search  ------------------------------------------
 
-#define   MID(a, b)              a + ((b - a) / 2);
+#define MID(a, b) a + ((b - a) / 2);
 
-int binary_search_first_true(function<bool(int)> f, int low, int high) {
-    while (low < high) {
+int binary_search_first_true(function<bool(int)> f, int low, int high)
+{
+    while (low < high)
+    {
         int mid = MID(low, high);
-        if (f(mid)) high = mid;
-        else low = mid + 1;
+        if (f(mid))
+            high = mid;
+        else
+            low = mid + 1;
     }
     return low;
 }
 
-int binary_search_last_true(function<bool(int)> f, int low, int high) {
-    while (low < high) {
+int binary_search_last_true(function<bool(int)> f, int low, int high)
+{
+    while (low < high)
+    {
         int mid = MID(low, high);
-        if (f(mid)) low = mid;
-        else high = mid - 1;
+        if (f(mid))
+            low = mid;
+        else
+            high = mid - 1;
     }
     return low;
 }
-
 
 
 // =======================================================
+// =======================================================
 // ======================= OLD ===========================
+// =======================================================
 // =======================================================
 
 
 //--------------------------------- FOR Previous --------------------------------
 #define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
-#define FOR(...)                 FOR_OVERLOAD(__VA_ARGS__, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
+#define FOR(...) FOR_OVERLOAD(__VA_ARGS__, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
 
-#define FOR_ONE_ARG(n)           for(int i = 0; i < (n); i++)
-#define FOR_TWO_ARGS(a, b)       for(int i = (a); (a) <= (b) ? (i < (b)) : (i > (b)); (a) <= (b) ? ++i : --i)
+#define FOR_ONE_ARG(n) for (int i = 0; i < (n); i++)
+#define FOR_TWO_ARGS(a, b) for (int i = (a); (a) <= (b) ? (i < (b)) : (i > (b)); (a) <= (b) ? ++i : --i)
 
-#define FORJ(n)                  for (int j = 0; j < (n); j++)
-#define FORK(n)                  for (int k = 0; k < (n); k++) 
+#define FORJ(n) for (int j = 0; j < (n); j++)
+#define FORK(n) for (int k = 0; k < (n); k++)
 
 // ------------------
-

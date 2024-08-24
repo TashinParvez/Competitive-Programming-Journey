@@ -5,7 +5,7 @@ int main()
 {
     /* The code is using the `system()` function to execute a series of commands in the command prompt
     (Windows). */
-    system("del /S *.exe && del /S *.o && del /S *.bin");
+    system("del /S *.exe && del /S *.o && del /S *.bin && del /S *.prob");
     system("del /S tempCodeRunnerFile.cpp");
 
     // system("git add .");

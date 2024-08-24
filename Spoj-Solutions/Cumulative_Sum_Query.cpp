@@ -101,7 +101,7 @@ typedef pair<string, int> psi;
 #define ss second
 
 //-------------------------------- Map -------------------------------
-#define mapii map<int, int>
+#define mii map<int, int>
 #define mapsi map<string, int>
 #define mapci map<char, int>
 
