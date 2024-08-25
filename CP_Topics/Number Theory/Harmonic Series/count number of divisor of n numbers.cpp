@@ -40,7 +40,7 @@ int32_t main()
     {
         for (int j = i; j <= limit; j += i)
         {
-            arr[j]++;
+            arr[j]++; // for count
         }
     }
 

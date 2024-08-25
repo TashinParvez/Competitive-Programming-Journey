@@ -35,6 +35,7 @@ const int dc[] = {1, 0, -1, 0, 1, 1, -1, -1, -1, 1, -1, 1, -2, 2, -2, 2};
 /**************************************** Need to add Func ***********************************************/
 
 // Get All The Divisors Of That Number
+
 vector<int> getdiv(int n)
 {
     vector<int> ans;
@@ -50,7 +51,8 @@ vector<int> getdiv(int n)
         }
     }
     return ans;
-}
+} 
+
 //-------------------------------------------- PRIME NUMBER --------------------------------------
 
 // to get the prime factors of that number ------------ use when working with a single number and don't want the overhead of precomputing primes.
