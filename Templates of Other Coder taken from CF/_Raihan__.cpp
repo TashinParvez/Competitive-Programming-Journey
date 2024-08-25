@@ -126,6 +126,7 @@ void _print(T t, V... v)
     if (sizeof...(v)) cout << ", ";
     _print(v...);
 }
+
 #ifndef ONLINE_JUDGE
 #define debug(x...) cout << "[" << #x << "] = ["; _print(x)
 #else
@@ -133,11 +134,15 @@ void _print(T t, V... v)
 #endif
 ///=============================================///
 
+
+// for randome number 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 int my_rand(int l, int r)
 {
     return uniform_int_distribution<int>(l, r) (rng);
 }
+
+
 
 const int N = 2e5+10;
 

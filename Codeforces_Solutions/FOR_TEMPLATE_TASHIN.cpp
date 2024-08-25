@@ -32,27 +32,9 @@ int BigMod(int n, int power, int mod)
 const int dr[] = {0, 1, 0, -1, -1, 1, 1, -1, -2, -2, 2, 2, -1, -1, 1, 1};
 const int dc[] = {1, 0, -1, 0, 1, 1, -1, -1, -1, 1, -1, 1, -2, 2, -2, 2};
 
+
 /**************************************** Need to add Func ***********************************************/
-
-// Get All The Divisors Of That Number
-
-vector<int> getdiv(int n)
-{
-    vector<int> ans;
-    for (int i = 1; i * i <= n; i++)
-    {
-        if (n % i == 0)
-        {
-            ans.pb(i);
-            if (n / i != i)
-            {
-                ans.pb(n / i);
-            }
-        }
-    }
-    return ans;
-} 
-
+ 
 //-------------------------------------------- PRIME NUMBER --------------------------------------
 
 // to get the prime factors of that number ------------ use when working with a single number and don't want the overhead of precomputing primes.
@@ -191,68 +173,11 @@ ll LOG2(ll n)
     return c - 1;
 }
 
-#define all(s) s.begin(), s.end()
-
-string int_to_str(ll x)
-{
-    string s;
-    while (x)
-    {
-        s += (char)(x % 10) + '0';
-        x /= 10;
-    }
-    reverse(all(s));
-    return s;
-}
-
-ll str_to_int(string s)
-{
-    istringstream ss(s);
-    ll n;
-    ss >> n;
-    return n;
-}
 /********************************************************************************/
 
 #define ll long long
 #define all(a) (a).begin(), (a).end()
 
-ll reverse_num(ll n)
-{
-    ll tmp = n, ans = 0, r;
-    while (tmp)
-    {
-        r = tmp % 10;
-        ans = ans * 10 + r;
-        tmp /= 10;
-    }
-    return ans;
-}
-
-bool isSquare(ll x)
-{
-    ll sq = sqrt(x);
-    return sq * sq == x;
-}
-
-string int_to_str(ll x)
-{
-    string s;
-    while (x)
-    {
-        s += (char)(x % 10) + '0';
-        x /= 10;
-    }
-    reverse(all(s));
-    return s;
-}
-ll str_to_int(string s)
-{
-    istringstream ss(s);
-    ll n;
-    ss >> n;
-    return n;
-}
 
 /********************************************************************************/
 
@@ -379,6 +304,67 @@ int binary_search_last_true(function<bool(int)> f, int low, int high)
     return low;
 }
 
+///const int fx[] = {+1,-1,+0,+0};
+///const int fy[] = {+0,+0,+1,-1};
+///const int fx[] = {+0,+0,+1,-1,-1,+1,-1,+1}; ///king's move
+///const int fy[] = {-1,+1,+0,+0,+1,+1,-1,-1}; ///king's move
+///const int fx[] = {-2,-2,-1,-1,+1,+1,+2,+2}; ///knight's move
+///const int fy[] = {-1,+1,-2,+2,-2,+2,-1,+1}; ///knight's move
+
+
+const ll mod = 1000000000+7;
+    
+ll bigMod(ll a, ll b, ll m){
+    ll ans = 1;
+    a = a % m;
+    
+    while(b){
+        if(b & 1)
+            ans = (ans * a) % m;
+        
+        a = (a*a) % m;
+        b /= 2;
+    }
+    return ans;
+}
+ 
+ll   MOD(ll num){ return ((num%mod + mod)%mod); }
+  
+ll   MOD(ll num, ll mod){ return ((num%mod + mod)%mod); }
+  
+ll   modAdd(ll a, ll b){ return MOD(MOD(a) + MOD(b)); }
+    
+ll   modSub(ll a, ll b){ return MOD(MOD(a) - MOD(b)); }
+  
+ll   modMul(ll a, ll b){ return MOD(MOD(a) * MOD(b)); }
+    
+ll   modDiv(ll a, ll b){ return modMul(a, bigMod(b,mod-2, mod)); }
+    
+ll   Lcm(ll x, ll y) { return x * y / __gcd(x, y); }
+    
+ll   Sum(ll n) { return (n * (n + 1)) / 2; }
+
+ll   logAB(ll a, ll b) { return log(a) / log(b); }
+    
+ll   ceilAB(ll a, ll b) { return (a + b - 1) / b; }
+
+ll   ceilNegAB(ll a, ll b) { return (a - b + 1) / b; }
+    
+ll   chartoint(char ch) { return ch - '0'; }
+
+bool isPowerOfTwo(ll n) { return n > 0 && !(n&(n-1)); }
+
+bool coPrime(ll a, ll b) { return __gcd(a,b) == 1; }
+    
+bool isEqual(double a, double b) { return abs(a-b) < EPS; }
+    
+bool isGreater(double a, double b) { return a >= b + EPS; }
+    
+bool isGreaterEqual(double a, double b) { return a > b - EPS; }
+
+
+
+
 
 // =======================================================
 // =======================================================
@@ -396,5 +382,14 @@ int binary_search_last_true(function<bool(int)> f, int low, int high)
 
 #define FORJ(n) for (int j = 0; j < (n); j++)
 #define FORK(n) for (int k = 0; k < (n); k++)
+
+// ------------------
+
+
+#define fst cout << "----- First -----" << nl;
+#define snd cout << "----- Second -----" << nl;
+#define trd cout << "----- Third -----" << nl;
+#define fth cout << "----- Fourth -----" << nl;
+
 
 // ------------------

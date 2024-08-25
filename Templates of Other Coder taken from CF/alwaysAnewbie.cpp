@@ -81,6 +81,7 @@ const int MX = 100001;
 
 int dx[4] = {-1, 1, -1, 1};
 int dy[4] = {1, 1, -1, -1};
+
 void solve() {
     string S[8]; F0R(i, 8) cin >> S[i];
     FOR(i, 1, 7) {

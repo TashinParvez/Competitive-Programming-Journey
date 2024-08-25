@@ -1,8 +1,7 @@
 {
     "files.associations": {
         "*html": "html",
-        "iostream": "cpp",
-        "random": "cpp",
-        "bitset": "cpp"
+        "ostream": "cpp",
+        "random": "cpp"
     }
 }
