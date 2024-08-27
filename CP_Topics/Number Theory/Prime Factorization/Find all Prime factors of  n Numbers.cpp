@@ -23,7 +23,6 @@ vector<int> primeNumbers;
 
 vector<int> sieve(int n)
 {
-
     if (n == 1 || n <= 0)
         return primeNumbers;
     for (int i = 3; i <= n; i += 2)

@@ -104,74 +104,14 @@ typedef pair<string, int>        psi;
 //------------------------------ NumberTheory ------------------------------
 
 #define   lcm(a, b)              (a * (b / __gcd(a,b)) )
-#define   gcd(a, b)              __gcd(a,b)
+#define   gcd(a, b)              __gcd(a,b) 
 
-vector<int> sieve(int n)
-{
-    const int isprimeflag_limit = 1e8;
-    static bitset<isprimeflag_limit> isprimeflag;
-    vector<int> primeNumbers;
-    if (n == 1 || n <= 0)
-        return primeNumbers;
-    for (int i = 3; i <= n; i += 2)
-        isprimeflag[i] = 1;
-    isprimeflag[2] = 1;
-    int sq = sqrt(n);
-    for (int i = 3; i <= sq; i += 2)
-        if (isprimeflag[i])
-            for (int j = i * i; j <= n; j += i)
-                isprimeflag[j] = 0;
-    primeNumbers.push_back(2);
-    for (int i = 3; i <= n; i += 2)
-        if (isprimeflag[i])
-            primeNumbers.push_back(i);
-    return primeNumbers;
-}
-
-vector<int> getprimefac(int n, vector<int> &primeNumbers)
-{
-    vector<int> factors;
-    for (auto i : primeNumbers)
-    {
-        if (i * i > n)
-            break;
-        if (n % i == 0) 
-        {
-            factors.push_back(i);
-            while (n % i == 0)
-                n /= i;
-        }
-    }
-    if (n > 1)
-        factors.push_back(n);
-    return factors;
-}
+vector<int>   sieve(int n)                                   { const int isprimeflag_limit = 1e8; static bitset<isprimeflag_limit> isprimeflag; vector<int> primeNumbers; if (n == 1 || n <= 0) return primeNumbers; for (int i = 3; i <= n; i += 2) isprimeflag[i] = 1; isprimeflag[2]=1; int sq = sqrt(n); for (int i = 3; i <= sq; i += 2) if (isprimeflag[i]) for (int j = i * i; j <= n; j += i) isprimeflag[j] = 0; primeNumbers.push_back(2); for (int i = 3; i <= n; i += 2) if (isprimeflag[i]) primeNumbers.push_back(i); return primeNumbers; }
+vector<int>   getprimefac(int n, vector<int> &primeNumbers)  { vector<int> factors; for (auto i : primeNumbers) { if (i * i > n) break; while (n % i == 0) factors.push_back(i), n /= i; } if (n > 1) factors.push_back(n); return factors; }
 
 void          getDivisorsAll(int limit)                      { const int idxfordivisor = 1e7; vector<int> divisorsCnt(idxfordivisor + 2, 0), divisorsSum(idxfordivisor + 2, 0); vector<vector<int>> alldivisors(idxfordivisor + 2); divisorsCnt.resize(limit + 1, 0); divisorsSum.resize(limit + 1, 0); for (int i = 1; i <= limit; i++) for (int j = i; j <= limit; j += i) divisorsCnt[j]++, divisorsSum[j] += i, alldivisors[j].push_back(i); /* return alldivisors;*/ }
 vector<int>   getDivisors(int n)                             { vector<int> divisors; for (int i = 1; i * i <= n; i++) if (n % i == 0) { divisors.push_back(i); if (n / i != i) divisors.push_back(n / i); } return divisors; }
-
-int NOD(int n, vector<int> primes)
-{
-    int nod = 1;
-    for (auto i : primes)
-    {
-        if (i * i > n)
-            break;
-        if (n % i == 0)
-        {
-            int cnt = 1;
-            while (n % i == 0)
-            {
-                n /= i; 
-                cnt++;
-            }
-            nod *= cnt;
-        }
-    }
-    if (n > 1)
-        nod *= 2;
-    return nod;
-}
+int           NOD(int n, vector<int> primes)                 { int nod = 1; for (auto i : primes) { if (i * i > n) break; if (n % i == 0) { int cnt = 1; while (n % i == 0) { n /= i; cnt++; } nod *= cnt; } } if (n > 1) nod *= 2; return nod; }
 
 //------------------------------- Int func's -------------------------------
 
@@ -230,8 +170,6 @@ const int mod = 1000000007;
 
 bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
 
-int primeCnt[3000+12];
-
 void solution()  // main solution
 {
     int a, b, c, d;
@@ -247,23 +185,54 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    vi arr = sieve(n);
-    
-    cnt = 0;
-    for(auto i : arr)
+    vi arr(n);
+    FOR(n)
     {
-        for(int j = i ; j<= n ; j+=i)
+        cin >> arr[i];
+    }
+
+    vsortrev(arr);
+
+    int preSumEven[n];
+    sum = 0;
+    FOR(n)
+    {
+        if (iseven(arr[i]))
         {
-            primeCnt[j]++;
-            if(primeCnt[j]==2)
+            sum++;
+        }
+        preSumEven[i] = sum;
+    }
+
+    // FOR(n)
+    // {
+    //     dbg(preSumEven[i]);
+    // }
+
+
+    FOR(n)
+    {
+        if(arr[i]%2==0)
+        {
+            cnt += n - (i + 1);
+        }
+        else
+        {
+            if (arr[i] == 1)
+                continue;
+            for(int j = i+1;j<n;j++)
             {
-                cnt++; 
-            }else if(primeCnt[j]==3)
-                cnt--;
+                if(gcd(arr[i], arr[j])>1)
+                    cnt++;
+            }
         }
     }
 
-    cout << cnt << nl; 
+
+
+    cout << cnt << nl;
+
+    
 
 }
 
@@ -272,7 +241,7 @@ int32_t main()
     faster;
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
 
     while (t--)

@@ -14,25 +14,29 @@
 #define    tashin         cout << "____Tashin____" << nl;                       // Pointer
 #define    deb(n)         cout << "Tashin   " << #n << " = " << n << endl;    // debug code
 #define    debt           cout << "Tashin   " << endl;                          // debug code
-
-using  namespace std;
-#define   mem(a, b)             memset (a, b, sizeof(a))
-//--------------------------------- FOR
-#define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
-#define FOR(...)                 FOR_OVERLOAD(__VA_ARGS__, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
-
-#define FOR_ONE_ARG(n)           for(int i = 0; i < (n); i++)
-#define FOR_TWO_ARGS(a, b)       for(int i = (a); (a) <= (b) ? (i < (b)) : (i > (b)); (a) <= (b) ? ++i : --i)
-
-#define FORJ(n)                  for (int j = 0; j < (n); j++)
-#define FORK(n)                  for (int k = 0; k < (n); k++) 
-
-
+using      namespace      std;
 //--------------------------------------------------------------------------------------------------
 
+int sod(int n)  // number of divisors -> SNOD
+{
+    int sum = 0;
+    int sq = sqrt(n);
+    for(int i =  1; i<=sq;i++)
+    {
+        int cnt = n/i - i;
+        sum+=cnt*2;
+    }
+    sum+=sq;
+
+    return sum;
+}
+
+
 int32_t main()
-{   
-    cout<<  __gcd(360,__gcd(540,4704)) <<nl;
-    cout<<  __gcd(180,4704) <<nl;
+{
+    int n;
+    cin >> n;
+    cout << sod(n) << nl;
+
     CRACKED;
 }

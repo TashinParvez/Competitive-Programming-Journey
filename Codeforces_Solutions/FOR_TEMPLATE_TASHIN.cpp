@@ -393,3 +393,13 @@ bool isGreaterEqual(double a, double b) { return a > b - EPS; }
 
 
 // ------------------
+
+#define Read(x)          freopen(x, "r", stdin)
+#define Write(x)         freopen(x, "w", stdout)
+
+// ------------------
+
+#define newline cout << nl;
+#define minusone -1
+
+
