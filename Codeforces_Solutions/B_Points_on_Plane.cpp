@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 28.08.2024
+ *          Created: 30.08.2024
  */
 
 #include <bits/stdc++.h>
@@ -13,8 +13,7 @@ using   namespace              std;
 #define ll                     long long
 #define ull                    unsigned long long
 #define ld                     long double
-#define output(x)              cout << x << nl
-#define setdec(x)              fixed << setprecision(x)
+#define output(x)              cout << x << nl 
 #define YES                    cout << "YES" << nl;
 #define Yes                    cout << "Yes" << nl;
 #define NO                     cout << "NO" << nl;
@@ -152,17 +151,30 @@ void solution()  // main solution
     bool flag = false;
 
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
-    int mn = INT_MAX, mx = INT_MIN;
+    int mn = INT_MAX, mx = 1e18/2;
 
     cin >> n;
-    
 
+    int start = 0;
+    int end = INT_MAX;
 
+    while (start<=end)
+    {
+        int mid = MID(start, end);
+        int temp = mid * mid + 2 * mid + 1;
 
+        if (temp >= n)
+        {
+            ans = mid;
+            end = mid - 1;
+        }
+        else
+        {
+            start = mid + 1;
+        }
+    }
 
-
-    cout << n << nl;
-
+    cout << ans << nl;
 }
 
 int32_t main()

@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 28.08.2024
+ *          Created: 31.08.2024
  */
 
 #include <bits/stdc++.h>
@@ -154,15 +154,31 @@ void solution()  // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
+    cin >> n >>q;
+    vi arr(n);
     
+    FOR(n)
+    {
+        cin >> arr[i];
+        mx = max(mx,arr[i]);
+    }
 
+    while(q--)
+    {
+        char chr;
+        cin >> chr >> l >> r;
 
-
-
-
-    cout << n << nl;
-
+        if (chr == '+' && l <= mx && mx <= r)
+        {
+            mx++;
+        }
+        else if (chr == '-' && l <= mx && mx <= r)
+        {
+            mx--;
+        }
+        cout << mx << " ";
+    }
+    cout << nl;
 }
 
 int32_t main()

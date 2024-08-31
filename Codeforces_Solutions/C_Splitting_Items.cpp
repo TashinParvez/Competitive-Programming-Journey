@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 28.08.2024
+ *          Created: 31.08.2024
  */
 
 #include <bits/stdc++.h>
@@ -148,20 +148,52 @@ void solution()  // main solution
     int l, r;
     int even = 0, odd = 0;
 
-    string s;
+    string s; char chr;
     bool flag = false;
 
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    
+    cin >> n >> q;
+    vi arr(n);
+    FOR(n)
+    {
+        cin >> arr[i];sum+=arr[i];
+    }
 
+    vsortrev(arr);
 
+    int alice = 0, bob = 0;
 
+    FOR(n)
+    {
+        if (!flag) // alice
+        {
+            alice += arr[i];
+        }
+        else
+        { // bob
+            if (q)
+            {
+                int temp = arr[i - 1] - arr[i];
+                if (temp >= q)
+                {
+                    bob += arr[i] + q;
+                    q = 0;
+                }
+                else
+                {
+                    bob += arr[i] + temp;
+                    q -= temp;
+                }
+            }
+            else
+                bob += arr[i];
+        }
+        flag=!flag;
+    }
 
-
-    cout << n << nl;
+    cout << alice-bob << nl;
 
 }
 

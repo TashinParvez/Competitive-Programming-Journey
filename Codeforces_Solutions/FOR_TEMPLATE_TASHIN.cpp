@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
-using namespace std;
-
-#define pb push_back
-#define pop pop_back
+  using namespace   std;
+#define ll          long long
+#define all(a)      (a).begin(), (a).end()
+#define pb          push_back
+#define pop         pop_back
+#define ppb         pop_back
 
 //--------------------------------------------------------------------------------
 
@@ -173,10 +175,14 @@ ll LOG2(ll n)
     return c - 1;
 }
 
-/********************************************************************************/
+/*********************************** Some Functions ********************************************/
+pair<int, int> evenoddcnt(int l, int r) {
+    int totalNumbers = r - l + 1;
+    int oddCount = (r + 1) / 2 - (l / 2);
+    int evenCount = totalNumbers - oddCount;
+    return {evenCount, oddCount};
+}
 
-#define ll long long
-#define all(a) (a).begin(), (a).end()
 
 
 /********************************************************************************/

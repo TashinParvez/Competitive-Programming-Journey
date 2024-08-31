@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "*html": "html",
-        "ostream": "cpp",
-        "random": "cpp"
-    }
-}

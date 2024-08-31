@@ -209,7 +209,6 @@ void solution()  // main solution
 
         cout << nl;
     }
-
 }
 
 int32_t main()

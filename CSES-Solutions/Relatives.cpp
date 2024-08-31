@@ -92,7 +92,29 @@ vector<int>   getDivisors(int n)                             { vector<int> divis
 int           NOD(int n, vector<int> primeNumbers)                 { int nod = 1; for (auto i : primeNumbers) { if (i * i > n) break; if (n % i == 0) { int cnt = 1; while (n % i == 0) { n /= i; cnt++; } nod *= cnt; } } if (n > 1) nod *= 2; return nod; }
 int           SNOD(int n)                                    { int sum = 0, sq = sqrt(n); for(int i = 1; i <= sq; i++) sum += (n/i - i) * 2; return sum + sq; }
 int           SOD(int n, vector<int>& primeNumbers)          { int sod = 1; for (auto i : primeNumbers) { if (i * i > n) break; if (n % i == 0) { int isum = 1, icntSum = 1; while (n % i == 0) icntSum *= i, isum += icntSum, n /= i; sod *= isum; } } if (n > 1) sod *= (n + 1); return sod; }
-int           eulerPhi(int n, vector<int> &primeNumbers)     { int phi = n; for (auto i : primeNumbers) { if (i * i > n) break; if (n % i == 0) { while (n % i == 0) n /= i; phi /= i; phi *= (i - 1); } } if (n > 1) { phi /= n; phi *= (n - 1); } return phi; }
+
+int eulerPhi(int n, vector<int> &primeNumbers)
+{
+    int phi = n;
+    for (auto i : primeNumbers)
+    {
+        if (i * i > n)
+            break;
+        if (n % i == 0)
+        {
+            while (n % i == 0)
+                n /= i;
+            phi /= i;
+            phi *= (i - 1);
+        }
+    }
+    if (n > 1)
+    {
+        phi /= n;
+        phi *= (n - 1);
+    }
+    return phi;
+}
 
 //------------------------------- Int func's -------------------------------
 
@@ -139,42 +161,22 @@ const int inf = 1e18;
 const int mod = 1000000007;
 
 bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
-
-void solution()  // main solution
-{
-    int a, b, c, d;
-    int i, j, k, m, n, q;
-    int u, v, x, y, z;
-    int l, r;
-    int even = 0, odd = 0;
-
-    string s;
-    bool flag = false;
-
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
-    int mn = INT_MAX, mx = INT_MIN;
-
-    cin >> n;
-    
-
-
-
-
-
-    cout << n << nl;
-
-}
+ 
 
 int32_t main()
 {
     faster;
-    int t = 1;
-    cin >> t;
+    int n = 1;
     int c = 1;
-    while (t--)
+    vi primes = sieve(1e6);
+    while (cin >> n)
     {
-        // cout << "Case " << c++ << ": "; 
-        solution();
+        if (n == 0)
+            break;
+        if (n == 1)
+            cout << 0 << nl;
+        else
+            cout << eulerPhi(n, primes) << nl;
     }
     CRACKED;
 }

@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 28.08.2024
+ *          Created: 30.08.2024
  */
 
 #include <bits/stdc++.h>
@@ -155,14 +155,17 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    
+    vi arr(n);
+    FOR(n)
+    {
+        cin >> arr[i];
+    }
 
-
-
-
-
-    cout << n << nl;
-
+    FOR(1, n)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << arr[0] << nl;
 }
 
 int32_t main()
