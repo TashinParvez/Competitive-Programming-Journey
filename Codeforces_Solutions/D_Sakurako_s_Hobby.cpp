@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 01.09.2024
+ *          Created: 03.09.2024
  */
 
 #include <bits/stdc++.h>
@@ -88,18 +88,7 @@ vector<int>   sieve(int n)                                   { const int isprime
 vector<int>   getprimefac(int n, vector<int> &primeNumbers)  { vector<int> factors; for (auto i : primeNumbers) { if (i * i > n) break; while (n % i == 0) factors.push_back(i), n /= i; } if (n > 1) factors.push_back(n); return factors; }
 
 void          getDivisorsAll(int limit)                      { const int idxfordivisor = 1e7; vector<int> divisorsCnt(idxfordivisor + 2, 0), divisorsSum(idxfordivisor + 2, 0); vector<vector<int>> alldivisors(idxfordivisor + 2); divisorsCnt.resize(limit + 1, 0); divisorsSum.resize(limit + 1, 0); for (int i = 1; i <= limit; i++) for (int j = i; j <= limit; j += i) divisorsCnt[j]++, divisorsSum[j] += i, alldivisors[j].push_back(i); /* return alldivisors;*/ }
-vector<int> getDivisors(int n)
-{
-    vector<int> divisors;
-    for (int i = 1; i * i <= n; i++)
-        if (n % i == 0)
-        {
-            divisors.push_back(i);
-            if (n / i != i)
-                divisors.push_back(n / i);
-        }
-    return divisors;
-}
+vector<int>   getDivisors(int n)                             { vector<int> divisors; for (int i = 1; i * i <= n; i++) if (n % i == 0) { divisors.push_back(i); if (n / i != i) divisors.push_back(n / i); } return divisors; }
 int           NOD(int n, vector<int> primeNumbers)                 { int nod = 1; for (auto i : primeNumbers) { if (i * i > n) break; if (n % i == 0) { int cnt = 1; while (n % i == 0) { n /= i; cnt++; } nod *= cnt; } } if (n > 1) nod *= 2; return nod; }
 int           SNOD(int n)                                    { int sum = 0, sq = sqrt(n); for(int i = 1; i <= sq; i++) sum += (n/i - i) * 2; return sum + sq; }
 int           SOD(int n, vector<int>& primeNumbers)          { int sod = 1; for (auto i : primeNumbers) { if (i * i > n) break; if (n % i == 0) { int isum = 1, icntSum = 1; while (n % i == 0) icntSum *= i, isum += icntSum, n /= i; sod *= isum; } } if (n > 1) sod *= (n + 1); return sod; }
@@ -166,26 +155,47 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    vi arr = getDivisors(n);
-    a = 1, b  = n - 1;
-    vsort(arr); 
-
-    for(auto i : arr )
+    vi arr(n+1);
+    FOR(1,n+1)
     {
-        // dbg(i);
-        if (i > n / 2)
-            break;
-        else
+        cin >> arr[i];
+    }
+
+    cin>>s;
+    vi visited(n+1);
+    vi ansArr(n+1);
+
+    FOR(1,n+1)
+    {
+        if(visited[arr[i]] == 1)
         {
-            if ((n - i) % i == 0)
-            {
-                a = i, b = n - i;
-            }
+            continue;
+        }
+
+        int ptr  =  i ; cnt=0;
+        vi loop__;
+        while (visited[arr[ptr]] == 0)
+        {
+            if (s[ptr-1] == '0')
+                cnt++;
+            loop__.pb(arr[ptr]);
+            visited[arr[ptr]] = 1;
+            ptr = arr[ptr];
+        }
+
+        for (auto i : loop__)
+        {
+            ansArr[i] = cnt;
         }
     }
 
-    cout << a << " " << b << nl;
+    // vprint(ansArr);
 
+    FOR(1, n + 1)
+    {
+        cout << ansArr[arr[i]] << " ";
+    }
+    cout << nl;
 }
 
 int32_t main()
