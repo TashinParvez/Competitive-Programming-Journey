@@ -156,23 +156,30 @@ void solution()  // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    if (n % 2)
+    cin >> n >> l;
+
+    int start = l, end = l + n - 1;
+    int temp = (l - 1) * l / 2;
+    int temp2 = (end * (end + 1) / 2);
+    ans = mn;
+    while (start <= end)
     {
-        cnt++;
+        int mid = MID(start, end);
+
+        x = mid * (mid + 1) / 2;
+        y = temp2 - x;
+        x -= temp;
+        ans = min(ans, abs(x - y));
+        // dbg(x, y, mid, ans);
+
+        if (x <  y)
+        {
+            start = (mid + 1);
+        }
+        else
+            end = mid - 1;
     }
-
-    
-
-
-
-
-
-
-
-
-    cout << n << nl;
-
+    cout << ans << nl;
 }
 
 int32_t main()

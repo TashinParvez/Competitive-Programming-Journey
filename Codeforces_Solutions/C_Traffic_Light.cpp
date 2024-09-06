@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 05.09.2024
+ *          Created: 06.09.2024
  */
 
 #include <bits/stdc++.h>
@@ -156,22 +156,40 @@ void solution()  // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    if (n % 2)
+    cin >> n >> chr >> s;
+    // dbg(n,chr,s);
+
+    if(chr=='g')
     {
-        cnt++;
+        cout << 0 << nl; 
+        return;
     }
 
-    
+    int firstgreen = -1;
+    cnt= 0 ; ans = 0;
 
+    FOR(n)
+    {
+        if (firstgreen == -1 && s[i] == 'g')
+        {
+            firstgreen = i;
+        }
+        if (s[i] == 'g')
+        {
+            ans = max(ans, cnt);
+            cnt = 0;
+        }
 
+        if (s[i] == chr || cnt > 0)
+        {
+            cnt++;
+        } 
+    }
+ 
+    if (cnt > 0)
+        ans = max(ans, cnt + firstgreen);
 
-
-
-
-
-
-    cout << n << nl;
+    cout << ans << nl;
 
 }
 

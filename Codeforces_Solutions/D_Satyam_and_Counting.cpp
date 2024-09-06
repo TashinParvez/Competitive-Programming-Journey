@@ -156,23 +156,55 @@ void solution()  // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    if (n % 2)
+    cin >> n;
+
+    map<pii,int> mp;
+    vi ycnt(2) ;
+
+    FOR(n)
     {
-        cnt++;
+        cin >> a >> b;
+        mp[{a, b}]++;
+        if (b == 0)
+            ycnt[0]++;
+        else
+            ycnt[1]++;
+    }
+ 
+
+    for(auto i : mp)
+    {
+        if(!i.ss) {continue;}
+        
+        x = i.ff.ff;
+        y = i.ff.ss;
+
+        if (y == 0)
+        {
+            if (mp[{x, 1}])
+            {
+                cnt += ycnt[1] - 1;
+            }
+            if (mp[{x - 1, 1}] && mp[{x + 1, 1}])
+            {
+                cnt++;
+            }
+        }
+        else
+        {
+            if (mp[{x, 0}])
+            {
+                cnt += ycnt[0] - 1;
+            }
+            if (mp[{x - 1, 0}] && mp[{x + 1, 0}])
+            {
+                cnt++;
+            }
+        }
+        // dbg(x, y, cnt);
     }
 
-    
-
-
-
-
-
-
-
-
-    cout << n << nl;
-
+    cout << cnt << nl;
 }
 
 int32_t main()

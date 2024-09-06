@@ -333,6 +333,13 @@ ll bigMod(ll a, ll b, ll m){
     }
     return ans;
 }
+
+// ================= Modular_Arithmetic ==================
+
+#define mul_mod(a, b, m) (((a % m) * (b % m)) % m)
+#define add_mod(a, b, m) (((a % m) + (b % m)) % m)
+
+
  
 ll   MOD(ll num){ return ((num%mod + mod)%mod); }
   

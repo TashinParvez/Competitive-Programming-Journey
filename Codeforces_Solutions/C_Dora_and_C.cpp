@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 05.09.2024
+ *          Created: 06.09.2024
  */
 
 #include <bits/stdc++.h>
@@ -156,23 +156,23 @@ void solution()  // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    if (n % 2)
+    cin >> n >> a >> b;
+    vi arr(n);
+    int g = gcd(a, b);
+
+    FOR(n)
     {
-        cnt++;
+        cin >> arr[i];
+        arr[i] %= g;
+    }
+    vsort(arr);
+    ans = arr[n - 1] - arr[0]; 
+    FOR(n - 1)
+    {
+        ans = min(ans, arr[i] + g - arr[i + 1]); 
     }
 
-    
-
-
-
-
-
-
-
-
-    cout << n << nl;
-
+    cout << ans << nl;
 }
 
 int32_t main()

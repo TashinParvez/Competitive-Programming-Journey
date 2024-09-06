@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 05.09.2024
+ *          Created: 03.09.2024
  */
 
 #include <bits/stdc++.h>
@@ -81,8 +81,8 @@ template <typename T> int len(const T &x) { return x.size(); }
 
 //------------------------------ NumberTheory ------------------------------
 
-#define       lcm(a, b)                                      (a * (b / __gcd(a,b)) )
-#define       gcd(a, b)                                      __gcd(a,b) 
+#define   lcm(a, b)              (a * (b / __gcd(a,b)) )
+#define   gcd(a, b)              __gcd(a,b) 
 
 vector<int>   sieve(int n)                                   { const int isprimeflag_limit = 1e8; static bitset<isprimeflag_limit> isprimeflag; vector<int> primeNumbers; if (n == 1 || n <= 0) return primeNumbers; for (int i = 3; i <= n; i += 2) isprimeflag[i] = 1; isprimeflag[2]=1; int sq = sqrt(n); for (int i = 3; i <= sq; i += 2) if (isprimeflag[i]) for (int j = i * i; j <= n; j += i) isprimeflag[j] = 0; primeNumbers.push_back(2); for (int i = 3; i <= n; i += 2) if (isprimeflag[i]) primeNumbers.push_back(i); return primeNumbers; }
 vector<int>   getprimefac(int n, vector<int> &primeNumbers)  { vector<int> factors; for (auto i : primeNumbers) { if (i * i > n) break; while (n % i == 0) factors.push_back(i), n /= i; } if (n > 1) factors.push_back(n); return factors; }
@@ -96,8 +96,6 @@ int           eulerPhi(int n, vector<int> &primeNumbers)     { int phi = n; for 
 
 //------------------------------- Int func's -------------------------------
 
-#define   CEIL(a, b)            (a+b-1)/b
-#define   FLOOR(a, b)            a/b
 #define   min3(a, b, c)          min(min(a, b), c)
 #define   mid3(a, b, c)          (a + b + c) - max3(a, b, c) - min3(a, b, c) 
 #define   max3(a, b, c)          max(max(a, b), c)
@@ -156,23 +154,24 @@ void solution()  // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> s;
-    if (n % 2)
+    cin >> r;
+    vi hash;
+    char ch;
+    FOR(r)
     {
-        cnt++;
+        for (int j = 1; j <= 4; j++)
+        {
+            cin >> ch;
+            if (ch == '#')
+                hash.pb(j);
+        }
     }
 
-    
-
-
-
-
-
-
-
-
-    cout << n << nl;
-
+    FOR(len(hash)-1 , -1)
+    {
+        cout << hash[i] << " ";
+    }
+    cout << nl;
 }
 
 int32_t main()

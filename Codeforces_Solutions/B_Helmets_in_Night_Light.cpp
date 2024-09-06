@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 05.09.2024
+ *          Created: 06.09.2024
  */
 
 #include <bits/stdc++.h>
@@ -140,7 +140,13 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
+bool cmp(const pii &a, const pii &b)
+{
+    if (a.ss == b.ss)
+        return a.ff > b.ff;
+    else
+        return a.ss < b.ss;
+}
 
 void solution()  // main solution
 {
@@ -155,24 +161,53 @@ void solution()  // main solution
 
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
+    int p;
+    cin >> n >> p;
 
-    cin >> n >> s;
-    if (n % 2)
+    vpii inform;
+    FOR(n)
     {
-        cnt++;
+        cin >> a;
+        inform.pb({a, 0});
+    }
+    FOR(n)
+    {
+        cin >> a;
+        inform[i] = {inform[i].ff, a};
     }
 
-    
+    sort(inform.begin(), inform.end(), cmp);
 
+    // int ptr = 0;
+    cnt = 1;
+    ans = p;
 
+    int remainptr = 0;
 
+    while (cnt < n)
+    {
+        if (p <= inform[remainptr].ss)
+        {
+            cnt++;
+            // ptr++;
+            ans += p;
+        }
+        else
+        {
+            int people = inform[remainptr].ff;
+            int cost = inform[remainptr].ss;
 
+            int add = min(people, n - cnt);
 
+            cnt += add;
+            // ptr += add;
+            ans += (cost * add);
 
+            remainptr++;
+        }
+    }
 
-
-    cout << n << nl;
-
+    cout << ans << nl;
 }
 
 int32_t main()
@@ -182,8 +217,7 @@ int32_t main()
     cin >> t;
     int c = 1;
     while (t--)
-    {
-        // cout << "Case " << c++ << ": "; 
+    { 
         solution();
     }
     CRACKED;
