@@ -11,6 +11,13 @@
 #define    deb(n)         cout << "Tashin   " << #n << " = " << n << endl;
 #define    debt           cout << "Tashin   " << endl;
   using    namespace      std;
+//--------------------------------- Debug --------------------------------
+#define tashin                 cout << "____Tashin____" << nl;
+#define parvez                 cout << "____Parvez____" << nl;
+
+#define dbg(...) __f(#__VA_ARGS__, __VA_ARGS__)
+template <typename Arg1>                          void __f(const char *name, Arg1 &&arg1) { cout << name << " = " << arg1 << std::endl; }
+template <typename Arg1, typename... Args>        void __f(const char *names, Arg1 &&arg1, Args &&...args) { const char *comma = strchr(names + 1, ','); cout.write(names, comma - names) << " = " << arg1 << " | ";   __f(comma + 1, args...); }
 
 template <typename T> int len(const T &x) { return x.size(); }
 //--------------------------------------------------------------------------------------------------
@@ -25,6 +32,7 @@ int32_t main()
     {
         cin >> arr[i];
     }
+
     queue<pair<int, int>> que;
 
     for (int i = 0; i < k; i++)
@@ -34,12 +42,11 @@ int32_t main()
             que.push({arr[i], i});
         }
     }
+
     if (que.empty())
         cout << 0 << " ";
     else
         cout << que.front().first << " ";
-
-    // ok
 
     for (int i = k; i < n; i++)
     {
@@ -47,13 +54,16 @@ int32_t main()
         {
             que.push({arr[i], i});
         }
-        if (que.front().second <= i - k)
+        if (!que.empty() && que.front().second <= i - k)
+        {
             que.pop();
+        }
 
         if (que.empty())
             cout << 0 << " ";
         else
             cout << que.front().first << " ";
+        
     }
 
     CRACKED;

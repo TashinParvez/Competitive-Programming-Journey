@@ -9,7 +9,7 @@ int main()
     system("del /S tempCodeRunnerFile.cpp");
 
     // Delete all .cph folders and their contents recursively
-    system("for /d /r %i in (*cph*) do rmdir /S /Q %i");
+    // system("for /d /r %i in (*cph*) do rmdir /S /Q %i");
 
     // Optionally add and push changes to Git
     // system("git add .");
