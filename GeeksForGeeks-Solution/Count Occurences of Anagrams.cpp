@@ -13,10 +13,35 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:
-	int search(string pat, string txt) {
-	    // code here
-	}
+    int search(string pat, string text)
+    {
+        int n = text.length();
+        int k = pat.length();
 
+        vector<int> phash(26);
+        vector<int> anagramHash(26);
+
+        for (size_t i = 0; i < k; i++)
+        {
+            phash[pat[i] - 'a']++;
+            anagramHash[text[i] - 'a']++;
+        }
+        int ans = 0;
+
+        if (phash == anagramHash)
+            ans++;
+
+        for (size_t i = k; i < n; i++)
+        {
+            anagramHash[text[i] - 'a']++;
+            anagramHash[text[i - k] - 'a']--;
+
+            if (phash == anagramHash)
+                ans++;
+        }
+
+        return ans;
+    }
 };
 
 //{ Driver Code Starts.

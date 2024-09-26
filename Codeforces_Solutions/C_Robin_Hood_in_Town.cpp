@@ -144,27 +144,48 @@ bool cmp(const pii &a, const pii &b) { return a.first > b.first; }
 
 void solution()  // main solution
 {
-    int a, b, c, d;
-    int i, j, k, m, n, q;
-    int u, v, x, y, z;
-    int l, r;
-    int even = 0, odd = 0;
+    double a, b, c, d;
+    double i, j, k, m, n, q;
+    double u, v, x, y, z;
+    double l, r;
+    double even = 0, odd = 0;
 
     string s; char chr;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
-    int mn = INT_MAX, mx = INT_MIN;
-
+    double ans, cnt = 0, idx = -1, sum = 0, product = 1;
+ 
     cin >> n;
-    
 
+    vi arr(n);
+    FOR(n)
+    {
+        cin >> arr[i];
+        sum += arr[i];
+    }
+    double avg = (sum*1.0) / (n * 2.0* 1ll);
 
+    vsort(arr);
+    int mid = n / 2; 
 
+    if (arr[mid] < avg)
+        cout << 0 << nl;
+    else if (n == 1 || n == 2)
+        cout << -1 << nl;
+    else
+    {
+        double ans = ceil((arr[mid]- avg) * (n * 2));
+     
 
-
-    cout << n << nl;
-
+        int anss =   (ans);
+        
+        avg = (sum+anss) / (n * 2.0);
+        
+        if(arr[mid] < avg)
+            cout <<  anss << nl; 
+        else 
+            cout <<  anss+1 << nl; 
+    }
 }
 
 int32_t main()
@@ -180,3 +201,4 @@ int32_t main()
     }
     CRACKED;
 }
+ 

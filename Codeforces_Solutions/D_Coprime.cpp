@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 23.09.2024
+ *          Created: 24.09.2024
  */
 
 #include <bits/stdc++.h>
@@ -157,11 +157,42 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
+
+    vi arr(n);
+    FOR(n){
+        cin>>arr[i];
+    }
+    queue<pii> evn,od;
+    mpii e, o;
+
+    FOR(n - 1, -1)
+    {
+        if (arr[i] % 2 == 0)
+        {
+            if (e[arr[i]])
+            {
+            }
+            else
+            {
+                e[arr[i]] = i;
+                evn.push({arr[i],i});
+            }
+        }
+        else
+        {
+            if (o[arr[i]])
+            {
+            }
+            else
+            {
+                o[arr[i]] = i;
+                od.push({arr[i], i});
+            }
+        }
+    }
+
+
     
-
-
-
-
 
     cout << n << nl;
 

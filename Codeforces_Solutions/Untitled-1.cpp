@@ -1,29 +1,40 @@
 
-//        ****************  Author :  Tashin.Parvez  ****************
-//        ************* United International University *************
+#include <bits/stdc++.h>
+using namespace std;
 
-#include   <bits/stdc++.h>
-#define    CRACKED        return 0;
-#define    nl             endl
-#define    int            long long
-#define    setDec(x)      fixed << setprecision(x) 
-#define    tashin         cout << "____Tashin____" << nl;
-#define    deb(n)         cout << "Tashin   " << #n << " = " << n << endl;
-#define    debt           cout << "Tashin   " << endl;
-  using    namespace      std;
+typedef long long int ll;
+typedef unsigned long long int ull;
 
-template <typename T> int len(const T &x) { return x.size(); }
-//--------------------------------------------------------------------------------------------------
-int count_digits(long long n)
+void solve()
 {
-    if (n == 0)
-        return 1; // Special case for 0, which has 1 digit.
-    return floor(log(n)) - 1;
+    int x, y, k;
+    cin >> x >> y >> k;
+
+    int arr[2];
+    arr[0] = x, arr[1] = y;
+    sort(arr, arr + 2);
+
+    int ans = 0;
+
+    int move = ceil(arr[0] / (float)k);
+    ans += move * 2;
+    arr[1] = arr[1] - move * k;
+    if (arr[1] > 0)
+    {
+
+        move = ceil(arr[1] / (float)k);
+        ans += move * 2;
+    }
+
+    cout << (x > y ? ans - 1 : ans) << endl;
 }
 
-int32_t main()
+int main()
 {
-    cout << count_digits(500) << nl;
-
-    CRACKED;
+    ios::sync_with_stdio(false), cin.tie(0);
+    int tc;
+    cin >> tc;
+    while (tc--)
+        solve();
+    return 0;
 }

@@ -14,3 +14,16 @@
 using namespace std;
 
 /**********************************************************/
+
+
+int32_t main()
+{   
+    vector<int> arr = {};
+    int n ;
+    int k ;
+    string s ;
+    
+    // cout<<  findAnagrams() <<nl;
+    
+    CRACKED;
+}

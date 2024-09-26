@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 23.09.2024
+ *          Created: 17.09.2024
  */
 
 #include <bits/stdc++.h>
@@ -156,15 +156,74 @@ void solution()  // main solution
     int ans, cnt = 0, idx = -1, sum = 0, product = 1;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    
+    cin >> r >> c;
+    int arr[r][c];
+
+    FOR(r)
+    {
+        FORJ(c)
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    FOR(r)
+    {
+        FORJ(c)
+        {
+            cnt = 0;
+            int tempcnt = 0;
+            mn = INT_MIN;
+            if (i - 1 >= 0)
+            {
+                if (arr[i][j] > arr[i - 1][j])
+                {
+                    cnt++;
+                    mn = max(mn, arr[i - 1][j]);
+                }
+                tempcnt++;
+            }
+            if (i + 1 < r)
+            {
+                if (arr[i][j] > arr[i + 1][j])
+                {
+                    cnt++;
+                    mn = max(mn, arr[i + 1][j]);
+                }
+                tempcnt++;
+            }
+            if (j - 1 >= 0)
+            {
+                if (arr[i][j] > arr[i][j - 1])
+                {
+                    cnt++;
+                    mn = max(mn, arr[i][j - 1]);
+                }
+                tempcnt++;
+            }
+            if (j + 1 < c)
+            {
+                if (arr[i][j] > arr[i][j + 1])
+                {
+                    cnt++;
+                    mn = max(mn, arr[i][j + 1]);
+                }
+                tempcnt++;
+            }
+            if (cnt == tempcnt && tempcnt!=0)
+                arr[i][j] = mn;
+        }
+    } 
 
 
-
-
-
-    cout << n << nl;
-
+    FOR(r)
+    {
+        FORJ(c)
+        {
+            cout << arr[i][j] << " ";
+        }
+        cout << nl;
+    }
 }
 
 int32_t main()
