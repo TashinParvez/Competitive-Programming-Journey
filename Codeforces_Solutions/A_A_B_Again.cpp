@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 28.11.2024
+ *          Created: 06.12.2024
  */
 
 #include <bits/stdc++.h>
@@ -153,30 +153,27 @@ void solution()  // main solution
     string s; char chr;
     bool flag = false;
 
-    int ans, cnt = 0, idx = -1, sum = 0, product = 1;
+    int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
-    a = 0;
-    b = 0; // prev
-
-    while (n / m - b != 0)
+    cin >> n;
+    
+    while(n)
     {
-        a = n / m;  // extra  3      4
-        n += a - b; // add +  12    13
-        b = a;      // 3      4
+        sum+=n%10;
+        n/=10;
     }
+    
 
-    // (n/m - a )== 0
+    cout << sum << nl;
 
-    cout << n << nl;
 }
 
 int32_t main()
 {
     faster;
     int t = 1;
-    // cin >> t;
+    cin >> t;
     int c = 1;
     while (t--)
     {

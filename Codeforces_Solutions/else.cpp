@@ -1,29 +1,6 @@
+#include <stdio.h>
 
-//        ****************  Author :  Tashin.Parvez  ****************
-//        ************* United International University *************
-
-#include   <bits/stdc++.h>
-#define    CRACKED        return 0;
-#define    nl             endl
-#define    int            long long
-#define    setDec(x)      fixed << setprecision(x) 
-#define    tashin         cout << "____Tashin____" << nl;
-#define    deb(n)         cout << "Tashin   " << #n << " = " << n << endl;
-#define    debt           cout << "Tashin   " << endl;
-  using    namespace      std;
-
-template <typename T> int len(const T &x) { return x.size(); }
-//--------------------------------------------------------------------------------------------------
-
-int32_t main()
-{
-    int l = 1, r = 1 ;
-    int oddCount = (r - l + 1) / 2;
-    if (r % 2 && l % 2) 
-    {
-        oddCount++;  
-    }
-
-    cout << oddCount << " " << r - oddCount << nl;
-    CRACKED;
+int main() { 
+    printf("The question Case 2: perfectusCase 2: perfectusCase 2: perfectus - ""How to write a  \\comment/ in C programming language?");
+    return 0;
 }
