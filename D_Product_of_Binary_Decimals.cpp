@@ -156,9 +156,22 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> a>>b>>c;
+    cin >> n;
+    
+    while(n)
+    {
+        int last = n%10;
+        n/=10;
+        if(last==1 || last==0)
+        {
 
-    cout << ceil((-a+b) / c) << nl;
+        }else{
+            NO;return;
+        }
+
+    }
+
+YES;
 
 }
 

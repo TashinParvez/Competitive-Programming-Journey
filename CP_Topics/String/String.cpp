@@ -138,8 +138,9 @@ void solution()
 
     //    string s = "I am Tashin Parvez";
     //
-    //    output(s.substr(5,6));
-    //    output(s.substr(12,6));
+    //    output(s.substr(5,6));   -> Tashin
+    //    output(s.substr(12,6));  -> Parvez
+
 
     /*     substr(x,y) -- >
      *     x = from which index [that index is included ]
