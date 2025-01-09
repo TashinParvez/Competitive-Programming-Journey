@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.01.2025
+ *          Created: 02.01.2025
  */
 
 #include <bits/stdc++.h>
@@ -157,13 +157,14 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    
-    
+    FOR(n){
+        cin>>a;
+        if(a>10){
+            sum+=a-10;
+        }
+    }
 
-
-
-
-    cout << n << nl;
+    cout << sum << nl;
 
 }
 
@@ -171,7 +172,7 @@ int32_t main()
 {
     faster;
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
     while (t--)
     {

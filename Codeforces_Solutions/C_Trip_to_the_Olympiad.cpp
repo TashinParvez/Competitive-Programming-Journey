@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.01.2025
+ *          Created: 04.01.2025
  */
 
 #include <bits/stdc++.h>
@@ -156,14 +156,18 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
+    cin >> l >>r;
     
     
 
 
 
 
-    cout << n << nl;
+    cout << (31^11^22) << nl;
+    cout << (4^2) << nl;
+    cout << (21^23) << nl;
+    cout << (29^23) << nl;  //  
+    cout << (22^23) << nl;
 
 }
 

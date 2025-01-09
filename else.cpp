@@ -20,7 +20,8 @@ int32_t main()
 {
     float a = 2.7;
 
-    printf("%.0f",a);
+    printf("Hello\rWorld");
+
 
     CRACKED;
 }

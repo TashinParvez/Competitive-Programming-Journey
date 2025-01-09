@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.01.2025
+ *          Created: 30.12.2024
  */
 
 #include <bits/stdc++.h>
@@ -158,12 +158,18 @@ void solution()  // main solution
 
     cin >> n;
     
-    
+    int arr[n];
+    FOR(n)
+    {
+        cin >> arr[i];
+        if (arr[i] % 3 == 0 && arr[i] % 5 == 0)
+        {
+        }
+        else if (arr[i] % 3 == 0 || arr[i] % 5 == 0)
+            cnt++;
+    }
 
-
-
-
-    cout << n << nl;
+    cout << n-cnt << nl;
 
 }
 
