@@ -1,15 +1,14 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 26.01.2025
  */
 
 #include <bits/stdc++.h>
 #define faster                 ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 #define CRACKED                return 0;
 #define nl                     "\n"
-using   namespace              std;
-#define int                    long long
+using   namespace              std; 
 #define ll                     long long
 #define ull                    unsigned long long
 #define ld                     long double
@@ -143,7 +142,7 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
+bool cmp(const pair<char, pair<int, int>> a, const pair<char, pair<int, int>> b) { return a.ss.ff < b.ss.ff ; } 
 
 void solution()  // main solution
 {
@@ -160,39 +159,36 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
-
-    FOR(n)
-    {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
-    }
     
-    if (two > 0)
-    {
-        two--;
-        cout << 2 << " ";
+    cin>>s;
+
+    map<char, pair<int, int>> occ;
+    FOR(n){
+        c = s[i];
+        occ[c].ff +=1;
+        occ[s[i]].ss = i;
     }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
+    vector < pair<char, pair<int, int>>> arr;
+    mptov(occ,arr);
+
+    sort(all(arr), cmp);
+
+    FOR(n){
+        if (i == arr[0].ss.ff)
+            cout << arr[len(arr)-1].ff;
+        else
+            cout << s[i];
     }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
+
+    cout  << nl;
+
 }
 
-int32_t main()
+int  main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

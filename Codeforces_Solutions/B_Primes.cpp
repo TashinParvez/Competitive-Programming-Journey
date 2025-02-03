@@ -160,33 +160,15 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
 
-    FOR(n)
+    if (n % 2 == 0)
+        cout << -1 << nl;
+    else if (isprime(n - 2))
     {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
+        cout << 2 << " " << n - 2 << nl;
     }
-    
-    if (two > 0)
-    {
-        two--;
-        cout << 2 << " ";
-    }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
-    }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
+    else
+        cout << -1 << nl;
 }
 
 int32_t main()

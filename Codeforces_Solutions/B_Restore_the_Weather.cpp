@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 27.01.2025
  */
 
 #include <bits/stdc++.h>
@@ -143,7 +143,8 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
+bool cmp(const pii &a, const pii &b) { return a.ss < b.ss; } 
+bool cmp2(const pii &a, const pii &b) { return a.ff < b.ff; } 
 
 void solution()  // main solution
 {
@@ -153,46 +154,52 @@ void solution()  // main solution
     int l, r;
     int even = 0, odd = 0;
 
-    string s; char chr;
+    string s;
+    char chr;
     bool flag = false;
 
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
+    cin >> n >> k;
+
+    vpii arr;
+    vi brr;
 
     FOR(n)
     {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
+        cin >> a;
+        arr.pb({i + 1, a});
     }
-    
-    if (two > 0)
+    FOR(n)
     {
-        two--;
-        cout << 2 << " ";
+        cin >> a;
+        brr.pb(a);
     }
-    if (one > 0)
+    vsort(brr);
+    sort(all(arr), cmp);
+
+    vpii an;
+
+    FOR(n)
     {
-        one--;
-        cout << 1 << " ";
+        int index = arr[i].ff;
+        an.pb({index, brr[i]});
     }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
+
+    sort(all(an), cmp2);
+    FOR(n)
+    {
+        cout << an[i].ss << " ";
+    }
     cout << nl;
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

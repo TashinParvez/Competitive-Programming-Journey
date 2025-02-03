@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 02.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -9,7 +9,7 @@
 #define CRACKED                return 0;
 #define nl                     "\n"
 using   namespace              std;
-#define int                    long long
+#define int                    long long 
 #define ll                     long long
 #define ull                    unsigned long long
 #define ld                     long double
@@ -108,7 +108,25 @@ int           eulerPhi(int n, vector<int> &primeNumbers)     { int phi = n; for 
 template <typename T, typename U> auto max(T a, U b) -> common_type_t<T, U> { return (a > b) ? a : b; }
 
 ll        numrev(ll n)           { ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*10+r;tmp/=10;}return ans;}
-bool      isprime(ll n)          {if(n<2)return false;if(n==2)return true;if(n%2==0)return false;for(ll i=3;i<=sqrt(n);i+=2){if(n%i==0)return false;}return true;}
+
+
+bool isprime(ll n)   // num prime ? check
+{
+    if (n < 2)
+        return false;
+    if (n == 2)
+        return true;
+    if (n % 2 == 0)
+        return false; 
+    for (ll i = 3; i <= sqrt(n); i += 2)
+    {
+        if (n % i == 0)
+            return false;
+    }
+    return true;
+}
+
+
 bool      issquare(ll x)         {ll sq=sqrt(x);return sq*sq==x;}
 bool      iseven(int n)          { return !(n & 1);}
 ll        POW(ll a, ll b)        {if(!b) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
@@ -159,40 +177,74 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
+    cin >> n >> k;
+    int arr[n+1];
+    arr[0] = 100;
 
-    FOR(n)
-    {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
+    mpii occ;
+
+    FOR(1,n+1){
+        cin>>arr[i];
+        occ[arr[i]]++;
     }
-    
-    if (two > 0)
-    {
-        two--;
-        cout << 2 << " ";
+    //---------------------
+
+    int bidx = 1 ; // str from 1
+    int taken = 0;
+
+    FOR(1, k + 1)
+    { 
+
+        int mxidx = n - (k - (taken + 1)); // included
+
+        if ((taken+1) % 2 == 0) // take 
+        {
+            // tashin;
+            bidx++;
+        }
+        else 
+        {
+            if (arr[mxidx + 1] != bidx)
+            {
+                ans = bidx;
+                break;
+            }
+            else // not take mx, dec take
+            {
+                for (int j = mxidx; j > i; j--)
+                {
+
+                    if (arr[j] == bidx) 
+                    {
+                        ans = 2; 
+                        break;
+                    }
+                    else
+                    {
+                        ans = 1;
+                        break;
+                    }
+                }
+
+                if (ans != 0)
+                    break;
+            }
+        }
+
+        taken++; 
     }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
-    }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
+
+    if(ans == 0)
+        ans = bidx;
+
+    cout << ans << nl; 
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

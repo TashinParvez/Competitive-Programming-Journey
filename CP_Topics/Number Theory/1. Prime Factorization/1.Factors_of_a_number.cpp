@@ -9,18 +9,33 @@
 #define    setDec(x)      fixed << setprecision(x) 
 #define    tashin         cout << "____Tashin____" << nl;
 #define    deb(n)         cout << "Tashin   " << #n << " = " << n << endl;
+#define    debug(x) cerr << #x << " = " << (x) << endl;
 #define    debt           cout << "Tashin   " << endl;
   using    namespace      std;
 
 template <typename T> int len(const T &x) { return x.size(); }
 //--------------------------------------------------------------------------------------------------
 
-int32_t main()
-{   
-    int n , m , a;
-    cin>>n>>m>>a;
+void printFactors(int n)
+{
+    for (int i = 1; i * i <= n; i++)
+    {
+      if (n % i == 0)
+      {
+        cout << i << " ";
+        if (n / i != i)
+          cout << n / i << " ";
+      }
+    }
+    cout << nl;
+}
 
-    cout<<ceil(n/(a*1.0)) + ceil(m/(a*1.0))  <<nl;
-    
-    CRACKED;
+int32_t main()
+{
+  int n;
+
+  cin >> n;
+  printFactors(n);
+
+  CRACKED;
 }

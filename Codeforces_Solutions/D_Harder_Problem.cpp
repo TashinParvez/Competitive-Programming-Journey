@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 25.01.2025
  */
 
 #include <bits/stdc++.h>
@@ -15,10 +15,10 @@ using   namespace              std;
 #define ld                     long double
 #define output(x)              cout << x << nl
 #define setdec(x)              fixed << setprecision(x)
-#define YES                    {cout << "YES" << nl;}
-#define Yes                    {cout << "Yes" << nl;}
-#define NO                     {cout << "NO" << nl;}
-#define No                     {cout << "No" << nl;}
+#define YES                    cout << "YES" << nl;
+#define Yes                    cout << "Yes" << nl;
+#define NO                     cout << "NO" << nl;
+#define No                     cout << "No" << nl;
 
 //--------------------------------- Debug --------------------------------
 #define tashin                 cout << "____Tashin____" << nl;
@@ -160,39 +160,48 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
+    
     int arr[n];
-    int one = 0, two = 0;
+    mpii occ;
+    FOR(n){
+        cin>>arr[i];
+        occ[arr[i]]++;
+    }
+    int ptr = n;
+    mpii focc;
 
     FOR(n)
     {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
+        // dbg(focc[arr[i]]);
+        if (focc[arr[i]] == 0)
+        {
+            cout << arr[i] << " ";
+            focc[arr[i]]++;
+            // dbg(focc[arr[i]]);
+        }else{
+            // tashin;
+            while(1){
+                if (occ[ptr] == 0)
+                {
+                    cout << ptr << " "; 
+                    // cout << nl;
+                    ptr--;
+                    break;
+                }
+                else
+                    ptr--;
+            }
+        }
     }
-    
-    if (two > 0)
-    {
-        two--;
-        cout << 2 << " ";
-    }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
-    }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
+
     cout << nl;
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

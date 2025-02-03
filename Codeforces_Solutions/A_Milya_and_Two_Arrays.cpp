@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 02.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -160,39 +160,39 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
+
     int arr[n];
-    int one = 0, two = 0;
+
+    mpii occ1 , occ2;
+
+    FOR(n){
+        cin>>arr[i];
+        occ1[arr[i]]++;
+    }
 
     FOR(n)
     {
         cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
+        occ2[arr[i]]++;
     }
-    
-    if (two > 0)
+
+    // dbg(occ1.size(), occ2.size());
+
+    if (occ1.size() >= 3 || occ2.size() >= 3 || (occ1.size() == 2 && occ2.size() == 2))
     {
-        two--;
-        cout << 2 << " ";
+        YES;
     }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
-    }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
+    else
+        NO;
+
+
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

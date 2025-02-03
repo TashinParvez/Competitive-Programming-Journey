@@ -14,31 +14,26 @@
 #define tashin cout << "____Tashin____" << nl;                  // Pointer
 #define deb(n) cout << "Tashin   " << #n << " = " << n << endl; // debug code
 #define debt cout << "Tashin   " << endl;                       // debug code
-
 using namespace std;
 #define mem(a, b) memset(a, b, sizeof(a))
-//--------------------------------- FOR
-#define FOR_OVERLOAD(_1, _2, NAME, ...) NAME
-#define FOR(...) FOR_OVERLOAD(__VA_ARGS__, FOR_TWO_ARGS, FOR_ONE_ARG)(__VA_ARGS__)
-
-#define FOR_ONE_ARG(n) for (int i = 0; i < (n); i++)
-#define FOR_TWO_ARGS(a, b) for (int i = (a); (a) <= (b) ? (i < (b)) : (i > (b)); (a) <= (b) ? ++i : --i)
-
-#define FORJ(n) for (int j = 0; j < (n); j++)
-#define FORK(n) for (int k = 0; k < (n); k++)
 
 //--------------------------------------------------------------------------------------------------
 
-vector<int> sieve(int n) //======================= >>>  normal
+vector<int> sieveNormal(int n) //======================= >>>  normal
 {
     const int idx = 1e7;
     bitset<idx> isprime; // take less memory then bool/int
 
     vector<int> primeNumbers;
-    FOR(2, n + 1)
+
+    isprime[0] = 0;
+    isprime[1] = 0;
+
+    for (int i = 2; i <= n; i++)
     {
-        isprime[i] = 1; // true
+        isprime[i] = 1; // making all true  initially
     }
+
 
     for (int i = 2; i <= n; i++)
     {
@@ -48,7 +43,7 @@ vector<int> sieve(int n) //======================= >>>  normal
         }
     }
 
-    FOR(2, n + 1)
+    for (int i = 2; i <= n; i++)
     {
         if (isprime[i] == 1)
             primeNumbers.push_back(i);
@@ -57,16 +52,20 @@ vector<int> sieve(int n) //======================= >>>  normal
     return primeNumbers;
 }
 
+
 vector<int> sieveOptimized(int n) //======================= >>>  Optimised _ almost  O(n) == work upto 1e7
 {
     const int idx = 1e7;
     bitset<idx> isprime; // take less memory then bool/int
 
     vector<int> primeNumbers;
+
     for (int i = 3; i <= n; i += 2)
     {
         isprime[i] = 1; // createing all prime true
     }
+
+    isprime[2] = 1;
 
     int sq = sqrt(n);
 
@@ -93,19 +92,24 @@ vector<int> sieveOptimized(int n) //======================= >>>  Optimised _ alm
     return primeNumbers;
 }
 
-int32_t main()
+int32_t main()       //-------------------  main func -------------------
 {
     int limit = 1e6;
     // cout << "Enter Limit: ";
-    cin >> limit;
-    vector<int> primeNumbers = sieve(limit);
+
+    cin >> limit; 
+
+
+    vector<int> primeNumbers = sieveNormal(limit);
+
     cout << "Normal Method :" << nl;
     for (auto i : primeNumbers)
     {
         cout << i << " ";
     }
 
-    primeNumbers = sieve(limit);
+    primeNumbers = sieveOptimized(limit);
+
     cout << nl << "Optimized Method :" << nl;
     for (auto i : primeNumbers)
     {

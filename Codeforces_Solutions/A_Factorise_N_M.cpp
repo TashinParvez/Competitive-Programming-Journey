@@ -123,8 +123,8 @@ int32_t main()
     {
 
         int n;
-        cin >> n;
-        if (n % 2 == 0)
+        cin >> n; 
+        if(n%2==0)
             cout << 2 << nl;
         else
             cout << 3 << nl;

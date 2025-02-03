@@ -19,8 +19,10 @@ int32_t main()
 {   
     int n , m , a;
     cin>>n>>m>>a;
+    int ans = ceil(n / (a * 1.0));
+    ans  *= ceil(m / (a * 1.0));
 
-    cout<<ceil(n/(a*1.0)) + ceil(m/(a*1.0))  <<nl;
-    
-    CRACKED;
+    cout << ans << nl;
+
+    CRACKED; 
 }

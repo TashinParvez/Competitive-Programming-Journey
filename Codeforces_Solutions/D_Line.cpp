@@ -125,25 +125,8 @@ int       getASCII(char c)       { return c;}
 #define   arrprint(arr, len)     for (int i = 0; i < (len); i++) cout << (arr)[i] << (i + 1 == (len) ? '\n' : ' ');
 #define   vprint(vec)            for (size_t i = 0; i < (vec).size(); ++i) cout << (vec)[i] << (i + 1 == (vec).size() ? '\n' : ' '); 
 
-/* --------------------- REMEMBER --------------------
-   int       = -2e31  to  2e31 -1      2e31 = 2*10^9     max Digit = 10
-   long long = -2e63  to  2e63 -1      2e63 = 9*10^18    max Digit = 19
-   Max size of global array can upto 10e8
 
-1. Think Greedy
-2. Think Brute Force
-3. Think solution in reverse order
-4. Think DP [ check constraints carefully ]
-5. Check base cases for DP and prove solution for Greedy
-6. Think Graph 
-7. SubArray / Continious / SubSegment  =  PrefixSum
 
-*/
-const double PI = 3.1415926535;
-const int inf = 1e18;
-const int mod = 1000000007;
-
-bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
 
 void solution()  // main solution
 {
@@ -159,40 +142,76 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
+    cin >> n >> s;
+
+    vpii first, second;
 
     FOR(n)
     {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
+        if(s[i] == 'L'){
+            sum += i;
+        }else{
+            sum += n - (i + 1);
+        }
+
+        if (i < n / 2 && s[i] != 'R')
+        {
+            first.pb({i, n - (i + 1)});
+        }
+        else if (i >= n / 2 && s[i] != 'L')
+        {
+            second.pb({i, i});
+        }
+
+    }
+
+    l =  0;
+    r = len(second)-1;
+
+
+    FOR(n)
+    {
+        if (l == len(first) && r == -1)
+        {
+            cout << sum << " ";
+        }
         else
-            two++;
+        {
+            if (l == len(first))
+                a = 0;
+            else
+                a = first[l].ss;
+            if (r == -1)
+                b = 0;
+            else
+                b = second[r].ss;
+
+            if (a >= b)
+            {
+                sum -= first[l].ff;
+                sum += a;
+                l++;
+                cout << sum << " ";
+            }
+            else
+            {
+                sum -= n - (second[r].ff + 1);
+                sum += b;
+                r--;
+                cout << sum << " ";
+            }
+        }
     }
-    
-    if (two > 0)
-    {
-        two--;
-        cout << 2 << " ";
-    }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
-    }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
+
+    cout  << nl;
+
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

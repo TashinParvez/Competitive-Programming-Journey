@@ -1,8 +1,4 @@
 #include <bits/stdc++.h>
-#define faster                        \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(0);                       \
-    cout.tie(0);
 #define CRACKED return 0;
 #define nl "\n"
 using namespace std;
@@ -57,8 +53,6 @@ vector<int> getprimefac(int n, vector<int> &primeNumbers)
 
 int32_t main()
 {
-    faster;
-
     int limit = 1e7;
     sieve(limit);
 

@@ -83,9 +83,40 @@ template <typename T> int len(const T &x) { return x.size(); }
 //------------------------------ NumberTheory ------------------------------
 
 #define       lcm(a, b)                                      (a * (b / __gcd(a,b)) )
-#define       gcd(a, b)                                      __gcd(a,b) 
+#define       gcd(a, b)                                      __gcd(a,b)
 
-vector<int>   sieve(int n)                                   { const int isprimeflag_limit = 1e8; static bitset<isprimeflag_limit> isprimeflag; vector<int> primeNumbers; if (n == 1 || n <= 0) return primeNumbers; for (int i = 3; i <= n; i += 2) isprimeflag[i] = 1; isprimeflag[2]=1; int sq = sqrt(n); for (int i = 3; i <= sq; i += 2) if (isprimeflag[i]) for (int j = i * i; j <= n; j += i) isprimeflag[j] = 0; primeNumbers.push_back(2); for (int i = 3; i <= n; i += 2) if (isprimeflag[i]) primeNumbers.push_back(i); return primeNumbers; }
+vector<int> sieve(int n)
+{
+    const int isprimeflag_limit = 1e8;
+
+    static bitset<isprimeflag_limit> isprimeflag;
+    
+    vector<int> primeNumbers;
+
+    if (n == 1 || n <= 0)
+        return primeNumbers;
+
+    for (int i = 3; i <= n; i += 2)
+        isprimeflag[i] = 1;
+
+    isprimeflag[2] = 1;
+
+    int sq = sqrt(n);
+
+    for (int i = 3; i <= sq; i += 2)
+        if (isprimeflag[i])
+            for (int j = i * i; j <= n; j += i)
+                isprimeflag[j] = 0;
+    
+    primeNumbers.push_back(2);
+
+    for (int i = 3; i <= n; i += 2)
+        if (isprimeflag[i])
+            primeNumbers.push_back(i);
+    
+    return primeNumbers;
+}
+
 vector<int>   getprimefac(int n, vector<int> &primeNumbers)  { vector<int> factors; for (auto i : primeNumbers) { if (i * i > n) break; while (n % i == 0) factors.push_back(i), n /= i; } if (n > 1) factors.push_back(n); return factors; }
 
 void          getDivisorsAll(int limit)                      { const int idxfordivisor = 1e7; vector<int> divisorsCnt(idxfordivisor + 2, 0), divisorsSum(idxfordivisor + 2, 0); vector<vector<int>> alldivisors(idxfordivisor + 2); divisorsCnt.resize(limit + 1, 0); divisorsSum.resize(limit + 1, 0); for (int i = 1; i <= limit; i++) for (int j = i; j <= limit; j += i) divisorsCnt[j]++, divisorsSum[j] += i, alldivisors[j].push_back(i); /* return alldivisors;*/ }
@@ -160,39 +191,21 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
-
-    FOR(n)
-    {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
-    }
     
-    if (two > 0)
-    {
-        two--;
-        cout << 2 << " ";
-    }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
-    }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
+    
+
+
+
+
+    cout << n << nl;
+
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

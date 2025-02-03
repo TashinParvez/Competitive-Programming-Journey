@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 20.01.2025
  */
 
 #include <bits/stdc++.h>
@@ -15,15 +15,14 @@ using   namespace              std;
 #define ld                     long double
 #define output(x)              cout << x << nl
 #define setdec(x)              fixed << setprecision(x)
-#define YES                    {cout << "YES" << nl;}
-#define Yes                    {cout << "Yes" << nl;}
-#define NO                     {cout << "NO" << nl;}
-#define No                     {cout << "No" << nl;}
+#define YES                    cout << "YES" << nl;
+#define Yes                    cout << "Yes" << nl;
+#define NO                     cout << "NO" << nl;
+#define No                     cout << "No" << nl;
 
 //--------------------------------- Debug --------------------------------
 #define tashin                 cout << "____Tashin____" << nl;
 #define parvez                 cout << "____Parvez____" << nl;
-#define divider                 cout << " \n----------------------------\n" << nl;
 
 #define dbg(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>                          void __f(const char *name, Arg1 &&arg1) { cout << name << " = " << arg1 << std::endl; }
@@ -105,8 +104,6 @@ int           eulerPhi(int n, vector<int> &primeNumbers)     { int phi = n; for 
 #define   MID(a, b)              a + ((b - a) / 2);
 #define   suminrange(a, b)       ((b * (b + 1)) / 2) - (((a - 1) * (a)) / 2)
 
-template <typename T, typename U> auto max(T a, U b) -> common_type_t<T, U> { return (a > b) ? a : b; }
-
 ll        numrev(ll n)           { ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*10+r;tmp/=10;}return ans;}
 bool      isprime(ll n)          {if(n<2)return false;if(n==2)return true;if(n%2==0)return false;for(ll i=3;i<=sqrt(n);i+=2){if(n%i==0)return false;}return true;}
 bool      issquare(ll x)         {ll sq=sqrt(x);return sq*sq==x;}
@@ -122,9 +119,9 @@ string    inttostr(ll x)         {string s;while(x){s+=(char)(x%10)+'0';x/=10;}r
 #define   strrev(s)              reverse(s.begin(), s.end())
 int       getASCII(char c)       { return c;}
 
-#define   arrprint(arr, len)     for (int i = 0; i < (len); i++) cout << (arr)[i] << (i + 1 == (len) ? '\n' : ' ');
-#define   vprint(vec)            for (size_t i = 0; i < (vec).size(); ++i) cout << (vec)[i] << (i + 1 == (vec).size() ? '\n' : ' '); 
-
+void      arrprint(int arr[], int len)     { for (int i = 0; i < len; i++) (i + 1 == len) ? cout << arr[i] << nl : cout << arr[i] << " ";}
+void      vprint(const vector<int>& vec)   { for (size_t i = 0; i < vec.size(); ++i) { if (i + 1 == vec.size()) cout << vec[i] << nl; else cout << vec[i] << " "; } }
+ 
 /* --------------------- REMEMBER --------------------
    int       = -2e31  to  2e31 -1      2e31 = 2*10^9     max Digit = 10
    long long = -2e63  to  2e63 -1      2e63 = 9*10^18    max Digit = 19
@@ -159,40 +156,37 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
+    cin >> n >>m;
 
-    FOR(n)
-    {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
+    cnt = 0;
+
+    FOR(n){
+        FORJ(m){
+            cin>>a;
+            b = a;
+            a= abs(a);
+            if(a!=b){
+                cnt++;
+            }
+            if(a == 0) flag = 1;
+            mn = min(mn,a); 
+            sum+=a;
+        }
     }
-    
-    if (two > 0)
-    {
-        two--;
-        cout << 2 << " ";
-    }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
-    }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
+
+    if (flag)
+        cout << sum << nl;
+    else if (cnt % 2)
+        cout << sum - mn - mn << nl;
+    else
+        cout << sum << nl;
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

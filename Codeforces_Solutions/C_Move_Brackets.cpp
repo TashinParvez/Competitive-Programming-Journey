@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 31.01.2025
  */
 
 #include <bits/stdc++.h>
@@ -159,40 +159,36 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
+    cin >> n >> s;
 
-    FOR(n)
-    {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
+    int open = 0 , close = 0  ;
+
+    FOR(n){
+        if (s[i] == '(')
+        {
+            open++;
+        }
         else
-            two++;
+        {
+            if (open > 0)
+                open--;
+            else
+            {
+                ans++; 
+            }
+        }
     }
-    
-    if (two > 0)
-    {
-        two--;
-        cout << 2 << " ";
-    }
-    if (one > 0)
-    {
-        one--;
-        cout << 1 << " ";
-    }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
+
+
+    cout << ans << nl;
+
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

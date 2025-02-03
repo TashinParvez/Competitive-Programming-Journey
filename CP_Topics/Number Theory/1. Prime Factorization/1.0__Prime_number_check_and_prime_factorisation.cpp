@@ -4,30 +4,32 @@
 
 #include <bits/stdc++.h>
 #define CRACKED return 0;
-#define nl endl // NewLine
+#define nl endl  
 using namespace std;
 
-int32_t main()
+int main()
 {
 
     /**********************  Number Prime or not check (Optimized)   O(n)->O(root n) *************************/
+ 
     int n;
     cin >> n;
-    if (n == 1)
-        cout << "PRIME" << nl;
 
-    for (int i = 2; i <= sqrt(n); i++) //  O(Root N)
-    // for (int i = 1; i*1 <= n; i++)  // another way
-    {
-        if (n % i == 0)
+    if (n == 1)
+        cout << "1 Is Not a PRIME" << nl;
+    else
+        for (int i = 2; i <= sqrt(n); i++) //  O(Root N)
+        // for (int i = 1; i*1 <= n; i++)  // another way 
         {
-            break;
+            if (n % i == 0)
+            {
+                break;
+            }
         }
-    }
 
     //
     /************************ find all divisable prime numbers of a num *********************************/
-
+ 
     cin >> n;
     vector<int> primeFactors;
 
@@ -49,6 +51,7 @@ int32_t main()
     /*
        See for every number there always exist a prime num with in root(n)
     */
+ 
     cin >> n;
     vector<int> primeFactors;
 
@@ -68,6 +71,6 @@ int32_t main()
     {
         cout << i << " ";
     }
-
+ 
     CRACKED;
 }

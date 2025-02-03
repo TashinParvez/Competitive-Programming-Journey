@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 25.01.2025
  */
 
 #include <bits/stdc++.h>
@@ -15,10 +15,10 @@ using   namespace              std;
 #define ld                     long double
 #define output(x)              cout << x << nl
 #define setdec(x)              fixed << setprecision(x)
-#define YES                    {cout << "YES" << nl;}
-#define Yes                    {cout << "Yes" << nl;}
-#define NO                     {cout << "NO" << nl;}
-#define No                     {cout << "No" << nl;}
+#define YES                    cout << "YES" << nl;
+#define Yes                    cout << "Yes" << nl;
+#define NO                     cout << "NO" << nl;
+#define No                     cout << "No" << nl;
 
 //--------------------------------- Debug --------------------------------
 #define tashin                 cout << "____Tashin____" << nl;
@@ -160,39 +160,35 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
+    vi arr;
+    int so = 0, se = 0;
 
     FOR(n)
     {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
+        cin >> a;
+        arr.pb(a);
+        sum += a;
+       ( i +1 ) % 2 == 0 ? se += a : so += a;
     }
-    
-    if (two > 0)
+
+    even = n / 2;
+    odd = (n+1) / 2;
+
+    if (se % even == 0 && so % odd == 0 && se / even == so / odd)
     {
-        two--;
-        cout << 2 << " ";
+        YES;
     }
-    if (one > 0)
+    else
     {
-        one--;
-        cout << 1 << " ";
+        NO;
     }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
-    cout << nl;
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {

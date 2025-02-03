@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 02.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -143,7 +143,8 @@ const double PI = 3.1415926535;
 const int inf = 1e18;
 const int mod = 1000000007;
 
-bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
+bool cmp(const pii &a, const pii &b) { return a.first < b.first; } 
+bool cmp2(const pii &a, const pii &b) { return a.ss < b.ss; } 
 
 void solution()  // main solution
 {
@@ -159,40 +160,56 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    int arr[n];
-    int one = 0, two = 0;
+    cin >> n >> m;
 
+    vpii arr(n);
     FOR(n)
     {
-        cin >> arr[i];
-        if (arr[i] == 1)
-            one++;
-        else
-            two++;
+        cin >> arr[i].ff;
+        arr[i].ss = i;
     }
-    
-    if (two > 0)
+    sort(all(arr), cmp);
+
+    int arrb[m];
+    FOR(m)
     {
-        two--;
-        cout << 2 << " ";
+        cin >> arrb[i];
     }
-    if (one > 0)
+
+    mpii occ;
+    FOR(m)
     {
-        one--;
-        cout << 1 << " ";
+        occ[arrb[i]]++;
+        if( occ[arrb[i]] >1)
+            continue;
+            
+        int temp = POW(2, arrb[i]);
+        int temp2 = POW(2, arrb[i] - 1);
+
+        for (int j = n - 1; j >= 0; j--)
+        {
+            if (arr[j].ff < temp)
+                break;
+            if (arr[j].ff % temp == 0)
+            {
+                arr[j].ff += temp2;
+            }
+        }
     }
-    while (two--)
-        cout << "2 ";
-    while (one--)
-        cout << "1 ";
+
+    sort(all(arr), cmp2);
+    FOR(n)
+    {
+        cout << arr[i].ff << " ";
+    }
     cout << nl;
 }
 
 int32_t main()
 {
     faster;
-    int t = 1; 
+    int t = 1;
+    cin >> t;
     int c = 1;
     while (t--)
     {
