@@ -14,10 +14,10 @@ using   namespace              std;
 #define ull                    unsigned long long
 #define ld                     long double
 #define setdec(x)              fixed << setprecision(x)
-#define YES                    {cout << "YES" << nl;}
-#define Yes                    {cout << "Yes" << nl;}
-#define NO                     {cout << "NO" << nl;}
-#define No                     {cout << "No" << nl;}
+#define YES                    cout << "YES" << nl;
+#define Yes                    cout << "Yes" << nl;
+#define NO                     cout << "NO" << nl;
+#define No                     cout << "No" << nl;
 
 //--------------------------------- Debug --------------------------------
 #define tashin                 cout << "____Tashin____" << nl;
@@ -110,15 +110,7 @@ ll        numrev(ll n)           { ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*
 bool      isprime(ll n)          {if(n<2)return false;if(n==2)return true;if(n%2==0)return false;for(ll i=3;i<=sqrt(n);i+=2){if(n%i==0)return false;}return true;}
 bool      issquare(ll x)         {ll sq=sqrt(x);return sq*sq==x;}
 bool      iseven(int n)          { return !(n & 1);}
-
-//----------MOD---------------
-constexpr ll  POW(ll a, ll b)                 {if(b==0) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
-constexpr ll  MOD(ll num, ll mod)             { return ((num % mod + mod) % mod); }
-constexpr ll  BIGMOD(ll n, ll power, ll mod)  { if (power == 0) return 1; ll ans = BIGMOD(n, power / 2, mod); ans = ((ans % mod) * (ans % mod)) % mod; if (power % 2 == 1) return (ans * (n % mod)) % mod; else return ans; }
-inline ll     modAdd(ll a, ll b, ll mod)      { return MOD((MOD(a,mod) + MOD(b,mod)), mod); }
-inline ll     modSub(ll a, ll b, ll mod)      { return MOD(((MOD(a,mod) - MOD(b,mod))+ mod), mod); }
-inline ll     modMul(ll a, ll b, ll mod)      { return MOD((MOD(a, mod) * MOD(b, mod)), mod); }
-inline ll     modDiv(ll a, ll b, ll mod)      { return modMul(a, BIGMOD(b, mod - 2, mod), mod); }
+ll        POW(ll a, ll b)        {if(!b) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
 
 //------------------------------- string func's -------------------------------
 
@@ -166,20 +158,28 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
+    cin >> x >> y;
     
-    
-
-
-
-
-
+    if (y + 1 == x)
+    {
+        NO;
+    }
+    else
+    {
+        YES;
+    }
 }
 
 int32_t main()
 {
     faster;
-    cout << gcd(0,0) << nl;
-     
+    int t = 1;
+    cin >> t;
+    int c = 1;
+    while (t--)
+    {
+        // cout << "Case " << c++ << ": "; 
+        solution();
+    }
     CRACKED;
 }

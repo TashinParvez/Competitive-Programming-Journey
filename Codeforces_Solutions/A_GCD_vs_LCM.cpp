@@ -9,8 +9,7 @@
 #define CRACKED                return 0;
 #define nl                     "\n"
 using   namespace              std;
-#define int                    long long
-#define ll                     long long
+ #define ll                     long long
 #define ull                    unsigned long long
 #define ld                     long double
 #define setdec(x)              fixed << setprecision(x)
@@ -167,19 +166,22 @@ void solution()  // main solution
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    
-    
 
+    cout << n - 3 << " 1 " << "1" << " 1" << nl; 
 
-
-
-
+    // cout << gcd(n - 3, 1) << "  " << lcm(1, 1) << nl;
 }
 
 int32_t main()
 {
     faster;
-    cout << gcd(0,0) << nl;
-     
+    int t = 1;
+    cin >> t;
+    int c = 1;
+    while (t--)
+    {
+        // cout << "Case " << c++ << ": "; 
+        solution();
+    }
     CRACKED;
 }

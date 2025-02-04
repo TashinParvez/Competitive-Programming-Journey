@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 03.02.2025
+ *          Created: 04.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -13,7 +13,6 @@ using   namespace              std;
 #define ll                     long long
 #define ull                    unsigned long long
 #define ld                     long double
-#define output(x)              cout << x << nl
 #define setdec(x)              fixed << setprecision(x)
 #define YES                    {cout << "YES" << nl;}
 #define Yes                    {cout << "Yes" << nl;}
@@ -23,7 +22,7 @@ using   namespace              std;
 //--------------------------------- Debug --------------------------------
 #define tashin                 cout << "____Tashin____" << nl;
 #define parvez                 cout << "____Parvez____" << nl;
-#define divider                 cout << " \n----------------------------\n" << nl;
+#define divider                cout << " \n----------------------------\n" << nl;
 
 #define dbg(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>                          void __f(const char *name, Arg1 &&arg1) { cout << name << " = " << arg1 << std::endl; }
@@ -83,40 +82,9 @@ template <typename T> int len(const T &x) { return x.size(); }
 //------------------------------ NumberTheory ------------------------------
 
 #define       lcm(a, b)                                      (a * (b / __gcd(a,b)) )
-#define       gcd(a, b)                                      __gcd(a,b)
+#define       gcd(a, b)                                      __gcd(a,b) 
 
-vector<int> sieve(int n)
-{
-    const int isprimeflag_limit = 1e8;
-
-    static bitset<isprimeflag_limit> isprimeflag;
-    
-    vector<int> primeNumbers;
-
-    if (n == 1 || n <= 0)
-        return primeNumbers;
-
-    for (int i = 3; i <= n; i += 2)
-        isprimeflag[i] = 1;
-
-    isprimeflag[2] = 1;
-
-    int sq = sqrt(n);
-
-    for (int i = 3; i <= sq; i += 2)
-        if (isprimeflag[i])
-            for (int j = i * i; j <= n; j += i)
-                isprimeflag[j] = 0;
-    
-    primeNumbers.push_back(2);
-
-    for (int i = 3; i <= n; i += 2)
-        if (isprimeflag[i])
-            primeNumbers.push_back(i);
-    
-    return primeNumbers;
-}
-
+vector<int>   sieve(int n)                                   { const int isprimeflag_limit = 1e8; static bitset<isprimeflag_limit> isprimeflag; vector<int> primeNumbers; if (n == 1 || n <= 0) return primeNumbers; for (int i = 3; i <= n; i += 2) isprimeflag[i] = 1; isprimeflag[2]=1; int sq = sqrt(n); for (int i = 3; i <= sq; i += 2) if (isprimeflag[i]) for (int j = i * i; j <= n; j += i) isprimeflag[j] = 0; primeNumbers.push_back(2); for (int i = 3; i <= n; i += 2) if (isprimeflag[i]) primeNumbers.push_back(i); return primeNumbers; }
 vector<int>   getprimefac(int n, vector<int> &primeNumbers)  { vector<int> factors; for (auto i : primeNumbers) { if (i * i > n) break; while (n % i == 0) factors.push_back(i), n /= i; } if (n > 1) factors.push_back(n); return factors; }
 
 void          getDivisorsAll(int limit)                      { const int idxfordivisor = 1e7; vector<int> divisorsCnt(idxfordivisor + 2, 0), divisorsSum(idxfordivisor + 2, 0); vector<vector<int>> alldivisors(idxfordivisor + 2); divisorsCnt.resize(limit + 1, 0); divisorsSum.resize(limit + 1, 0); for (int i = 1; i <= limit; i++) for (int j = i; j <= limit; j += i) divisorsCnt[j]++, divisorsSum[j] += i, alldivisors[j].push_back(i); /* return alldivisors;*/ }
@@ -142,7 +110,15 @@ ll        numrev(ll n)           { ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*
 bool      isprime(ll n)          {if(n<2)return false;if(n==2)return true;if(n%2==0)return false;for(ll i=3;i<=sqrt(n);i+=2){if(n%i==0)return false;}return true;}
 bool      issquare(ll x)         {ll sq=sqrt(x);return sq*sq==x;}
 bool      iseven(int n)          { return !(n & 1);}
-ll        POW(ll a, ll b)        {if(!b) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
+
+//----------MOD---------------
+constexpr ll  POW(ll a, ll b)                 {if(b==0) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
+constexpr ll  MOD(ll num, ll mod)             { return ((num % mod + mod) % mod); }
+constexpr ll  BIGMOD(ll n, ll power, ll mod)  { if (power == 0) return 1; ll ans = BIGMOD(n, power / 2, mod); ans = ((ans % mod) * (ans % mod)) % mod; if (power % 2 == 1) return (ans * (n % mod)) % mod; else return ans; }
+inline ll     modAdd(ll a, ll b, ll mod)      { return MOD((MOD(a,mod) + MOD(b,mod)), mod); }
+inline ll     modSub(ll a, ll b, ll mod)      { return MOD(((MOD(a,mod) - MOD(b,mod))+ mod), mod); }
+inline ll     modMul(ll a, ll b, ll mod)      { return MOD((MOD(a, mod) * MOD(b, mod)), mod); }
+inline ll     modDiv(ll a, ll b, ll mod)      { return modMul(a, BIGMOD(b, mod - 2, mod), mod); }
 
 //------------------------------- string func's -------------------------------
 
@@ -183,29 +159,26 @@ void solution()  // main solution
     int u, v, x, y, z;
     int l, r;
     int even = 0, odd = 0;
-
     string s; char chr;
     bool flag = false;
-
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n;
-    
-    
-
-
-
-
-    cout << n << nl;
-
+    cin >> n >> m;
+ 
+    if (n>26)
+        cout << m << nl;
+    else
+    {
+        ans = MOD(m, POW(2, n));
+        cout << ans << nl;
+    }
 }
 
 int32_t main()
 {
     faster;
-    int t = 1;
-    cin >> t;
+    int t = 1; 
     int c = 1;
     while (t--)
     {

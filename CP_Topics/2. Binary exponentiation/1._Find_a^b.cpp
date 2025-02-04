@@ -8,21 +8,24 @@
 #define    int            long long
 #define    setDec(x)      fixed << setprecision(x) 
 #define    tashin         cout << "____Tashin____" << nl;
-#define    deb(n)         cout << "Tashin   " << #n << " = " << n << endl;
-#define    debt           cout << "Tashin   " << endl;
-  using    namespace      std;
+#define    dbg(x)         cerr << #x << " = " << (x) << endl;
+using      namespace      std;
 
 template <typename T> int len(const T &x) { return x.size(); }
 //--------------------------------------------------------------------------------------------------
 
+int findPow(int a, int b){
+    int ans = 1;
+    for (int i = 1; i <= b; i++)
+        ans *= a;
+    return ans;
+}
+
 int32_t main()
 {   
-    int x; cin>> x ;
-
-    int mod = 6 ;
-
-    cout << (x % mod + mod) % mod << nl; 
-
+    int a  , b ;
+    cin>>a>>b;
+    cout << findPow(a, b) << nl;
 
     CRACKED;
 }

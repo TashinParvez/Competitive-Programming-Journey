@@ -155,31 +155,28 @@ bool cmp(const pii &a, const pii &b) { return a.first > b.first; }
 void solution()  // main solution
 {
     int a, b, c, d;
-    int i, j, k, m, n, q;
-    int u, v, x, y, z;
-    int l, r;
-    int even = 0, odd = 0;
-
-    string s; char chr;
-    bool flag = false;
+    int i, j, k, m, n, q;  
 
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
     cin >> n;
-    
-    
 
+    ans = n + (n / 2) * 2 + (n / 3) * 2;
 
-
-
-
+    cout << ans << nl;
 }
 
 int32_t main()
 {
     faster;
-    cout << gcd(0,0) << nl;
-     
+    int t = 1;
+    cin >> t;
+    int c = 1;
+    while (t--)
+    {
+        // cout << "Case " << c++ << ": "; 
+        solution();
+    }
     CRACKED;
 }

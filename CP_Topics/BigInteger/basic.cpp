@@ -4,7 +4,6 @@
 #include <bits/stdc++.h>
 #define CRACKED return 0;
 #define nl endl; // NewLine
-
 #define int long long
 using namespace std;
 

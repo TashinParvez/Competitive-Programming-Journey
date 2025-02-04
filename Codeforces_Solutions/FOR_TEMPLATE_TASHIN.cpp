@@ -7,20 +7,33 @@
 #define ppb         pop_back
 
 //--------------------------------------------------------------------------------
+ 
+//-----     ALL MOD -------
 
-// Big Mod
+constexpr ll  POW(ll a, ll b)                 {if(b==0) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;} 
+constexpr ll  MOD(ll num, ll mod)             { return ((num % mod + mod) % mod); } 
+constexpr ll  BIGMOD(ll n, ll power, ll mod)  { if (power == 0) return 1; ll ans = BIGMOD(n, power / 2, mod); ans = ((ans % mod) * (ans % mod)) % mod; if (power % 2 == 1) return (ans * (n % mod)) % mod; else return ans; }
+inline ll     modAdd(ll a, ll b, ll mod)      { return MOD((MOD(a,mod) + MOD(b,mod)), mod); } 
+inline ll     modSub(ll a, ll b, ll mod)      { return MOD(((MOD(a,mod) - MOD(b,mod))+ mod), mod); } 
+inline ll     modMul(ll a, ll b, ll mod)      { return MOD((MOD(a, mod) * MOD(b, mod)), mod); }   
+inline ll     modDiv(ll a, ll b, ll mod)      { return modMul(a, BIGMOD(b, mod - 2, mod), mod); }  
 
-int BigMod(int n, int power, int mod)
-{
-    if (power == 0)
-        return 1;
-    int ans = BigMod(n, power / 2, mod);
-    ans = (ans % mod * ans % mod) % mod;
-    if (power % 2)
-        return (ans * (n % mod)) % mod;
-    else
-        return ans;
-}
+
+/*
+
+"constexpr ll  POW(ll a, ll b)                 {if(b==0) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}", 
+"constexpr ll  MOD(ll num, ll mod)             { return ((num % mod + mod) % mod); }", 
+"constexpr ll  BIGMOD(ll n, ll power, ll mod)  { if (power == 0) return 1; ll ans = BIGMOD(n, power / 2, mod); ans = ((ans % mod) * (ans % mod)) % mod; if (power % 2 == 1) return (ans * (n % mod)) % mod; else return ans; }",
+"inline ll     modAdd(ll a, ll b, ll mod)      { return MOD((MOD(a,mod) + MOD(b,mod)), mod); }", 
+"inline ll     modSub(ll a, ll b, ll mod)      { return MOD(((MOD(a,mod) - MOD(b,mod))+ mod), mod); }", 
+"inline ll     modMul(ll a, ll b, ll mod)      { return MOD((MOD(a, mod) * MOD(b, mod)), mod); }",   
+"inline ll     modDiv(ll a, ll b, ll mod)      { return modMul(a, BIGMOD(b, mod - 2, mod), mod); }",  
+
+
+*/
+ 
+
+//------------
 
 // FOR(0, a.length())
 // {
@@ -319,20 +332,6 @@ int binary_search_last_true(function<bool(int)> f, int low, int high)
 
 
 const ll mod = 1000000000+7;
-    
-ll bigMod(ll a, ll b, ll m){
-    ll ans = 1;
-    a = a % m;
-    
-    while(b){
-        if(b & 1)
-            ans = (ans * a) % m;
-        
-        a = (a*a) % m;
-        b /= 2;
-    }
-    return ans;
-}
 
 // ================= Modular_Arithmetic ==================
 
@@ -340,18 +339,6 @@ ll bigMod(ll a, ll b, ll m){
 #define add_mod(a, b, m) (((a % m) + (b % m)) % m)
 
 
- 
-ll   MOD(ll num){ return ((num%mod + mod)%mod); }
-  
-ll   MOD(ll num, ll mod){ return ((num%mod + mod)%mod); }
-  
-ll   modAdd(ll a, ll b){ return MOD(MOD(a) + MOD(b)); }
-    
-ll   modSub(ll a, ll b){ return MOD(MOD(a) - MOD(b)); }
-  
-ll   modMul(ll a, ll b){ return MOD(MOD(a) * MOD(b)); }
-    
-ll   modDiv(ll a, ll b){ return modMul(a, bigMod(b,mod-2, mod)); }
     
 ll   Lcm(ll x, ll y) { return x * y / __gcd(x, y); }
     

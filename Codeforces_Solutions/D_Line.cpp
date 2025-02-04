@@ -126,7 +126,9 @@ int       getASCII(char c)       { return c;}
 #define   vprint(vec)            for (size_t i = 0; i < (vec).size(); ++i) cout << (vec)[i] << (i + 1 == (vec).size() ? '\n' : ' '); 
 
 
-
+bool cmp(pii a , pii b){
+    return a.ss - a.ff > b.ss - b.ff;
+}
 
 void solution()  // main solution
 {
@@ -144,7 +146,7 @@ void solution()  // main solution
 
     cin >> n >> s;
 
-    vpii first, second;
+    vpii first; // sub add
 
     FOR(n)
     {
@@ -157,53 +159,33 @@ void solution()  // main solution
         if (i < n / 2 && s[i] != 'R')
         {
             first.pb({i, n - (i + 1)});
-        }
-        else if (i >= n / 2 && s[i] != 'L')
+        } 
+        else if (i >= n / 2 && s[i] != 'L') 
         {
-            second.pb({i, i});
+            first.pb({n - (i + 1), i});
         }
 
     }
 
-    l =  0;
-    r = len(second)-1;
-
+    sort(all(first), cmp);
+    l = 0; 
 
     FOR(n)
     {
-        if (l == len(first) && r == -1)
+        if (l == len(first))
         {
             cout << sum << " ";
         }
         else
         {
-            if (l == len(first))
-                a = 0;
-            else
-                a = first[l].ss;
-            if (r == -1)
-                b = 0;
-            else
-                b = second[r].ss;
-
-            if (a >= b)
-            {
-                sum -= first[l].ff;
-                sum += a;
-                l++;
-                cout << sum << " ";
-            }
-            else
-            {
-                sum -= n - (second[r].ff + 1);
-                sum += b;
-                r--;
-                cout << sum << " ";
-            }
+            sum -= first[l].ff;
+            sum += first[l].ss;
+            cout << sum << " ";
+            l++;
         }
     }
 
-    cout  << nl;
+    cout  <<   nl;
 
 }
 

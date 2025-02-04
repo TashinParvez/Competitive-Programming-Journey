@@ -122,6 +122,7 @@ void solution()
     bool flag = false;
 
     cin >> n >> m;
+    
     if (n * 2 <= m)
     {
         cout << n << " " << n * 2 << nl;
