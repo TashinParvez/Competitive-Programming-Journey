@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 10.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -165,80 +165,37 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
+    cin >> n >> q;
+
     vi arr(n);
+    
+    for (auto &i : arr)
+    {
+        cin >> i;
+    }
 
-    int last = 0;
+    vsortrev(arr);
 
+    sum = 0;
     FOR(n)
     {
-        cin >> arr[i];
-
-        if (i == 0)
-            last = arr[i];
-        else if (arr[i] < last)
-        {
-            flag = 0;
-        }
-        else
-        {
-            last = arr[i];
-        }
+        sum += arr[i];
+        arr[i] = sum;
     }
 
-    int aa; // b
-    cin >> aa;
-
-    if (flag == 1)
+    while (q--)
     {
-        YES;
-        return;
-    }
+        ans = -1;
+        cin >> x;
+        int lo;
 
-    FOR(n)
-    {
+        lo = lower_bound(all(arr), x) - arr.begin();
 
-        int prev = arr[i];
-
-        int neww = aa - arr[i];  // b- ai
-
-        //-----------------------------
-
-        arr[i] = min(prev, neww);
-
-        //-----------------------------
-
-        if (i == 0)
-        {
-            last = arr[i];
-        }
+        if (lo == n)
+            cout << -1 << nl;
         else
-        {
-            if (arr[i] >= last)
-            {
-                last = arr[i]; // min
-            }
-            else
-            {
-                arr[i] = max(neww, prev);
-
-                // dbg(i, arr[i]);
-
-                if (arr[i] >= last)
-                {
-                    last = arr[i];
-                }
-                else
-                {
-                    NO;
-                    return;
-                }
-            }
-        }
+            cout << lo + 1 << nl;
     }
-
-    YES;
-    // vprint(arr);
 }
 
 int32_t main()

@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 13.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -131,18 +131,14 @@ int       getASCII(char c)       { return c;}
 #define   arrprint(arr, len)     for (int i = 0; i < (len); i++) cout << (arr)[i] << (i + 1 == (len) ? '\n' : ' ');
 #define   vprint(vec)            for (size_t i = 0; i < (vec).size(); ++i) cout << (vec)[i] << (i + 1 == (vec).size() ? '\n' : ' '); 
 
-/* --------------------- REMEMBER --------------------
+#define   loo(vec, target)       lower_bound(all(vec), target) - vec.begin()
+#define   upp(vec, target)       upper_bound(all(vec), target) - vec.begin()
+
+/*          --------------------- REMEMBER --------------------
+
    int       = -2e31  to  2e31 -1      2e31 = 2*10^9     max Digit = 10
    long long = -2e63  to  2e63 -1      2e63 = 9*10^18    max Digit = 19
    Max size of global array can upto 10e8
-
-1. Think Greedy
-2. Think Brute Force
-3. Think solution in reverse order
-4. Think DP [ check constraints carefully ]
-5. Check base cases for DP and prove solution for Greedy
-6. Think Graph 
-7. SubArray / Continious / SubSegment  =  PrefixSum
 
 */
 const double PI = 3.1415926535;
@@ -165,80 +161,64 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
-    vi arr(n);
+    cin >> n;
+    
+    int six = 0 , four = 0;
 
-    int last = 0;
+    // min
+    int nn = n;
+    six += nn / 6;
+    nn %= 6;
+    four += nn / 4;
+    nn %= 4;
 
-    FOR(n)
-    {
-        cin >> arr[i];
-
-        if (i == 0)
-            last = arr[i];
-        else if (arr[i] < last)
-        {
-            flag = 0;
-        }
-        else
-        {
-            last = arr[i];
-        }
-    }
-
-    int aa; // b
-    cin >> aa;
-
-    if (flag == 1)
-    {
-        YES;
-        return;
-    }
-
-    FOR(n)
-    {
-
-        int prev = arr[i];
-
-        int neww = aa - arr[i];  // b- ai
-
-        //-----------------------------
-
-        arr[i] = min(prev, neww);
-
-        //-----------------------------
-
-        if (i == 0)
-        {
-            last = arr[i];
-        }
-        else
-        {
-            if (arr[i] >= last)
+    if(nn>0){
+        while(nn){
+            if (six > 0)
             {
-                last = arr[i]; // min
+                nn += 6;
+                six--;
             }
             else
             {
-                arr[i] = max(neww, prev);
-
-                // dbg(i, arr[i]);
-
-                if (arr[i] >= last)
-                {
-                    last = arr[i];
-                }
-                else
-                {
-                    NO;
-                    return;
-                }
+                cout << -1 << nl;
+                return;
             }
+            four += nn / 4;
+            nn %= 4;
         }
     }
+    mn = six + four;
 
-    YES;
-    // vprint(arr);
+    six = 0, four = 0;
+    
+    // max 
+    nn = n;
+
+    four += nn / 4; 
+    nn %= 4;
+
+    six += nn / 6;
+    nn %= 6;
+
+    if(nn>0){
+        while(nn){
+            if (four > 0)
+            {
+                nn += 4;
+                four--;
+            }
+            else
+            {
+                cout << -1 << nl;return;
+            }
+            six += nn / 6;
+            nn %= 6;
+        }
+    }
+    mx = six + four;
+
+    cout << mn << " " << mx << nl;
 }
 
 int32_t main()

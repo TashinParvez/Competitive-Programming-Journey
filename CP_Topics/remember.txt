@@ -1,0 +1,37 @@
+
+GCD / LCM = Number Theory
+Factorial / nCr / Large Modulo = Combinatorics / Modulo Inverse
+Parity (Even/Odd), XOR = Bit Manipulation
+
+
+Think Brute Force
+Think solution in reverse order
+
+
+SubArray / Continuous / SubSegment = Prefix Sum
+Sliding Window / Two Pointers = Optimization for Subarrays
+
+
+Sorted / Monotonic = Binary Search
+Smallest / Largest / K-th = Sorting / Heap / Binary Search
+
+Intervals / Merging / Overlapping = Sorting / Sweep Line
+
+Count / Frequency = Hashing / Map
+
+=====================================================================
+=====================================================================
+
+Think DP [check constraints carefully]
+Check base cases for DP and prove solution for Greedy
+Take / Not Take = DP
+
+Choices / Paths / Sequences = Backtracking
+
+
+Think Graph
+Adjacency / Connectivity = Graph / BFS / DFS
+Distances / Shortest Path = Dijkstra / BFS
+
+
+Cycles / Components = Graph / DSU

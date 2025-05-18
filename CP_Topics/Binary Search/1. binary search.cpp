@@ -14,10 +14,36 @@ using namespace std;
 template <typename T>
 int len(const T &x) { return x.size(); }
 //--------------------------------------------------------------------------------------------------
-#define LOVE "I love you"
-#define ripa "Ripa " << LOVE
+
+int binarysearch(vector<int> &nums, int target)
+{
+    int start = 0;
+    int end = nums.size() - 1;
+
+    while (start <= end)
+    {
+        int mid = start + (end - start) / 2.0;
+        
+        if (nums[mid] == target)
+        {
+            return mid;
+        }
+        else if (nums[mid] > target)
+        {
+            end = mid - 1;
+        }
+        else
+            start = mid + 1;
+    }
+    return -1;
+}
+
 int32_t main()
 {
-    cout << ripa << endl;
+
     CRACKED;
 }
+
+//--------------------------------------------------------------------------------------------------
+
+

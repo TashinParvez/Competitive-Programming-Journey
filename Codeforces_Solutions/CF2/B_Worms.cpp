@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 10.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -165,87 +165,37 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
+    cin >> n;
+    
     vi arr(n);
-
-    int last = 0;
-
-    FOR(n)
-    {
-        cin >> arr[i];
-
-        if (i == 0)
-            last = arr[i];
-        else if (arr[i] < last)
-        {
-            flag = 0;
-        }
-        else
-        {
-            last = arr[i];
-        }
+    sum =  0 ; 
+    FOR(n){
+        cin >> a;
+        sum+=a;
+        arr[i] = sum;
     }
 
-    int aa; // b
-    cin >> aa;
-
-    if (flag == 1)
-    {
-        YES;
-        return;
-    }
-
-    FOR(n)
-    {
-
-        int prev = arr[i];
-
-        int neww = aa - arr[i];  // b- ai
-
-        //-----------------------------
-
-        arr[i] = min(prev, neww);
-
-        //-----------------------------
-
-        if (i == 0)
-        {
-            last = arr[i];
-        }
-        else
-        {
-            if (arr[i] >= last)
-            {
-                last = arr[i]; // min
-            }
-            else
-            {
-                arr[i] = max(neww, prev);
-
-                // dbg(i, arr[i]);
-
-                if (arr[i] >= last)
-                {
-                    last = arr[i];
-                }
-                else
-                {
-                    NO;
-                    return;
-                }
-            }
-        }
-    }
-
-    YES;
     // vprint(arr);
+
+    cin >> q;
+
+    while(q--){
+        cin >> a;
+        int up = lower_bound(all(arr), a) - arr.begin();
+
+        // dbg(a , up);
+
+        if (up == n)
+            cout << -1 << nl;
+        else
+            cout << up + 1 << nl;
+    }
 }
 
 int32_t main()
 {
     faster;
     int t = 1;
-    cin >> t;
     int c = 1;
     while (t--)
     {

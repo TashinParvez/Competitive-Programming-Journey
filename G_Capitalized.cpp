@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 26.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -131,18 +131,14 @@ int       getASCII(char c)       { return c;}
 #define   arrprint(arr, len)     for (int i = 0; i < (len); i++) cout << (arr)[i] << (i + 1 == (len) ? '\n' : ' ');
 #define   vprint(vec)            for (size_t i = 0; i < (vec).size(); ++i) cout << (vec)[i] << (i + 1 == (vec).size() ? '\n' : ' '); 
 
-/* --------------------- REMEMBER --------------------
+#define   loo(vec, target)       lower_bound(all(vec), target) - vec.begin()
+#define   upp(vec, target)       upper_bound(all(vec), target) - vec.begin()
+
+/*          --------------------- REMEMBER --------------------
+
    int       = -2e31  to  2e31 -1      2e31 = 2*10^9     max Digit = 10
    long long = -2e63  to  2e63 -1      2e63 = 9*10^18    max Digit = 19
    Max size of global array can upto 10e8
-
-1. Think Greedy
-2. Think Brute Force
-3. Think solution in reverse order
-4. Think DP [ check constraints carefully ]
-5. Check base cases for DP and prove solution for Greedy
-6. Think Graph 
-7. SubArray / Continious / SubSegment  =  PrefixSum
 
 */
 const double PI = 3.1415926535;
@@ -151,6 +147,30 @@ const int mod = 1000000007;
 
 bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
 
+void checks(int a, string s){
+    int n = len(s); 
+    for (int i = 1; i < n; i++)
+    {
+        if (s[i] >= 'A' && s[i] <= 'Z')
+        {
+            if (a == 1)
+            {
+                No;
+                return;
+            }
+        }
+        else
+        {
+            if (a == 0)
+            {
+                No;
+                return; 
+            }
+        }
+    }
+
+    Yes;
+}
 void solution()  // main solution
 {
     int a, b, c, d;
@@ -165,87 +185,25 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
-    vi arr(n);
+    cin >> s;
+    n =len(s);
+    int cap = 0, sml = 0;
 
-    int last = 0;
-
-    FOR(n)
+    if (s[0] >= 'A' && s[0] <= 'Z')
     {
-        cin >> arr[i];
-
-        if (i == 0)
-            last = arr[i];
-        else if (arr[i] < last)
-        {
-            flag = 0;
-        }
-        else
-        {
-            last = arr[i];
-        }
+        checks(1, s);
     }
-
-    int aa; // b
-    cin >> aa;
-
-    if (flag == 1)
+    else
     {
-        YES;
-        return;
-    }
-
-    FOR(n)
-    {
-
-        int prev = arr[i];
-
-        int neww = aa - arr[i];  // b- ai
-
-        //-----------------------------
-
-        arr[i] = min(prev, neww);
-
-        //-----------------------------
-
-        if (i == 0)
-        {
-            last = arr[i];
-        }
-        else
-        {
-            if (arr[i] >= last)
-            {
-                last = arr[i]; // min
-            }
-            else
-            {
-                arr[i] = max(neww, prev);
-
-                // dbg(i, arr[i]);
-
-                if (arr[i] >= last)
-                {
-                    last = arr[i];
-                }
-                else
-                {
-                    NO;
-                    return;
-                }
-            }
-        }
-    }
-
-    YES;
-    // vprint(arr);
+          No;
+    } 
 }
 
 int32_t main()
 {
     faster;
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
     while (t--)
     {

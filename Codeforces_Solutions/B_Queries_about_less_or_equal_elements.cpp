@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 12.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -131,6 +131,9 @@ int       getASCII(char c)       { return c;}
 #define   arrprint(arr, len)     for (int i = 0; i < (len); i++) cout << (arr)[i] << (i + 1 == (len) ? '\n' : ' ');
 #define   vprint(vec)            for (size_t i = 0; i < (vec).size(); ++i) cout << (vec)[i] << (i + 1 == (vec).size() ? '\n' : ' '); 
 
+#define   loo(vec, target)       lower_bound(all(vec), target) - vec.begin()
+#define   upp(vec, target)       upper_bound(all(vec), target) - vec.begin()
+
 /* --------------------- REMEMBER --------------------
    int       = -2e31  to  2e31 -1      2e31 = 2*10^9     max Digit = 10
    long long = -2e63  to  2e63 -1      2e63 = 9*10^18    max Digit = 19
@@ -165,87 +168,28 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
-    vi arr(n);
+    cin >> n >>m;
+    vi arr(n),brr(m);
 
-    int last = 0;
+    for(auto &i: arr) cin>>i;
 
-    FOR(n)
-    {
-        cin >> arr[i];
+    sort(all(arr));
+    for(auto &i: brr) cin>>i;
 
-        if (i == 0)
-            last = arr[i];
-        else if (arr[i] < last)
-        {
-            flag = 0;
-        }
-        else
-        {
-            last = arr[i];
-        }
+    FOR(m){
+        int up = upp(arr,brr[i]);
+        cout << up << " ";
     }
+    
+    cout << nl;
 
-    int aa; // b
-    cin >> aa;
-
-    if (flag == 1)
-    {
-        YES;
-        return;
-    }
-
-    FOR(n)
-    {
-
-        int prev = arr[i];
-
-        int neww = aa - arr[i];  // b- ai
-
-        //-----------------------------
-
-        arr[i] = min(prev, neww);
-
-        //-----------------------------
-
-        if (i == 0)
-        {
-            last = arr[i];
-        }
-        else
-        {
-            if (arr[i] >= last)
-            {
-                last = arr[i]; // min
-            }
-            else
-            {
-                arr[i] = max(neww, prev);
-
-                // dbg(i, arr[i]);
-
-                if (arr[i] >= last)
-                {
-                    last = arr[i];
-                }
-                else
-                {
-                    NO;
-                    return;
-                }
-            }
-        }
-    }
-
-    YES;
-    // vprint(arr);
 }
 
 int32_t main()
 {
     faster;
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
     while (t--)
     {

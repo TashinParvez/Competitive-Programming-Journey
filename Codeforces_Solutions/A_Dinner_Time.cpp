@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 18.05.2025
  */
 
 #include <bits/stdc++.h>
@@ -131,18 +131,14 @@ int       getASCII(char c)       { return c;}
 #define   arrprint(arr, len)     for (int i = 0; i < (len); i++) cout << (arr)[i] << (i + 1 == (len) ? '\n' : ' ');
 #define   vprint(vec)            for (size_t i = 0; i < (vec).size(); ++i) cout << (vec)[i] << (i + 1 == (vec).size() ? '\n' : ' '); 
 
-/* --------------------- REMEMBER --------------------
+#define   loo(vec, target)       lower_bound(all(vec), target) - vec.begin()
+#define   upp(vec, target)       upper_bound(all(vec), target) - vec.begin()
+
+/*          --------------------- REMEMBER --------------------
+
    int       = -2e31  to  2e31 -1      2e31 = 2*10^9     max Digit = 10
    long long = -2e63  to  2e63 -1      2e63 = 9*10^18    max Digit = 19
    Max size of global array can upto 10e8
-
-1. Think Greedy
-2. Think Brute Force
-3. Think solution in reverse order
-4. Think DP [ check constraints carefully ]
-5. Check base cases for DP and prove solution for Greedy
-6. Think Graph 
-7. SubArray / Continious / SubSegment  =  PrefixSum
 
 */
 const double PI = 3.1415926535;
@@ -162,83 +158,25 @@ void solution()  // main solution
     string s; char chr;
     bool flag = 1;
 
-    int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
+    int ans = 0, p , cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
-    vi arr(n);
+    cin >> n >> m >> p >>q;
 
-    int last = 0;
+    temp = n / p ;
 
-    FOR(n)
+    if (temp != n / (p * 1.0))
     {
-        cin >> arr[i];
-
-        if (i == 0)
-            last = arr[i];
-        else if (arr[i] < last)
-        {
-            flag = 0;
-        }
-        else
-        {
-            last = arr[i];
-        }
-    }
-
-    int aa; // b
-    cin >> aa;
-
-    if (flag == 1)
-    {
-        YES;
+        cout << "YES" << nl;
         return;
     }
 
-    FOR(n)
+    else if ( n/p  * q == m )
     {
-
-        int prev = arr[i];
-
-        int neww = aa - arr[i];  // b- ai
-
-        //-----------------------------
-
-        arr[i] = min(prev, neww);
-
-        //-----------------------------
-
-        if (i == 0)
-        {
-            last = arr[i];
-        }
-        else
-        {
-            if (arr[i] >= last)
-            {
-                last = arr[i]; // min
-            }
-            else
-            {
-                arr[i] = max(neww, prev);
-
-                // dbg(i, arr[i]);
-
-                if (arr[i] >= last)
-                {
-                    last = arr[i];
-                }
-                else
-                {
-                    NO;
-                    return;
-                }
-            }
-        }
+        cout << "YES" << nl;
     }
-
-    YES;
-    // vprint(arr);
+    else
+        NO;
 }
 
 int32_t main()

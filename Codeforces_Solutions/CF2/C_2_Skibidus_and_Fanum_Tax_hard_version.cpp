@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 11.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -150,6 +150,8 @@ const int inf = 1e18;
 const int mod = 1000000007;
 
 bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
+ 
+
 
 void solution()  // main solution
 {
@@ -165,80 +167,43 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
-    vi arr(n);
+    cin >> n >> m ;
+    vi arr(n), brr(m);
+    for(int &i : arr) cin>>i;
+    for(int &i : brr) cin>>i;
 
-    int last = 0;
+    vsort(brr);
 
-    FOR(n)
-    {
-        cin >> arr[i];
-
-        if (i == 0)
-            last = arr[i];
-        else if (arr[i] < last)
-        {
-            flag = 0;
-        }
-        else
-        {
-            last = arr[i];
-        }
-    }
-
-    int aa; // b
-    cin >> aa;
-
-    if (flag == 1)
-    {
-        YES;
-        return;
-    }
+    int prev = INT_MIN;
 
     FOR(n)
     {
 
-        int prev = arr[i];
+        int temp = prev + arr[i];
 
-        int neww = aa - arr[i];  // b- ai
+        int lo = lower_bound(all(brr), temp) - brr.begin();
 
-        //-----------------------------
-
-        arr[i] = min(prev, neww);
-
-        //-----------------------------
-
-        if (i == 0)
+        if (lo != len(brr))
         {
-            last = arr[i];
-        }
-        else
-        {
-            if (arr[i] >= last)
-            {
-                last = arr[i]; // min
-            }
+            int a1 = brr[lo] - arr[i];
+            int a2 = arr[i];
+
+            if (min(a1, a2) >= prev)
+                arr[i] = min(a1, a2);
             else
-            {
-                arr[i] = max(neww, prev);
-
-                // dbg(i, arr[i]);
-
-                if (arr[i] >= last)
-                {
-                    last = arr[i];
-                }
-                else
-                {
-                    NO;
-                    return;
-                }
-            }
+                arr[i] = a1;
         }
+
+        if (arr[i] < prev)
+        {
+            NO;
+            return;
+        }
+
+        prev = arr[i];
     }
 
     YES;
-    // vprint(arr);
 }
 
 int32_t main()
