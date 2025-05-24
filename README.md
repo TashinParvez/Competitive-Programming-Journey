@@ -15,108 +15,50 @@ Here's an improved version of your README section, including the new platforms (
 
 <p align="left">
 
-<!-- Popular Platforms -->
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Codeforces_Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/Codeforces-1F8ACB?style=for-the-badge&logo=Codeforces&logoColor=white" alt="Codeforces" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Leetcode-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=LeetCode&logoColor=white" alt="LeetCode" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/HackerRank-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/HackerRank-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" alt="HackerRank" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/GeeksForGeeks-Solution" target="_blank">
-  <img src="https://img.shields.io/badge/GeeksforGeeks-0F9D58?style=for-the-badge&logo=GeeksforGeeks&logoColor=white" alt="GeeksforGeeks" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Codechef-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/CodeChef-5B4638?style=for-the-badge&logo=CodeChef&logoColor=white" alt="CodeChef" />
-</a>
-
-<a href="https://www.topcoder.com/members/tashinparvez" target="_blank">
-  <img src="https://img.shields.io/badge/TopCoder-1F8ACB?style=for-the-badge&logo=TopCoder&logoColor=white" alt="TopCoder" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/HackerEarth-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/HackerEarth-323754?style=for-the-badge&logo=HackerEarth&logoColor=white" alt="HackerEarth" />
-</a>
-
-<!-- Additional Platforms -->
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/At-Coder-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/AtCoder-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" alt="AtCoder" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/CSES-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/CSES-004488?style=for-the-badge&logoColor=white" alt="CSES" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Coding_Ninjas_Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/Coding Ninjas-F37C20?style=for-the-badge&logo=codeforces&logoColor=white" alt="Coding Ninjas" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/usaco%20Solution" target="_blank">
-  <img src="https://img.shields.io/badge/USACO-002855?style=for-the-badge&logo=codeforces&logoColor=white" alt="USACO" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/vjudge%20Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/VJudge-007ACC?style=for-the-badge&logo=codeforces&logoColor=white" alt="VJudge" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/judge.u-aizu-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/Aizu Online Judge-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" alt="Aizu Online Judge" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/csacademy%20Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/CSAcademy-313131?style=for-the-badge&logo=codeforces&logoColor=white" alt="CSAcademy" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/UVA-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/UVA Online Judge-222222?style=for-the-badge&logo=codeforces&logoColor=white" alt="UVA" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Spoj-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/SPOJ-0A0A23?style=for-the-badge&logo=codeforces&logoColor=white" alt="SPOJ" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Some-URI-and-Codechef-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/URI Online Judge-4169E1?style=for-the-badge&logo=codeforces&logoColor=white" alt="URI" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/ICPC" target="_blank">
-  <img src="https://img.shields.io/badge/ICPC-FFD700?style=for-the-badge&logo=codeforces&logoColor=black" alt="ICPC" />
-</a>
-
-<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/LIGHTOJ-Solutions" target="_blank">
-  <img src="https://img.shields.io/badge/LightOJ-003399?style=for-the-badge&logo=codeforces&logoColor=white" alt="LightOJ" />
-</a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Codeforces_Solutions"><img src="https://img.shields.io/badge/Codeforces-1F8ACB?style=for-the-badge&logo=Codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Leetcode-Solutions"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=LeetCode&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/HackerRank-Solutions"><img src="https://img.shields.io/badge/HackerRank-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/GeeksForGeeks-Solution"><img src="https://img.shields.io/badge/GeeksforGeeks-0F9D58?style=for-the-badge&logo=GeeksforGeeks&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Codechef-Solutions"><img src="https://img.shields.io/badge/CodeChef-5B4638?style=for-the-badge&logo=CodeChef&logoColor=white" /></a>
+<a href="https://www.topcoder.com/members/tashinparvez"><img src="https://img.shields.io/badge/TopCoder-1F8ACB?style=for-the-badge&logo=TopCoder&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/HackerEarth-Solutions"><img src="https://img.shields.io/badge/HackerEarth-323754?style=for-the-badge&logo=HackerEarth&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/At-Coder-Solutions"><img src="https://img.shields.io/badge/AtCoder-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/CSES-Solutions"><img src="https://img.shields.io/badge/CSES-004488?style=for-the-badge&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Coding_Ninjas_Solutions"><img src="https://img.shields.io/badge/Coding Ninjas-F37C20?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/usaco%20Solution"><img src="https://img.shields.io/badge/USACO-002855?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/vjudge%20Solutions"><img src="https://img.shields.io/badge/VJudge-007ACC?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/judge.u-aizu-Solutions"><img src="https://img.shields.io/badge/Aizu-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/csacademy%20Solutions"><img src="https://img.shields.io/badge/CSAcademy-313131?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/UVA-Solutions"><img src="https://img.shields.io/badge/UVA-222222?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Spoj-Solutions"><img src="https://img.shields.io/badge/SPOJ-0A0A23?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/Some-URI-and-Codechef-Solutions"><img src="https://img.shields.io/badge/URI-4169E1?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/ICPC"><img src="https://img.shields.io/badge/ICPC-FFD700?style=for-the-badge&logo=codeforces&logoColor=black" /></a>
+<a href="https://github.com/TashinParvez/Competitive-Programming-Journey/tree/main/LIGHTOJ-Solutions"><img src="https://img.shields.io/badge/LightOJ-003399?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
 
 </p>
 
 ---
  
 
-## About Competitive Coding
+## </> About Competitive Coding
 
 Competitive coding is a sport of writing code under tight constraints, racing against the clock, and often competing against other programmers. It's not just a fun way to hone your coding skills but also a great opportunity to improve your problem-solving abilities. This repository serves as a diary of my solutions to various competitive programming problems and a platform to learn from and share with the community.
 
 Happy coding, and let's learn and grow together through this competitive coding journey! 🚀
 
-## My Blog
+## ✍️ My Blog
 
 I occasionally write about coding, technology, and other topics on [Hashnode](https://tashinparvez.hashnode.dev/). You can check out my blog posts and stay updated with my latest articles.
 
 Feel free to explore and engage with my writings!
+ 
 
-## My Templates
+## 📄 My Competitive Programming Template
 
-[Tashin's Templates](https://github.com/TashinParvez/My-CP-Template)
+Use my CP starter template to save time during contests:  🔗 [Tashin's CP Template](https://github.com/TashinParvez/My-CP-Template)
 
-## Connect with Me
+
+## 🤝🏻Connect with Me
 
 You can connect with me on various platforms:
 
@@ -130,8 +72,10 @@ You can connect with me on various platforms:
 - [URI/beecrowd](https://www.beecrowd.com.br/judge/en/profile/648820)
 - [LightOJ](https://lightoj.com/user/tashinparvez)
 - [StopTalk](https://www.stopstalk.com/user/profile/Tashin_Parvez)
+- 📧 [Email Me](mailto:tashinparvez2002@gmail.com)
+- 🌐 [Portfolio Website](https://tashinparvez.github.io)
 
-Feel free to reach out, connect, or follow me on these platforms!
+> 📚 *Feel free to fork this repo, explore problems, and contribute if you'd like! Let's grow together in this journey of becoming better programmers.* 🚀
 
 
 
