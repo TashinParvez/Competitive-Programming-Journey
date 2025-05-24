@@ -1,6 +1,7 @@
 
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
+//        *************       Created: 24.05.2025       *************
 
 #include <bits/stdc++.h>
 #define CRACKED return 0;
@@ -15,39 +16,29 @@ template <typename T>
 int len(const T &x) { return x.size(); }
 //--------------------------------------------------------------------------------------------------
 
+// here tashin
 class Solution
 {
 public:
-    vector<int> twoSum(vector<int> &nums, int target)
+    int scoreOfString(string s)
     {
-        map<int, int> search;
-        int len = nums.size();
+        int len = s.size();
+        int sum = 0;
 
-        for (int i = 0; i < len; i++)
+        for (int i = 1; i < len; i++)
         {
-            if (search.find(target - nums[i]) == search.end())
-            {
-                search[nums[i]] = i;
-            }
-            else
-            {
-                return {search[target - nums[i]], i};
-            }
+            sum += abs((int)s[i] - (int)s[i - 1]);
         }
-        return {};
+
+        return sum;
     }
 };
 
-
-
-
-
 int32_t main()
 {
-
     Solution sol;
-    vector<int> res = sol.twoSum(*(new vector<int>{2, 7, 11, 15}), 9);
 
-    cout << "==========" << nl;
-    cout << "Indices: " << res[0] << " , " << res[1] << nl;
+    cout << sol.scoreOfString("hello") << endl;
+
+    CRACKED;
 }

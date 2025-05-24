@@ -1,6 +1,7 @@
 
 //        ****************  Author :  Tashin.Parvez  ****************
 //        ************* United International University *************
+//        *************       Created: 24.05.2025       *************
 
 #include <bits/stdc++.h>
 #define CRACKED return 0;
@@ -15,39 +16,41 @@ template <typename T>
 int len(const T &x) { return x.size(); }
 //--------------------------------------------------------------------------------------------------
 
+// here tashin
 class Solution
 {
 public:
-    vector<int> twoSum(vector<int> &nums, int target)
+    int lengthOfLastWord(string s)
     {
-        map<int, int> search;
-        int len = nums.size();
-
-        for (int i = 0; i < len; i++)
+        int len = s.size();
+        int cnt = 0;
+        for (int i = len - 1; i >= 0; i--)
         {
-            if (search.find(target - nums[i]) == search.end())
+            if (s[i] == ' ' && cnt == 0)
             {
-                search[nums[i]] = i;
+                continue;
+            }
+            else if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z'))
+            {
+                cnt++;
             }
             else
             {
-                return {search[target - nums[i]], i};
+                break;
             }
         }
-        return {};
+
+        return cnt;
     }
 };
 
-
-
-
-
 int32_t main()
 {
-
     Solution sol;
-    vector<int> res = sol.twoSum(*(new vector<int>{2, 7, 11, 15}), 9);
 
-    cout << "==========" << nl;
-    cout << "Indices: " << res[0] << " , " << res[1] << nl;
+    // Call the function
+
+    cout << sol.lengthOfLastWord("   fly me   to   the moon  ") << endl;
+
+    CRACKED;
 }
