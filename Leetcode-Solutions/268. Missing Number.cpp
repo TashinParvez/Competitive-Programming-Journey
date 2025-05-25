@@ -23,16 +23,28 @@ public:
     int missingNumber(vector<int> &nums)
     {
         sort(nums.begin(), nums.end());
-        int len = nums.size();
-        if (nums[len - 1] == len - 1)
-            return len;
+        if (nums.size() - 1 == nums[nums.size() - 1])
+            return nums.size();
+            
+        int l = 0, r = nums.size() - 1;
+        int mid = 0;
 
-        for (int i = 0; i < len; i++)
+        while (l <= r)
         {
-            if (nums[i] != i){
-                return i;
+            mid = l + (r - l) / 2;
+            if (nums[mid] != mid)
+            {
+                r = mid;
+                if (l == r)
+                    break;
+            }
+            else
+            {
+                l = mid + 1;
             }
         }
+
+        return mid;
     }
 };
 
