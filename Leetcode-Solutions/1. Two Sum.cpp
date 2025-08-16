@@ -20,25 +20,22 @@ class Solution
 public:
     vector<int> twoSum(vector<int> &nums, int target)
     {
-        map<int, int> search;
-        int len = nums.size();
+        map<int, int> mp;
 
-        for (int i = 0; i < len; i++)
+        for (int i = 0; i < nums.size(); i++)
         {
-            if (search.find(target - nums[i]) == search.end())
+            if (mp.find(target - nums[i]) != mp.end())
             {
-                search[nums[i]] = i;
+                return {i, mp[target - nums[i]]};
             }
             else
             {
-                return {search[target - nums[i]], i};
+                mp[nums[i]] = i;
             }
         }
         return {};
     }
 };
-
-
 
 
 
