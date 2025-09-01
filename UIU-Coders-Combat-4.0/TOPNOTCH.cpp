@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 01.09.2025
  */
 
 #include <bits/stdc++.h>
@@ -25,8 +25,6 @@ using namespace std;
 //--------------------------------- Debug --------------------------------
 #define tashin cout << "____Tashin____" << nl;
 #define parvez cout << "____Parvez____" << nl;
-#define divider cout << " \n----------------------------\n" \
-                     << nl;
 
 #define dbg(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>
@@ -332,37 +330,21 @@ int getASCII(char c) { return c; }
     for (size_t i = 0; i < (vec).size(); ++i) \
         cout << (vec)[i] << (i + 1 == (vec).size() ? '\n' : ' ');
 
-/* --------------------- REMEMBER --------------------
+#define loo(vec, target) lower_bound(all(vec), target) - vec.begin()
+#define upp(vec, target) upper_bound(all(vec), target) - vec.begin()
+
+/*          --------------------- REMEMBER --------------------
+
    int       = -2e31  to  2e31 -1      2e31 = 2*10^9     max Digit = 10
    long long = -2e63  to  2e63 -1      2e63 = 9*10^18    max Digit = 19
    Max size of global array can upto 10e8
 
-1. Think Greedy
-2. Think Brute Force
-3. Think solution in reverse order
-4. Think DP [ check constraints carefully ]
-5. Check base cases for DP and prove solution for Greedy
-6. Think Graph
-7. SubArray / Continious / SubSegment  =  PrefixSum
-
 */
 const double PI = 3.1415926535;
 const int inf = 1e18;
-const int mod = 1000000007; 
+const int mod = 1000000007;
 
-bool cmp(const vi &a, const vi &b)
-{
-    if (a[len(a) - 2] > b[len(b) - 2])
-    {
-        return 1;
-    }
-    else if (a[len(a) - 2] < b[len(b) - 2])
-    {
-        return 0;
-    }
-    else
-        return a > b;
-}
+bool cmp(const pii &a, const pii &b) { return a.first > b.first; }
 
 void solution() // main solution
 {
@@ -374,57 +356,51 @@ void solution() // main solution
 
     string s;
     char chr;
-    bool flag = false;
+    bool flag = 1;
 
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
+    cin >> n >> k;
+    map<int, int> nums;
+    vi arr;
 
-    vector<vector<int>> arr(n);
-
-    FOR(n)
+    for (int i = 0; i < n; i++)
     {
-        sum = 0;
-        int prev = 0;
-        for (int j = 0; j < m; j++)
+        cin >> a;
+
+        if (nums.find(a) == nums.end())
         {
-            cin >> a;
-
-            a += prev;
-            prev = a;
-            sum += a;
-
-            arr[i].pb(a);
+            arr.pb(a);
         }
-        arr[i].pb(sum);
+        nums[a]++;
     }
 
-    sort(all(arr), cmp);
+    vsortrev(arr);
 
-    sum = 0;
-    int prevSum = 0;
+    j = 0;
 
-    for (int i = 0; i < arr.size(); i++)
+    for (auto i : arr)
     {
-        int thisarrSum = arr[i][len(arr[i]) - 1];  // this arr sum
+        j++;
 
-        if (i > 0)
-            prevSum += arr[i - 1][len(arr[i - 1]) - 2];
-
-        int thisarrayelement = arr[i].size() - 1;
-
-        sum += thisarrSum + (thisarrayelement) * prevSum;
+        if (j < k)
+        {
+            ans += nums[i];
+        }
     }
 
-    cout << sum << nl;
+    if (arr.size() < k)
+        cout << n << nl;
+    else
+        cout << ans << nl; 
 }
 
 int32_t main()
 {
     faster;
     int t = 1;
-    cin >> t;
+    // cin >> t;
     int c = 1;
     while (t--)
     {

@@ -1,7 +1,7 @@
 /*
  *        Author :  Tashin.Parvez
  *    United International University
- *          Created: 09.02.2025
+ *          Created: 11.02.2025
  */
 
 #include <bits/stdc++.h>
@@ -22,7 +22,6 @@ using   namespace              std;
 //--------------------------------- Debug --------------------------------
 #define tashin                 cout << "____Tashin____" << nl;
 #define parvez                 cout << "____Parvez____" << nl;
-#define divider                cout << " \n----------------------------\n" << nl;
 
 #define dbg(...) __f(#__VA_ARGS__, __VA_ARGS__)
 template <typename Arg1>                          void __f(const char *name, Arg1 &&arg1) { cout << name << " = " << arg1 << std::endl; }
@@ -151,6 +150,8 @@ const int inf = 1e18;
 const int mod = 1000000007;
 
 bool cmp(const pii &a, const pii &b) { return a.first > b.first; } 
+ 
+
 
 void solution()  // main solution
 {
@@ -166,35 +167,43 @@ void solution()  // main solution
     int ans = 0, cnt = 0, idx = -1, sum = 0, product = 1, temp = 0;
     int mn = INT_MAX, mx = INT_MIN;
 
-    cin >> n >> m;
-    vi arr(n);
-    vi arr2(m);
+    cin >> n >> m ;
+    vi arr(n), brr(m);
+    for(int &i : arr) cin>>i;
+    for(int &i : brr) cin>>i;
 
-    int last = 0;
+    vsort(brr);
 
-    FOR(n){
-        cin >> arr[i];
+    int prev = INT_MIN;
 
-        if(arr[i]< last) {
-            flag = 0;
-        }else{
-            last = arr[i];
+    FOR(n)
+    {
+
+        int temp = prev + arr[i];
+
+        int lo = lower_bound(all(brr), temp) - brr.begin();
+
+        if (lo != len(brr))
+        {
+            int a1 = brr[lo] - arr[i];
+            int a2 = arr[i];
+
+            if (min(a1, a2) >= prev)
+                arr[i] = min(a1, a2);
+            else
+                arr[i] = a1;
         }
+
+        if (arr[i] < prev)
+        {
+            NO;
+            return;
+        }
+
+        prev = arr[i];
     }
 
-    FOR(m){
-        cin >> arr2[i];
-    }
-
-    vsort(arr2);
-
-    
-
-
-
-
-    cout << n << nl;
-
+    YES;
 }
 
 int32_t main()

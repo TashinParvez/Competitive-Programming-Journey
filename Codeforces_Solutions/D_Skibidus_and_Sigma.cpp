@@ -348,22 +348,16 @@ int getASCII(char c) { return c; }
 */
 const double PI = 3.1415926535;
 const int inf = 1e18;
-const int mod = 1000000007;
-
-// bool cmp(const vi &a, const vi &b) { return a[len(a)-2] > b[len(b)-2]; }
-// bool cmp(const vi &a, const vi &b) { return a[len(a)-2] > b[len(b)-2]; }
+const int mod = 1000000007; 
 
 bool cmp(const vi &a, const vi &b)
 {
-
     if (a[len(a) - 2] > b[len(b) - 2])
     {
-        dbg(a[len(a) - 2], b[len(b) - 2]);
         return 1;
     }
     else if (a[len(a) - 2] < b[len(b) - 2])
     {
-        // dbg(a[len(a) - 2], b[len(b) - 2]);
         return 0;
     }
     else
@@ -406,50 +400,21 @@ void solution() // main solution
         arr[i].pb(sum);
     }
 
-    // FOR(n)
-    // {
-    //     for (auto j : arr[i])
-    //     {
-    //         cout << j << " ";
-    //     }
-    //     cout << nl;
-    // }
-
     sort(all(arr), cmp);
-    
-    // sort(all(arr));
-
-    // sort(all(arr));
-
-    // tashin;
-    // tashin;
-    // // return;
-
-    // FOR(n)
-    // {
-    //     for (auto j : arr[i])
-    //     {
-    //         cout << j << " ";
-    //     }
-    //     cout << nl;
-    // }
 
     sum = 0;
-    int arrsum = 0;
-    int itr = 0;
-    int prevarr2ndlastidxval = 0;
+    int prevSum = 0;
 
-    for (auto i : arr)
+    for (int i = 0; i < arr.size(); i++)
     {
-        int thisarr = i[len(i) - 1]; // per array sum = ok
+        int thisarrSum = arr[i][len(arr[i]) - 1];  // this arr sum
 
-        prevarr2ndlastidxval += (itr == 0) ? 0 : arr[itr - 1][len(arr[itr - 1]) - 2];
+        if (i > 0)
+            prevSum += arr[i - 1][len(arr[i - 1]) - 2];
 
-        sum += thisarr + ((len(i) - 1) * prevarr2ndlastidxval); // chnage arrsum
+        int thisarrayelement = arr[i].size() - 1;
 
-        // dbg(prevarr2ndlastidxval);
-
-        itr++;
+        sum += thisarrSum + (thisarrayelement) * prevSum;
     }
 
     cout << sum << nl;
